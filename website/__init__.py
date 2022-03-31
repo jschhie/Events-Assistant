@@ -2,6 +2,8 @@ from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from os import path
 
+from flask_login import LoginManager
+
 db = SQLAlchemy()
 DB_NAME = "tasks_database.db"
 
@@ -20,13 +22,22 @@ def create_app():
     from .views import views
     from .auth import auth
 
-    # create or retrieve existing database
-    from .models import Task
-    create_database(app)
-
     app.register_blueprint(views, url_prefix='/')
     app.register_blueprint(auth, url_prefix='/')
+
+    # create or retrieve existing database
+    from .models import Task, User
+    create_database(app)
+
+    # after db is created, initialized
+    login_manager = LoginManager()
+    login_manager.login_view = 'auth.login' # where to redirect if not logged in 
+    login_manager.init_app(app) # tell LoginManager which app is in use
     
+    @login_manager.user_loader 
+    def load_user(id):
+        return User.query.get(int(id))
+
     return app
 
 

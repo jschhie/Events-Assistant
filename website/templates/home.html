@@ -3,5 +3,33 @@
 {% block title %} Home Page {% endblock %}
 
 {% block content %} 
-<h1 align="center"> This is the home page </h1>
+<h1 style="text-align: center"> Tasks Helper </h1>
+
+<style>
+    p {text-align: center;}
+</style>
+
+<p> Welcome back! </p>
+
+<table class="table">
+    <thead>
+    <tr> 
+        <th> Task </th>
+        <th> Due Date </th>
+        <th> Completed </th>
+        <th> Actions </th>
+    </tr>
+    </thead>
+</table>
+
+<br>
+
+<form method="POST">
+    <textarea name="task" id="task" class="form-control"></textarea>
+    <br>
+    <div align="center">
+      <button type="submit" class="btn btn-primary">Add Task</button>
+    </div>
+  </form>
+
 {% endblock %}

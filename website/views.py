@@ -16,7 +16,6 @@ def home():
         if len(task_content.strip()) < 1:
             print('too short!!!!')
         else:
-            print("CONTENT: ", task_content)
             if task_due_date:
                 # due date is specified, otherwise leave as None
                 year = int(task_due_date[0:4])
@@ -27,7 +26,7 @@ def home():
                 # account for optional due dates: task_due_date is empty
                 task_due_date = None
             try:
-                new_task = Task(content=task_content, due_date=task_due_date)
+                new_task = Task(content=task_content, due_date=task_due_date, user_id=current_user.id) # added user_id arg
                 db.session.add(new_task)
                 db.session.commit()
                 print('new task added with due date')
@@ -35,7 +34,7 @@ def home():
             except:
                 print('error in adding new task')
     
-    # in case of errors, failure
-    #tasks = Task.query.all() # display all of current user's tasks
-    tasks = Task.query.order_by(Task.due_date).all() # order by due date
-    return render_template('home.html', user=current_user, tasks=tasks)
+    # default action: display all tasks in order of due date
+    #tasks = Task.query.order_by(Task.due_date).all() # order by due date
+    tasks = Task.query.filter_by(user_id=current_user.id).order_by(Task.due_date).all() # order by due date
+    return render_template('home.html', user=current_user) #, tasks=tasks)

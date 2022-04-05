@@ -13,7 +13,7 @@
 
   <p> Welcome back, {{ user.first_name }}! </p>
 
-  {% if tasks|length < 1 %}
+  {% if user.tasks|length < 1 %}
     <h4 style="text-align: center"> There are no tasks. Create one below! </h4>
   {% else %}
     <table class="table">
@@ -26,10 +26,17 @@
       </tr>
       </thead>  
       <tbody>
-        {% for task in tasks %}
+        {% for task in user.tasks %}
           <tr>
             <td> {{ task.content }} </td>
             <td> {{ task.due_date }} </td>
+            <td> 
+              <input
+                class="form-check-input"
+                type="checkbox"
+                value=""
+                id="completed">
+            </td> 
             <td> 
               <a href="/delete/{{ task.id }}"> Delete </a>
               <br>

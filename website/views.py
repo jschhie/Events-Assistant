@@ -47,3 +47,31 @@ def format_date(task_due_date) -> str:
         # account for optional due dates: task_due_date is empty
         task_due_date = None
     return task_due_date
+
+
+
+@views.route('/delete/<int:id>')
+@login_required
+def delete(id):
+    task_to_delete = Task.query.get(id)
+    try:
+        if task_to_delete.user_id == current_user.id:
+            # only owner of Task can delete their Tasks
+            db.session.delete(task_to_delete)
+            db.session.commit()
+            print('deleted')
+            return redirect('/') # redirect to Home Page
+    except:
+        print('error in deleting')
+
+
+
+"""
+@views.route('/update/<int:id>', methods=['POST', 'GET'])
+@login_required
+def update(id):
+    updated_task = Task.query.get(id)
+    if request.method == 'POST':
+        # make sure owner only can update 
+         updated_task.content = request.form['content']
+"""

@@ -13,9 +13,10 @@ def home():
         task_content = request.form['content']
         task_due_date = request.form['due_date']
         # Parse str object YYYY-MM-DD format, and convert into date obj
-        if len(task_content) < 1:
-            print('too short')
+        if len(task_content.strip()) < 1:
+            print('too short!!!!')
         else:
+            print("CONTENT: ", task_content)
             if task_due_date:
                 # due date is specified, otherwise leave as None
                 year = int(task_due_date[0:4])

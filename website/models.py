@@ -6,7 +6,8 @@ from flask_login import UserMixin
 class Task(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     content = db.Column(db.String(200), nullable=False)
-    due_date = db.Column(db.Date)
+    # Longest possible str value for due_date: Wednesday,_September_10,_20XX = 9+1+1+9+1+2+1+1+4 = 29 chars
+    due_date = db.Column(db.String(30)) # formats dates as DayOfWeek, Month DD, YYYY instead of specifying db.Column(db.Date)
     completed = db.Column(db.Boolean, default=False)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
 

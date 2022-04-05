@@ -6,7 +6,7 @@ from flask_login import UserMixin
 class Task(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     content = db.Column(db.String(200), nullable=False)
-    due_date = db.Column(db.DateTime)
+    due_date = db.Column(db.Date)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
 
 

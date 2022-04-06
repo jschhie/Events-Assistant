@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, request, redirect, url_for
+from flask import Blueprint, render_template, request, redirect, url_for, flash
 from .models import User
 from . import db
 
@@ -22,14 +22,14 @@ def login():
         if user:
             # if username exists in database, check if passwords match
             if check_password_hash(user.password, password):
-                print('logged in successfully')
+                flash('You are now logged in!', category='success')
                 login_user(user, remember=True)
                 # Login user, redirect to their home page of tasks
                 return redirect(url_for('views.home')) 
             else:
-                print('wrong password')
+                flash('Wrong password.', category='error')
         else: # if username DNE in database
-            print('username does not exist')
+            flash('Username does not exist.', category='error')
     return render_template("login.html")
 
 
@@ -54,21 +54,21 @@ def register():
         # confirm unique username first, same passwords okay
         user = User.query.filter_by(username=username).first()
         if user:
-            print('username exists already')
+            flash('Username exists already.', category='error')
         elif len(username) < 4:
-            print('Username must be greater than 3 characters.')
+            flash('Username must be greater than 3 characters.', category='error')
         elif len(first_name) < 2:
-            print('First Name must be greater than 1 character.')
+            flash('First Name must be greater than 1 character.', category='error')
         elif password1 != password2:
-            print('Passwords don\'t match.')
+            flash('Passwords don\'t match.', category='error')
         elif len(password1) < 7:
-            print('Password must be greater than 6 characters.')
+            flash('Password must be greater than 6 characters.', category='error')
         else: # create and add new user into db
             new_user = User(username=username, first_name=first_name, password=generate_password_hash(password1, method='sha256'))
             db.session.add(new_user)
             db.session.commit()
             login_user(new_user, remember=True)
-            print('new account made')
+            flash('New account made! You are now logged in.', category='success')
             # after logging in, redirect User to the Home Page
             return redirect(url_for('views.home')) 
 

@@ -1,6 +1,7 @@
 import datetime
 import calendar
-from flask import Blueprint, render_template, request, redirect
+from nis import cat
+from flask import Blueprint, render_template, request, redirect, flash
 from flask_login import current_user, login_required
 from . import db
 from .models import Task
@@ -15,17 +16,17 @@ def home():
         due_date = request.form['due_date']
         # Parse str object YYYY-MM-DD format, and convert into formatted str 
         if len(content.strip()) < 1:
-            print('too short!!!!')
+            flash('Task is too short!', category='error')
         else:
             due_date = format_date(due_date) 
             try:
                 new_task = Task(content=content, due_date=due_date, user_id=current_user.id)
                 db.session.add(new_task)
                 db.session.commit()
-                print('new task added')
+                flash('New task added!', category='success')
                 return redirect('/') # redirect to Home page
             except:
-                print('error in adding new task')
+                flash('Error in adding new task.', category='error')
     
     # default action: display all tasks 
     tasks = Task.query.filter_by(user_id=current_user.id).order_by(Task.due_date).all() 
@@ -60,10 +61,10 @@ def delete(id):
             # only owner of Task can delete their Tasks
             db.session.delete(task_to_delete)
             db.session.commit()
-            print('deleted')
+            flash('Task deleted!', category='success')
             return redirect('/') # redirect to Home Page
     except:
-        print('error in deleting task')
+        flash('Error in deleting task.', category='error')
 
 
 
@@ -79,10 +80,10 @@ def update(id):
             updated_task.due_date = format_date(date_obj)
             try:
                 db.session.commit()
-                print('updated!')
+                flash('Task updated!', category='success')
                 return redirect('/') # redirect to Home Page with updated task
             except:
-                print('error in updating task')
+                flash('Error in updating task.', category='error')
     else:
         # Resort Tasks by due dates
         #all_tasks = Task.query.filter_by(user_id=current_user.id).order_by(Task.due_date).all() 

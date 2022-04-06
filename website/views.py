@@ -87,4 +87,4 @@ def update(id):
     else:
         # Resort Tasks by due dates
         #all_tasks = Task.query.filter_by(user_id=current_user.id).order_by(Task.due_date).all() 
-        return render_template('update.html', task=updated_task) # Remain on / display Update Task Page
+        return render_template('update.html', task=updated_task, user=current_user) # Remain on / display Update Task Page

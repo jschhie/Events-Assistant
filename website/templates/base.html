@@ -33,12 +33,16 @@
             </button>
 
             <!-- define items in nav bar -->
+            <!-- only show certain links if the User is signed in, is authenticated -->
             <div class="collapse navbar-collapse" id="navbar">
                 <div class="navbar-nav">
-                    <a class="nav-item nav-link" id="home" href="/">Home</a>
-                    <a class="nav-item nav-link" id="logout" href="/logout">Logout</a>
-                    <a class="nav-item nav-link" id="login" href="/login">Login</a>
-                    <a class="nav-item nav-link" id="register" href="/register">Register</a>
+                    {% if user.is_authenticated %}
+                        <a class="nav-item nav-link" id="home" href="/">Home</a>
+                        <a class="nav-item nav-link" id="logout" href="/logout">Logout</a>
+                    {% else %}
+                        <a class="nav-item nav-link" id="login" href="/login">Login</a>
+                        <a class="nav-item nav-link" id="register" href="/register">Register</a>
+                    {% endif %}
                 </div>
             </div>
         </nav>

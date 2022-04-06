@@ -3,7 +3,7 @@ from .models import User
 from . import db
 
 # flask_login:: login, logout, signup functionality
-from flask_login import login_user, login_required, logout_user
+from flask_login import current_user, login_user, login_required, logout_user
 
 # Generate unique hash for each plaintext password
 from werkzeug.security import generate_password_hash, check_password_hash 
@@ -30,7 +30,7 @@ def login():
                 flash('Wrong password.', category='error')
         else: # if username DNE in database
             flash('Username does not exist.', category='error')
-    return render_template("login.html")
+    return render_template("login.html", user=current_user)
 
 
 
@@ -72,4 +72,4 @@ def register():
             # after logging in, redirect User to the Home Page
             return redirect(url_for('views.home')) 
 
-    return render_template("register.html")
+    return render_template("register.html", user=current_user)

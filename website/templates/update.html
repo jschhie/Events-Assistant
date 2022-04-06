@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block title %} 
+  Update Task 
+{% endblock %}
+
+{% block content %} 
+  <h1 style="text-align: center"> Tasks Helper </h1>
+
+  <style>
+      p {text-align: center;}
+  </style>
+
+  <p> Update the task below! </p>
+
+  <form method="POST">
+    <label for="content"> Task Details: </label>
+    <textarea id="content" name="content" class="form-control">{{task.content}}</textarea>
+    <br>
+    <label for="due-date"> (Current) Due Date: {{task.due_date}}</label>
+    <br>
+    <label for="due-date">Update Due Date!:
+      <span>
+        <input 
+        type="date" 
+        id="due_date" 
+        name="due_date">
+      </span>
+    </label>
+    <br>
+    <br>
+    <div>
+      <button type="submit" class="btn btn-primary">Update Task</button>
+    </div>
+    <br>
+    <br>
+  </form>
+
+{% endblock %}

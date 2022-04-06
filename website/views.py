@@ -11,29 +11,30 @@ views = Blueprint('views', __name__)
 @login_required
 def home():
     if request.method == 'POST':
-        task_content = request.form['content']
-        task_due_date = request.form['due_date']
+        content = request.form['content']
+        due_date = request.form['due_date']
         # Parse str object YYYY-MM-DD format, and convert into formatted str 
-        if len(task_content.strip()) < 1:
+        if len(content.strip()) < 1:
             print('too short!!!!')
         else:
-            task_due_date = format_date(task_due_date)
+            due_date = format_date(due_date) 
             try:
-                new_task = Task(content=task_content, due_date=task_due_date, user_id=current_user.id) # added user_id arg
+                new_task = Task(content=content, due_date=due_date, user_id=current_user.id)
                 db.session.add(new_task)
                 db.session.commit()
-                print('new task added with due date')
-                return redirect('/') # redirect to home page
+                print('new task added')
+                return redirect('/') # redirect to Home page
             except:
                 print('error in adding new task')
     
-    # default action: display all tasks in order of due date
-    tasks = Task.query.filter_by(user_id=current_user.id).order_by(Task.due_date).all() # order by due date
-    return render_template('home.html', user=current_user) #, tasks=tasks)
+    # default action: display all tasks 
+    tasks = Task.query.filter_by(user_id=current_user.id).order_by(Task.due_date).all() 
+    return render_template('home.html', user=current_user, tasks=tasks)
 
 
 
-def format_date(task_due_date) -> str:
+def format_date(task_due_date):
+    date_obj = None
     if task_due_date:
         # due date is given as YYYY-MM-DDD format
         month_index = int(task_due_date[5:7]) # int
@@ -62,16 +63,27 @@ def delete(id):
             print('deleted')
             return redirect('/') # redirect to Home Page
     except:
-        print('error in deleting')
+        print('error in deleting task')
 
 
 
-"""
 @views.route('/update/<int:id>', methods=['POST', 'GET'])
 @login_required
 def update(id):
     updated_task = Task.query.get(id)
     if request.method == 'POST':
         # make sure owner only can update 
-         updated_task.content = request.form['content']
-"""
+        if updated_task.user_id == current_user.id:
+            updated_task.content = request.form['content']
+            date_obj = request.form['due_date']
+            updated_task.due_date = format_date(date_obj)
+            try:
+                db.session.commit()
+                print('updated!')
+                return redirect('/') # redirect to Home Page with updated task
+            except:
+                print('error in updating task')
+    else:
+        # Resort Tasks by due dates
+        #all_tasks = Task.query.filter_by(user_id=current_user.id).order_by(Task.due_date).all() 
+        return render_template('update.html', task=updated_task) # Remain on / display Update Task Page

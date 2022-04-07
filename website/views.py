@@ -1,6 +1,7 @@
 import datetime
 import calendar
 from nis import cat
+#from socket import CAN_RAW
 from flask import Blueprint, render_template, request, redirect, flash
 from flask_login import current_user, login_required
 from . import db
@@ -85,6 +86,4 @@ def update(id):
             except:
                 flash('Error in updating task.', category='error')
     else:
-        # Resort Tasks by due dates
-        #all_tasks = Task.query.filter_by(user_id=current_user.id).order_by(Task.due_date).all() 
         return render_template('update.html', task=updated_task, user=current_user) # Remain on / display Update Task Page

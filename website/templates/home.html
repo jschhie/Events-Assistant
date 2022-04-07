@@ -21,7 +21,6 @@
       <tr> 
         <th> Task </th>
         <th> Due Date </th>
-        <th> Completed </th>
         <th> Actions </th>
       </tr>
       </thead>  
@@ -30,12 +29,6 @@
           <tr>
             <td> {{ task.content }} </td>
             <td> {{ task.due_date }} </td>
-            <td> 
-              <input
-                class="form-check-input"
-                type="checkbox"
-                id="completed">
-            </td> 
             <td> 
               <a href="/delete/{{ task.id }}"> Delete </a>
               <br>
@@ -53,7 +46,9 @@
   <form method="POST">
     <label for="content"> Task Details:</label>
     <textarea id="content" name="content" class="form-control"></textarea>
+    
     <br>
+    
     <label for="due-date"> Due Date: 
       <span>
         <input 
@@ -62,11 +57,14 @@
         name="due_date">
       </span>
     </label>
+    
     <br>
     <br>
+    
     <div>
       <button type="submit" class="btn btn-primary">Add Task</button>
     </div>
+  
     <br>
     <br>
   </form>

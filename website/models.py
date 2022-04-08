@@ -7,6 +7,8 @@ class Task(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     content = db.Column(db.String(200), nullable=False)
     due_date = db.Column(db.String(30)) # formatted str date (ex: Tuesday, April 05, 2022)
+    time = db.Column(db.String(20)) # str type, account for untimed tasks
+    #time = db.Column(db.Time)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
     status = db.Column(db.String(30), default="Incomplete") # Complete, Incomplete
 

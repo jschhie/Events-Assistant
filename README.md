@@ -4,16 +4,15 @@
 ## Project Overview
 A Flask web application using Python3 and HTML that allows users to create, modify, and delete tasks while simulating user authentication (login, logout, and registration). 
 
-## Table of Contents
-* [Features](https://github.com/jschhie/tasks-helper/#features)
-* [Application Requirements](https://github.com/jschhie/tasks-helper/#application-requirements)
-  * [How to Run the App](https://github.com/jschhie/tasks-helper/#how-to-run-the-app)
-* [Visual Demo](https://github.com/jschhie/tasks-helper/#visual-demo)
-
 ### Features
 * Web pages rendered with Jinja templating and styled with Bootstrap.
 * Account information and event details stored into a relational SQLite database.
 * Database records managed using SQLAlchemy and HTTP requests.
+
+## Table of Contents
+* [Application Requirements](https://github.com/jschhie/tasks-helper/#application-requirements)
+* [Visual Demo](https://github.com/jschhie/tasks-helper/#visual-demo)
+
 
 ## Application Requirements
 This web app requires ```Python3```, as well as the following packages: ```flask```, ```flask-login```, and ```flask-sqlalchemy```.

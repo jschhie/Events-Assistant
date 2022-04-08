@@ -2,7 +2,7 @@
 > Spring 2022. Written in Python3 using Flask, HTML, Bootstrap, and Jinja. Database management through SQLAlchemy and SQLite.
 
 ## Project Overview
-A Flask web application using Python3 and HTML that allows users to create, modify, and delete tasks through HTTP requests while simulating login, logout, and registration features. 
+A Flask web application using Python3 and HTML that allows users to create, modify, and delete tasks through HTTP requests while simulating user authentication (login, logout, and registration). 
 Stylized and rendered web pages using Jinja templating and Bootstrap.
 Managed account information and event details using SQLAlchemy and stored records into a SQLite database.
 

@@ -16,7 +16,6 @@ To run this application, first download this repository and the packages mention
 ```bash 
 git clone https://github.com/jschhie/tasks-helper.git [folderNameHere]
 ```
-> where ```folderNameHere``` can be any name to store the project source code.
 
 Next, go into the folder: 
 ```bash 

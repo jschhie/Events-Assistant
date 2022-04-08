@@ -8,7 +8,7 @@ class Task(db.Model):
     content = db.Column(db.String(200), nullable=False)
     due_date = db.Column(db.String(30)) # formatted str date (ex: Tuesday, April 05, 2022)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
-
+    status = db.Column(db.String(30), default="Incomplete") # Complete, Incomplete
 
 
 class User(db.Model, UserMixin):

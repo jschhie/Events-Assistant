@@ -27,15 +27,22 @@
         name="due_date">
       </span>
     </label>
-    <!--
+
+    
+
+    <!-- 
     <br>
-    <label for="completed"> Completed?: </label>
-    <select multiple class="form-control" id="completed">
-      <option>Completed</option>
-      <option>In Progress</option>
-      <option>Not yet started</option>
-    </select>
+    <label for="status">Task Status:</label>
+    <span>
+      <select id="status" name="status">
+        <option selected="selected" value="0">Not yet started</option>
+        <option value="1">Completed</option>
+        <option value="2">In progress</option>
+      </select>
+    </span>
+    <div class="test"></div>
     -->
+
     <br>
     <br>
     <div>
@@ -46,3 +53,11 @@
   </form>
 
 {% endblock %}
+
+<!---
+<script src="https://code.jquery.com/jquery-3.5.0.js">
+  $("status").change(function() {
+    var selectedText = $(this).find("option:selected").text()});
+    $(".test").text(selectedText);
+</script>
+-->

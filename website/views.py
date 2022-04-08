@@ -69,6 +69,24 @@ def delete(id):
 
 
 
+@views.route('/change-status/<int:id>')
+@login_required
+def change_status(id):
+    user_task = Task.query.get(id)
+    try:
+        if user_task.user_id == current_user.id:
+            if user_task.status == "Incomplete":
+                user_task.status = "Complete"
+            else:
+                user_task.status = "Incomplete"
+            db.session.commit()
+            flash('Status updated!', category='success')
+            return redirect('/')
+    except:
+        flash('Error in changing status', category='error')
+
+
+
 @views.route('/update/<int:id>', methods=['POST', 'GET'])
 @login_required
 def update(id):

@@ -21,6 +21,7 @@
       <tr> 
         <th> Task </th>
         <th> Due Date </th>
+        <th> Status </th>
         <th> Actions </th>
       </tr>
       </thead>  
@@ -29,10 +30,13 @@
           <tr>
             <td> {{ task.content }} </td>
             <td> {{ task.due_date }} </td>
+            <td> {{ task.status }} </td>
             <td> 
               <a href="/delete/{{ task.id }}"> Delete </a>
               <br>
               <a href="/update/{{ task.id }}"> Update </a>
+              <br>
+              <a href="/change-status/{{ task.id }}"> Change Status </a>
             </td>
           </tr>
         {% endfor %}
@@ -44,6 +48,7 @@
   <hr>
 
   <form method="POST">
+    
     <label for="content"> Task Details:</label>
     <textarea id="content" name="content" class="form-control"></textarea>
     
@@ -57,7 +62,7 @@
         name="due_date">
       </span>
     </label>
-    
+
     <br>
     <br>
     

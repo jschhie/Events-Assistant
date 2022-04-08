@@ -30,4 +30,4 @@ python3 main.py
 > Above command will create and activate the Flask web app with an empty database (```tasks_database.db```). 
 
 The user can then access and interact with the application at http://127.0.0.1:5000/ via any web browser. 
-At start up, users will be greeted with the Login Page and may click the nagivation bar to switch to the Account Registration Page.
+At start up, users may toggle the nagivation bar to switch between the Login and Account Registration Page. Once signed in/registered, users will be greeted with their personal Home Page, which displays all tasks and possible actions to manage them.

@@ -1,11 +1,8 @@
-import datetime
-import calendar
-from nis import cat
-#from socket import CAN_RAW
 from flask import Blueprint, render_template, request, redirect, flash
 from flask_login import current_user, login_required
 from . import db
 from .models import Task
+from .helpers import format_date, format_time # helper functions
 
 views = Blueprint('views', __name__)
 
@@ -13,33 +10,11 @@ views = Blueprint('views', __name__)
 @login_required
 def home():
     if request.method == 'POST':
+        # Collect data from submitted form
         content = request.form['content']
         due_date = request.form['due_date']
-        time = request.form['time']
-        
-        # Convert to str with AM, PM units
-        print("TIME::: ", time)
-        new_time = ''
-        if len(time):
-            hour = int(time[:2])
-            print("HOUR : ", hour)
-            if hour >= 1 and hour < 10:
-                new_time = time[1:] + ' AM' # remove leading 0
-            elif hour == 10 or hour == 11:
-                new_time = time + ' AM'
-            elif hour == 12:
-                new_time = time + ' PM'
-            elif hour == 0:
-                # convert 0 o clock to 12 o clock
-                new_time = '12' + time[2:] + ' AM'
-            else:
-                # convert to regular 12 hour time
-                result = hour - 12
-                if result < 10:
-                    new_time = str(result)
-                else:
-                    new_time = '1' + str(result - 10)
-                new_time += time[2:] + ' PM'
+        time = request.form['time']        
+        new_time = format_time(time)
 
         # Parse str object YYYY-MM-DD format, and convert into formatted str 
         if len(content.strip()) < 1:
@@ -58,24 +33,6 @@ def home():
     # default action: display all tasks 
     tasks = Task.query.filter_by(user_id=current_user.id).order_by(Task.due_date).all() 
     return render_template('home.html', user=current_user, tasks=tasks)
-
-
-
-def format_date(task_due_date):
-    date_obj = None
-    if task_due_date:
-        # due date is given as YYYY-MM-DDD format
-        month_index = int(task_due_date[5:7]) # int
-        month = calendar.month_name[month_index] # str
-        day = task_due_date[8:] # str
-        year = task_due_date[0:4] # str
-        date_obj = datetime.date(int(year), month_index, int(day)) # date object
-        day_of_week = calendar.day_name[date_obj.weekday()] # use date.weekday() method to get MONTH as str
-        task_due_date = day_of_week + ", " + month + " " + day + ", " + year
-    else: 
-        # account for optional due dates: task_due_date is empty
-        task_due_date = None
-    return task_due_date
 
 
 

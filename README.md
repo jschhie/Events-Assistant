@@ -4,7 +4,7 @@
 ## Project Overview
 A Flask web application using Python3 and HTML that allows users to create, modify, and delete tasks through HTTP requests while simulating login, logout, and registration features. 
 Stylized and rendered web pages using Jinja templating and Bootstrap.
-Managed account information and event details using SQLAclhemy and stored records into a SQLite database.
+Managed account information and event details using SQLAlchemy and stored records into a SQLite database.
 
 ## Application Requirements
 This web app requires ```Python3```, as well as the following packages: ```flask```, ```flask-login```, and ```flask-sqlalchemy```.

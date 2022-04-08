@@ -1,5 +1,5 @@
 # Tasks Helper
-> Spring 2022. Written in Python3 using Flask, HTML, Bootstrap, and Jinja. Relational database management through SQLAlchemy and SQLite.
+> Spring 2022. Written in Python3 using Flask, HTML, Bootstrap, and Jinja. Database management through SQLAlchemy and SQLite.
 
 ## Project Overview
 A Flask web application using Python3 and HTML that allows users to create, modify, and delete tasks through HTTP requests while simulating login, logout, and registration features. 

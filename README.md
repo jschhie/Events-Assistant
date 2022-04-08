@@ -6,7 +6,8 @@ A Flask web application using Python3 and HTML that allows users to create, modi
 
 ### Features
 * Web pages rendered with Jinja templating and styled with Bootstrap.
-* Account information and event details stored into a relational SQLite database and records managed using SQLAlchemy and HTTP requests.
+* Account information and event details stored into a relational SQLite database.
+* Database records managed using SQLAlchemy and HTTP requests.
 
 ## Application Requirements
 This web app requires ```Python3```, as well as the following packages: ```flask```, ```flask-login```, and ```flask-sqlalchemy```.

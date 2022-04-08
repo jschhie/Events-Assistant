@@ -16,9 +16,13 @@
   <form method="POST">
     <label for="content"> Task Details: </label>
     <textarea id="content" name="content" class="form-control">{{task.content}}</textarea>
+    
     <br>
+    
     <label for="due-date"> (Current) Due Date: {{task.due_date}}</label>
+    
     <br>
+    
     <label for="due-date">Update Due Date:
       <span>
         <input 
@@ -28,36 +32,16 @@
       </span>
     </label>
 
+    <br>
+    <br>
     
-
-    <!-- 
-    <br>
-    <label for="status">Task Status:</label>
-    <span>
-      <select id="status" name="status">
-        <option selected="selected" value="0">Not yet started</option>
-        <option value="1">Completed</option>
-        <option value="2">In progress</option>
-      </select>
-    </span>
-    <div class="test"></div>
-    -->
-
-    <br>
-    <br>
     <div>
       <button type="submit" class="btn btn-primary">Update Task</button>
     </div>
+    
     <br>
     <br>
+    
   </form>
 
 {% endblock %}
-
-<!---
-<script src="https://code.jquery.com/jquery-3.5.0.js">
-  $("status").change(function() {
-    var selectedText = $(this).find("option:selected").text()});
-    $(".test").text(selectedText);
-</script>
--->

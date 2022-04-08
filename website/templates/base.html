@@ -33,15 +33,44 @@
             </button>
 
             <!-- define items in nav bar -->
+            <!-- only show certain links if the User is signed in, is authenticated -->
             <div class="collapse navbar-collapse" id="navbar">
                 <div class="navbar-nav">
-                    <a class="nav-item nav-link" id="home" href="/">Home</a>
-                    <a class="nav-item nav-link" id="logout" href="/logout">Logout</a>
-                    <a class="nav-item nav-link" id="login" href="/login">Login</a>
-                    <a class="nav-item nav-link" id="register" href="/register">Register</a>
+                    {% if user.is_authenticated %}
+                        <a class="nav-item nav-link" id="home" href="/">Home</a>
+                        <a class="nav-item nav-link" id="logout" href="/logout">Logout</a>
+                    {% else %}
+                        <a class="nav-item nav-link" id="login" href="/login">Login</a>
+                        <a class="nav-item nav-link" id="register" href="/register">Register</a>
+                    {% endif %}
                 </div>
             </div>
         </nav>
+
+        <!-- Flash messages below for each webpage that inherits from this base html file, template -->
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                {% if category == 'error' %}
+                <!-- msg flashing for error messages ( 'alert-danger' )-->
+                <div class="alert alert-danger alter-dismissable fade show" role="alert">
+                    {{ message }}
+                    <button type="button" class="close" data-dismiss="alert">
+                        <span aria-hidden="true"> &times; </span>
+                    </button>
+                </div>
+                {% else %}
+                <!-- msg flashing for success messages ( 'alert-danger' )-->
+                <div class="alert alert-success alter-dismissable fade show" role="alert">
+                    {{ message }}
+                    <button type="button" class="close" data-dismiss="alert">
+                        <span aria-hidden="true"> &times; </span>
+                    </button>
+                </div>
+                {% endif %}
+            {% endfor %}
+        {% endif %}
+        {% endwith %}
 
         <!-- webpage content here -->
         <div class="container">
@@ -59,5 +88,6 @@
             integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
             crossorigin="anonymous"
         ></script>
+
     </body>
 </html>

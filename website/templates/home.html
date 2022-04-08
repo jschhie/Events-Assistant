@@ -1,35 +1,96 @@
 {% extends "base.html" %}
 
-{% block title %} Home Page {% endblock %}
+{% block title %} 
+  Home Page 
+{% endblock %}
 
 {% block content %} 
-<h1 style="text-align: center"> Tasks Helper </h1>
+  <h1 style="text-align: center"> Tasks Helper </h1>
 
-<style>
-    p {text-align: center;}
-</style>
+  <p style="text-align:center"> Welcome back, {{ user.first_name }}! </p>
 
-<p> Welcome back, {{ user.first_name }}! </p>
-
-<table class="table">
-    <thead>
-    <tr> 
+  {% if tasks|length < 1 %}
+    <h4 style="text-align: center"> There are no tasks. Create one below! </h4>
+  {% else %}
+    <table class="table">
+      <thead>
+      <tr> 
         <th> Task </th>
         <th> Due Date </th>
-        <th> Completed </th>
+        <th> Status </th>
         <th> Actions </th>
-    </tr>
-    </thead>
-</table>
+      </tr>
+      </thead>  
+      <tbody>
+        {% for task in tasks %}
+          <tr>
+            <td> {{ task.content }} </td>
+            <td>
+              {% if task.due_date != "None" and task.time %}
+                {{ task.due_date }} at {{ task.time }}
+              {% else %}
+                {{ task.due_date }}
+              {% endif %}
+            </td>
+            <td>
+              {% if task.status == "Complete" %}
+                <p class="text-success">{{ task.status }}</p>
+              {% else %}
+                <p class="text-secondary">{{ task.status }}</p>
+              {% endif %}
+            </td>
+            <td> 
+              <a href="/delete/{{ task.id }}"> Delete </a>
+              <br>
+              <a href="/update/{{ task.id }}"> Update </a>
+              <br>
+              <a href="/change-status/{{ task.id }}"> Change Status </a>
+            </td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  {% endif %}
 
-<br>
+  <br>
+  <hr>
 
-<form method="POST">
-    <textarea name="task" id="task" class="form-control"></textarea>
+  <form method="POST">
+    
+    <label for="content"> Task Details:</label>
+    <textarea id="content" name="content" class="form-control"></textarea>
+    
     <br>
-    <div align="center">
+    
+    <label for="due-date"> Due Date: 
+      <span>
+        <input 
+          type="date" 
+          id="due_date" 
+          name="due_date">
+      </span>
+    </label>
+
+    <br>
+
+    <label for="time"> Time:
+      <span>
+        <input
+          type="time"
+          id="time"
+          name="time">
+      </span>
+    </label>
+
+    <br>
+    <br>
+    
+    <div>
       <button type="submit" class="btn btn-primary">Add Task</button>
     </div>
+  
+    <br>
+    <br>
   </form>
 
 {% endblock %}

@@ -1,4 +1,4 @@
-# Tasks Helper
+# Tasks Assistant
 > Written in Python3 using Flask, HTML, Bootstrap, and Jinja. Database management through SQLAlchemy and SQLite.
 
 ## Project Overview

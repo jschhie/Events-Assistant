@@ -10,8 +10,8 @@ A Flask web application using Python3 and HTML that allows users to create, modi
 * Database records managed using SQLAlchemy and HTTP requests.
 
 ## Table of Contents
-* [Application Requirements](https://github.com/jschhie/tasks-helper/#application-requirements)
-* [Visual Demo](https://github.com/jschhie/tasks-helper/#visual-demo)
+* [Application Requirements](https://github.com/jschhie/tasks-assistant/#application-requirements)
+* [Visual Demo](https://github.com/jschhie/tasks-assistant/#visual-demo)
 
 
 ## Application Requirements
@@ -22,7 +22,7 @@ To run this application, first download this repository and the packages mention
 
 (Assuming in Terminal) First, enter:
 ```bash 
-git clone https://github.com/jschhie/tasks-helper.git [folderNameHere]
+git clone https://github.com/jschhie/tasks-assistant.git [folderNameHere]
 ```
 
 Next, go into the folder: 
@@ -38,7 +38,7 @@ python3 main.py
 > Above command will create and activate the Flask web app with an empty database (```tasks_database.db```). 
 
 The user can then access and interact with the application at http://127.0.0.1:5000/ via any web browser. 
-At start up, users may toggle the nagivation bar to switch between the Account Login and Registration Pages. Signed in/newly registered users will be greeted with their personal Home Page, which displays all tasks and possible actions to manage them (update, create, delete).
+At start up, users may toggle the nagivation bar to switch between the Account Login and Registration Pages. Signed in/newly registered users will be greeted with their personal Home Page, which displays all tasks and CRUD (create, read, update, and delete) operations to manage them.
 
 ## Visual Demo
 todo

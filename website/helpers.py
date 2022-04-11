@@ -1,11 +1,15 @@
 import calendar
 import datetime
+from xxlimited import new
 
 def format_time(time) -> str:
     # Convert to str with AM, PM units
     new_time = ''
-    if len(time):
-        hour = int(time[:2])
+    if len(time) == 0:
+        return new_time # Skip rest of code below, terminate early
+
+    # Specific time given by user
+    hour = int(time[:2])
     if hour >= 1 and hour < 10:
         new_time = time[1:] + ' AM' # remove leading 0
     elif hour == 10 or hour == 11:

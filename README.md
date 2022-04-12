@@ -41,4 +41,10 @@ The user can then access and interact with the application at http://127.0.0.1:5
 At start up, users may toggle the nagivation bar to switch between the Account Login and Registration Pages. Signed in/newly registered users will be greeted with their personal Home Page, which displays all tasks and CRUD (create, read, update, and delete) operations to manage them.
 
 ## Visual Demo
-todo
+<img src="https://github.com/jschhie/tasks-assistant/blob/master/demos/login%20page.png">
+
+<img src="https://github.com/jschhie/tasks-assistant/blob/master/demos/register.png">
+
+<img src="https://github.com/jschhie/tasks-assistant/blob/master/demos/home%20page.png">
+
+<img src="https://github.com/jschhie/tasks-assistant/blob/master/demos/update%20page.png">

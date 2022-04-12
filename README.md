@@ -10,8 +10,8 @@ A dynamic Flask web application using Python3 and HTML that allows users to crea
 * Database records managed using SQLAlchemy and HTTP requests.
 
 ## Table of Contents
-* [Application Requirements](https://github.com/jschhie/tasks-assistant/#application-requirements)
-* [Visual Demo](https://github.com/jschhie/tasks-assistant/#visual-demo)
+* [Application Requirements](https://github.com/jschhie/Tasks-Assistant/#application-requirements)
+* [Visual Demo](https://github.com/jschhie/Tasks-Assistant/#visual-demo)
 
 
 ## Application Requirements
@@ -41,10 +41,10 @@ The user can then access and interact with the application at http://127.0.0.1:5
 At start up, users may toggle the nagivation bar to switch between the Account Login and Registration Pages. Signed in/newly registered users will be greeted with their personal Home Page, which displays all tasks and CRUD (create, read, update, and delete) operations to manage them.
 
 ## Visual Demo
-<img src="https://github.com/jschhie/tasks-assistant/blob/master/demos/login%20page.png">
+<img src="https://github.com/jschhie/Tasks-Assistant/blob/master/demos/login%20page.png">
 
-<img src="https://github.com/jschhie/tasks-assistant/blob/master/demos/register.png">
+<img src="https://github.com/jschhie/Tasks-Assistant/blob/master/demos/register.png">
 
-<img src="https://github.com/jschhie/tasks-assistant/blob/master/demos/home%20page.png">
+<img src="https://github.com/jschhie/Tasks-Assistant/blob/master/demos/home%20page.png">
 
-<img src="https://github.com/jschhie/tasks-assistant/blob/master/demos/update%20page.png">
+<img src="https://github.com/jschhie/Tasks-Assistant/blob/master/demos/update%20page.png">

@@ -12,8 +12,8 @@
   {% if tasks|length < 1 %}
     <h4 style="text-align: center"> There are no tasks. Create one below! </h4>
   {% else %}
-    <table class="table">
-      <thead>
+    <table class="table table-striped table-hover">
+      <thead class="thead-dark">
       <tr> 
         <th> Task </th>
         <th> Due Date </th>
@@ -53,34 +53,35 @@
   {% endif %}
 
   <br>
-  <hr>
 
   <form method="POST">
-    
-    <label for="content"> Task Details:</label>
-    <textarea id="content" name="content" class="form-control"></textarea>
-    
-    <br>
-    
-    <label for="due-date"> Due Date: 
-      <span>
-        <input 
-          type="date" 
-          id="due_date" 
-          name="due_date">
-      </span>
-    </label>
-
-    <br>
-
-    <label for="time"> Time:
-      <span>
-        <input
+    <table class="table table-striped">
+      <thead class="thead-dark">
+      <tr>
+        <th scope="col">Task Details:</th>
+        <td>
+          <textarea id="content" name="content" class="form-control"></textarea>
+        </td>
+      </tr>
+      <tr>
+        <th scope="col">(Optional) Due Date:</th>
+        <td>
+          <input 
+            type="date" 
+            id="due_date" 
+            name="due_date">
+        </td>
+      </tr>
+      <tr>
+        <th scope="col">(Optional) Time:</th>
+        <td>
+          <input
           type="time"
           id="time"
           name="time">
-      </span>
-    </label>
+        </td>
+      </tr>
+    </table>
 
     <br>
     <br>

@@ -80,6 +80,11 @@ def update(id):
             updated_task.content = request.form['content']
             date_obj = request.form['due_date']
             updated_task.due_date = format_date(date_obj)
+            if date_obj:
+                time = request.form['time']
+                updated_task.time = format_time(time)
+            else:
+                updated_task.time = '' # default time: unspecified/optional
             try:
                 db.session.commit()
                 flash('Task updated!', category='success')

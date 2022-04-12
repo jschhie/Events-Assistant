@@ -14,23 +14,38 @@
   <p> Update the task below! </p>
 
   <form method="POST">
-    <label for="content"> Task Details: </label>
-    <textarea id="content" name="content" class="form-control">{{task.content}}</textarea>
-    
-    <br>
-    
-    <label for="due-date"> (Current) Due Date: {{task.due_date}}</label>
-    
-    <br>
-    
-    <label for="due-date">Update Due Date:
-      <span>
-        <input 
-        type="date" 
-        id="due_date" 
-        name="due_date">
-      </span>
-    </label>
+    <table class="table table-striped">
+      <thead class="thead-dark">
+      <tr>
+        <th scope="col">Task Details:</th>
+        <td>
+          <textarea id="content" name="content" class="form-control">{{task.content}}</textarea>
+        </td>
+      </tr>
+      <tr>
+        <th scope="col">
+          (Current) Due Date: {{task.due_date}}
+          {% if task.time|length > 1%}
+            at {{task.time}}
+          {% endif %}
+        </th>
+        <td>
+          <input 
+            type="date" 
+            id="due_date" 
+            name="due_date">
+        </td>
+      </tr>
+      <tr>
+        <th scope="col">Update Time:</th>
+        <td>
+          <input
+          type="time"
+          id="time"
+          name="time">
+        </td>
+      </tr>
+    </table>
 
     <br>
     <br>

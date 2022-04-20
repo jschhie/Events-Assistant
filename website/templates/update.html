@@ -5,7 +5,8 @@
 {% endblock %}
 
 {% block content %} 
-  <h1 style="text-align: center"> Tasks Helper </h1>
+  <br>
+  <h3 style="text-align: center"> Tasks Helper </h3>
 
   <style>
       p {text-align: center;}
@@ -17,13 +18,13 @@
     <table class="table table-striped">
       <thead class="thead-dark">
       <tr>
-        <th scope="col">Task Details:</th>
+        <th style="text-align:right" scope="col">Task Details:</th>
         <td>
           <textarea id="content" name="content" class="form-control">{{task.content}}</textarea>
         </td>
       </tr>
       <tr>
-        <th scope="col">
+        <th style="text-align:right" scope="col">
           (Current) Due Date: {{task.due_date}}
           {% if task.time|length > 1%}
             at {{task.time}}
@@ -37,7 +38,7 @@
         </td>
       </tr>
       <tr>
-        <th scope="col">Update Time:</th>
+        <th style="text-align:right" scope="col">Update Time:</th>
         <td>
           <input
           type="time"
@@ -51,7 +52,7 @@
     <br>
     
     <div>
-      <button type="submit" class="btn btn-primary">Update Task</button>
+      <button type="submit" class="btn btn-outline-primary">Update Task</button>
     </div>
     
     <br>

@@ -43,7 +43,7 @@ At start up, users may toggle the nagivation bar to switch between the Account L
 ## Visual Demo
 <img src="https://github.com/jschhie/Tasks-Assistant/blob/master/demos/login%20page.png">
 
-<img src="https://github.com/jschhie/Tasks-Assistant/blob/master/demos/register.png">
+<img src="https://github.com/jschhie/Tasks-Assistant/blob/master/demos/register%20page.png">
 
 <img src="https://github.com/jschhie/Tasks-Assistant/blob/master/demos/home%20page.png">
 

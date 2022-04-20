@@ -41,12 +41,27 @@ The user can then access and interact with the application at http://127.0.0.1:5
 At start up, users may toggle the nagivation bar to switch between the Account Login and Registration Pages. Signed in/newly registered users will be greeted with their personal Home Page, which displays all tasks and CRUD (create, read, update, and delete) operations to manage them.
 
 ## Visual Demo
-<img src="https://github.com/jschhie/Tasks-Assistant/blob/master/demos/login%20page.png">
+<figure>
+<img src="https://github.com/jschhie/Tasks-Assistant/blob/master/demos/login%20page.png" alt="Login Page" style="width:70%">
+  <figcaption>Login Page.</figcaption>
+</figure>
 
-<img src="https://github.com/jschhie/Tasks-Assistant/blob/master/demos/register%20page.png">
+<figure>
+<img src="https://github.com/jschhie/Tasks-Assistant/blob/master/demos/register%20page.png" alt="Registration Page" style="width:70%">
+  <figcaption>Registration Page: Create a New Account.</figcaption>
+</figure>
 
-<img src="https://github.com/jschhie/Tasks-Assistant/blob/master/demos/home%20page.png">
+<figure>
+<img src="https://github.com/jschhie/Tasks-Assistant/blob/master/demos/home%20page.png" alt="Home Page without any tasks" style="width:70%">
+  <figcaption>Home Page of a logged in user.</figcaption>
+</figure>
 
-<img src="https://github.com/jschhie/Tasks-Assistant/blob/master/demos/home%20page2.png">
+<figure>
+<img src="https://github.com/jschhie/Tasks-Assistant/blob/master/demos/home%20page2.png" alt="Home Page with tasks" style="width:70%">
+  <figcaption>Home Page: Displays all current tasks.</figcaption>
+</figure>
 
-<img src="https://github.com/jschhie/Tasks-Assistant/blob/master/demos/update%20page.png">
+<figure>
+<img src="https://github.com/jschhie/Tasks-Assistant/blob/master/demos/update%20page.png" alt="Update Tasks" style="width:70%">
+  <figcaption>Update Tasks Page.</figcaption>
+</figure>

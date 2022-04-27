@@ -52,24 +52,6 @@ def delete(id):
 
 
 
-@views.route('/change-status/<int:id>')
-@login_required
-def change_status(id):
-    user_task = Task.query.get(id)
-    try:
-        if user_task.user_id == current_user.id:
-            if user_task.status == "Incomplete":
-                user_task.status = "Complete"
-            else:
-                user_task.status = "Incomplete"
-            db.session.commit()
-            flash('Status updated!', category='success')
-            return redirect('/')
-    except:
-        flash('Error in changing status', category='error')
-
-
-
 @views.route('/update/<int:id>', methods=['POST', 'GET'])
 @login_required
 def update(id):
@@ -77,7 +59,9 @@ def update(id):
     if request.method == 'POST':
         # make sure owner only can update 
         if updated_task.user_id == current_user.id:
+            # Update Task Details
             updated_task.content = request.form['content']
+            # Update Date and Time
             date_obj = request.form['due_date']
             updated_task.due_date = format_date(date_obj)
             if date_obj:
@@ -85,6 +69,9 @@ def update(id):
                 updated_task.time = format_time(time)
             else:
                 updated_task.time = '' # default time: unspecified/optional
+            # Update Task Status
+            updated_task.status = request.form.get('taskStatus')
+            print('STATUS IS NOW: ', updated_task.status)
             try:
                 db.session.commit()
                 flash('Task updated!', category='success')

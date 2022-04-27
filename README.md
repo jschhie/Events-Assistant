@@ -57,11 +57,11 @@ At start up, users may toggle the nagivation bar to switch between the Account L
 </figure>
 
 <figure>
-<img src="https://github.com/jschhie/Tasks-Assistant/blob/master/demos/home%20page2.png" alt="Home Page with tasks" style="width:70%">
+<img src="https://github.com/jschhie/Tasks-Assistant/blob/master/demos/new%20home%20page.png" alt="Home Page with tasks" style="width:70%">
   <figcaption>Home Page: Displays all current tasks.</figcaption>
 </figure>
 
 <figure>
-<img src="https://github.com/jschhie/Tasks-Assistant/blob/master/demos/update%20page.png" alt="Update Tasks" style="width:70%">
+<img src="https://github.com/jschhie/Tasks-Assistant/blob/master/demos/new%20update%20page.png" alt="Update Tasks" style="width:70%">
   <figcaption>Update Tasks Page.</figcaption>
 </figure>

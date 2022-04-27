@@ -46,6 +46,36 @@
           name="time">
         </td>
       </tr>
+      <tr>
+        <th style="text-align:right" scope="col">Update Status:</th>
+        <td>
+          <select name="taskStatus" aria-label="Select/Dropdown menu">
+            <!-- Default selected value is current task status 
+              Prevent duplicate option from showing with below conditionals -->
+            {% if task.status == "Completed" %}
+              <option value="Completed" selected>Completed</option>
+              <option value="In Progress">In Progress</option>
+              <option value="Cancelled">Cancelled</option>
+              <option value="Not Yet Started">Not Yet Started</option>
+            {% elif task.status == "In Progress" %}
+              <option value="In Progress" selected>In Progress</option>
+              <option value="Completed">Completed</option>
+              <option value="Cancelled">Cancelled</option>
+              <option value="Not Yet Started">Not Yet Started</option>
+            {% elif task.status == "Cancelled" %}
+              <option value="Cancelled" selected>Cancelled</option>
+              <option value="In Progress">In Progress</option>
+              <option value="Completed">Completed</option>
+              <option value="Not Yet Started">Not Yet Started</option>
+            {% else %}
+              <option value="Not Yet Started" selected>Not Yet Started</option>
+              <option value="Cancelled">Cancelled</option>
+              <option value="In Progress">In Progress</option>
+              <option value="Completed">Completed</option>
+            {% endif %}
+          </select>
+        </td>
+      </tr>
     </table>
 
     <br>

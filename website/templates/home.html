@@ -35,9 +35,14 @@
               {% endif %}
             </td>
             <td>
-              {% if task.status == "Complete" %}
+              {% if task.status == "Completed" %}
                 <p class="text-success">{{ task.status }}</p>
+              {% elif task.status == "In Progress" %}
+                <p class="text-primary">{{ task.status }}</p>
+              {% elif task.status == "Cancelled" %}
+                <p class="text-danger">{{ task.status }}</p>
               {% else %}
+                <!-- Status: Not Yet Started -->
                 <p class="text-secondary">{{ task.status }}</p>
               {% endif %}
             </td>
@@ -45,8 +50,6 @@
               <a href="/delete/{{ task.id }}"> Delete </a>
               <br>
               <a href="/update/{{ task.id }}"> Update </a>
-              <br>
-              <a href="/change-status/{{ task.id }}"> Change Status </a>
             </td>
           </tr>
         {% endfor %}

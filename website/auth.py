@@ -17,28 +17,26 @@ def login():
     if request.method == 'POST':
         username = request.form['username']
         password = request.form['password']
-        # check if user and password are valid
         user = User.query.filter_by(username=username).first()
+        
         if user:
-            # if username exists in database, check if passwords match
             if check_password_hash(user.password, password):
                 flash('You are now logged in!', category='success')
                 login_user(user, remember=True)
-                # Login user, redirect to their home page of tasks
                 return redirect(url_for('views.home')) 
             else:
                 flash('Wrong password.', category='error')
-        else: # if username DNE in database
+        else:
             flash('Username does not exist.', category='error')
+            
     return render_template("login.html", user=current_user)
 
 
 
 @auth.route('/logout')
-@login_required # can only logout if user is currently logged in
+@login_required 
 def logout():
     logout_user()
-    # after logging out, return to default login page
     return redirect(url_for('auth.login'))
 
 
@@ -51,7 +49,6 @@ def register():
         password1 = request.form['password1']
         password2 = request.form['password2']
 
-        # confirm unique username first, same passwords okay
         user = User.query.filter_by(username=username).first()
         if user:
             flash('Username exists already.', category='error')
@@ -63,7 +60,7 @@ def register():
             flash('Passwords don\'t match.', category='error')
         elif len(password1) < 7:
             flash('Password must be greater than 6 characters.', category='error')
-        else: # create and add new user into db
+        else: 
             new_user = User(username=username, first_name=first_name, password=generate_password_hash(password1, method='sha256'))
             db.session.add(new_user)
             db.session.commit()

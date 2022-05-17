@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <!-- load bootstrap -->
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link
@@ -16,7 +15,6 @@
             crossorigin="anonymous"
         />
 
-        <!-- Add SVG favicon icon for website -->
         <link 
             rel="icon" 
             href="data:image/svg+xml;utf8,
@@ -31,21 +29,16 @@
     </head>
 
     <body>
-        <!-- create navigation bar menu -->
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-            <!-- expand nav bar with buttons -->
             <button
                 class="navbar-toggler"
                 type="button"
                 data-toggle="collapse"
                 data-target="#navbar"
             >
-                <!-- add an icon for the nav bar button -->
                 <span class="navbar-toggler-icon"></span>
             </button>
 
-            <!-- define items in nav bar -->
-            <!-- only show certain links if the User is signed in, is authenticated -->
             <div class="collapse navbar-collapse" id="navbar">
                 <div class="navbar-nav">
                     {% if user.is_authenticated %}
@@ -59,7 +52,6 @@
             </div>
         </nav>
 
-        <!-- Flash messages below for each webpage that inherits from this base html file, template -->
         {% with messages = get_flashed_messages(with_categories=true) %}
         {% if messages %}
             {% for category, message in messages %}
@@ -89,7 +81,6 @@
             {% block content %} {% endblock %}
         </div>
 
-        <!-- load scripts for nav bar interactivity -->
         <script
             src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
             integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"

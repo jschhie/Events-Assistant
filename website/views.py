@@ -12,7 +12,6 @@ views = Blueprint('views', __name__)
 @login_required
 def home():
     if request.method == 'POST':
-        # Collect data from submitted form
         content = request.form['content']
         due_date = request.form['due_date']
         time = request.form['time']        
@@ -28,7 +27,7 @@ def home():
                 db.session.add(new_task)
                 db.session.commit()
                 flash('New task added!', category='success')
-                return redirect('/') # redirect to Home page
+                return redirect('/')
             except:
                 flash('Error in adding new task.', category='error')
     
@@ -48,7 +47,7 @@ def delete(id):
             db.session.delete(task_to_delete)
             db.session.commit()
             flash('Task deleted!', category='success')
-            return redirect('/') # redirect to Home Page
+            return redirect('/') 
     except:
         flash('Error in deleting task.', category='error')
 
@@ -66,9 +65,7 @@ def update(id):
         # Otherwise Update Button submitted
         # and make sure owner only can update 
         if updated_task.user_id == current_user.id:
-            # Update Task Details
             updated_task.content = request.form['content']
-            # Update Date and Time
             date_obj = request.form['due_date']
             updated_task.due_date = format_date(date_obj)
             if date_obj:
@@ -76,13 +73,12 @@ def update(id):
                 updated_task.time = format_time(time)
             else:
                 updated_task.time = '' # default time: unspecified/optional
-            # Update Task Status
             updated_task.status = request.form.get('taskStatus')
             try:
                 db.session.commit()
                 flash('Task updated!', category='success')
-                return redirect('/') # redirect to Home Page with updated task
+                return redirect('/')
             except:
                 flash('Error in updating task.', category='error')
     else:
-        return render_template('update.html', task=updated_task, user=current_user) # Remain on / display Update Task Page
+        return render_template('update.html', task=updated_task, user=current_user) 

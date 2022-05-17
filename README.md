@@ -10,8 +10,8 @@ A dynamic Flask web application using Python3 and HTML that allows users to crea
 * Database records managed using SQLAlchemy and HTTP requests.
 
 ## Table of Contents
-* [Application Requirements](https://github.com/jschhie/tasks-assistant/#application-requirements)
-* [Visual Demo](https://github.com/jschhie/tasks-assistant/#visual-demo)
+* [Application Requirements](https://github.com/jschhie/Tasks-Assistant/#application-requirements)
+* [Visual Demo](https://github.com/jschhie/Tasks-Assistant/#visual-demo)
 
 
 ## Application Requirements
@@ -41,4 +41,27 @@ The user can then access and interact with the application at http://127.0.0.1:5
 At start up, users may toggle the nagivation bar to switch between the Account Login and Registration Pages. Signed in/newly registered users will be greeted with their personal Home Page, which displays all tasks and CRUD (create, read, update, and delete) operations to manage them.
 
 ## Visual Demo
-todo
+<figure>
+<img src="https://github.com/jschhie/Tasks-Assistant/blob/master/demos/login%20page.png" alt="Login Page" style="width:70%">
+  <figcaption>Login Page.</figcaption>
+</figure>
+
+<figure>
+<img src="https://github.com/jschhie/Tasks-Assistant/blob/master/demos/register%20page.png" alt="Registration Page" style="width:70%">
+  <figcaption>Registration Page: Create a New Account.</figcaption>
+</figure>
+
+<figure>
+<img src="https://github.com/jschhie/Tasks-Assistant/blob/master/demos/home%20page.png" alt="Home Page without any tasks" style="width:70%">
+  <figcaption>Home Page of a logged in user.</figcaption>
+</figure>
+
+<figure>
+<img src="https://github.com/jschhie/Tasks-Assistant/blob/master/demos/new%20home%20page.png" alt="Home Page with tasks" style="width:70%">
+  <figcaption>Home Page: Displays all current tasks.</figcaption>
+</figure>
+
+<figure>
+<img src="https://github.com/jschhie/Tasks-Assistant/blob/master/demos/new%20update%20page.png" alt="Update Tasks" style="width:70%">
+  <figcaption>Update Tasks Page.</figcaption>
+</figure>

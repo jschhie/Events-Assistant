@@ -1,6 +1,5 @@
 import calendar
 import datetime
-from xxlimited import new
 
 def format_time(time) -> str:
     # Convert to str with AM, PM units
@@ -35,14 +34,13 @@ def format_date(task_due_date) -> str:
     date_obj = None
     if task_due_date:
         # due date is given as YYYY-MM-DDD format
-        month_index = int(task_due_date[5:7]) # int
-        month = calendar.month_name[month_index] # str
-        day = task_due_date[8:] # str
-        year = task_due_date[0:4] # str
+        month_index = int(task_due_date[5:7])
+        month = calendar.month_name[month_index]
+        day = task_due_date[8:]
+        year = task_due_date[0:4]
         date_obj = datetime.date(int(year), month_index, int(day)) # date object
-        day_of_week = calendar.day_name[date_obj.weekday()] # use date.weekday() method to get MONTH as str
+        day_of_week = calendar.day_name[date_obj.weekday()]
         task_due_date = day_of_week + ", " + month + " " + day + ", " + year
-    else: 
-        # account for optional due dates: task_due_date is empty
+    else: # account for optional due dates
         task_due_date = None
     return task_due_date

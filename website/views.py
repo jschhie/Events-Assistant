@@ -6,6 +6,8 @@ from .helpers import format_date, format_time # helper functions
 
 views = Blueprint('views', __name__)
 
+
+
 @views.route('/', methods=['POST', 'GET'])
 @login_required
 def home():
@@ -56,6 +58,12 @@ def delete(id):
 def update(id):
     updated_task = Task.query.get(id)
     if request.method == 'POST':
+        if request.form['action'] == 'Return Home':
+            flash('Update cancelled. Returning Home!', category='success')
+            return redirect('/')
+
+        # Otherwise Update Button submitted
+        # and make sure owner only can update 
         if updated_task.user_id == current_user.id:
             updated_task.content = request.form['content']
             date_obj = request.form['due_date']

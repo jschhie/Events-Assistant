@@ -8,6 +8,7 @@ A dynamic Flask web application using Python3 and HTML that allows users to crea
 * Web pages rendered with Jinja templating and styled with Bootstrap.
 * Account information and event details stored into a relational SQLite database.
 * Database records managed using SQLAlchemy and HTTP requests.
+* Auto-sorts tasks by due dates and optionally hides and/or clean up Completed/Cancelled Tasks.
 
 ## Table of Contents
 * [Application Requirements](https://github.com/jschhie/Tasks-Assistant/#application-requirements)

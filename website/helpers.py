@@ -34,7 +34,7 @@ def format_time(time) -> str:
 def format_date(task_due_date) -> str:
     date_obj = None
     if task_due_date:
-        # due date is given as YYYY-MM-DDD format
+        # due date is given as YYYY-MM-DD format
         month_index = int(task_due_date[5:7]) # int
         month = calendar.month_name[month_index] # str
         day = task_due_date[8:] # str

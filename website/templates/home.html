@@ -90,10 +90,51 @@
 
     <br>
     
-    <div>
-      <button type="submit" class="btn btn-outline-primary">Add Task</button>
+    <style>
+    .warning {
+      background-color: #ffffcc;
+      border-left: 6px solid #ffeb3b;
+    }
+    </style>
+
+    <div class="warning">
+      <p>
+        <strong> Warning!</strong>
+        'Clean Up' will delete all Completed and Cancelled Tasks from dashboard.
+      </p>
+
     </div>
-  
+
+    <div>
+      <button 
+        type="submit" 
+        class="btn btn-primary" 
+        name="action" 
+        value="Add Task"
+      >
+      Add Task
+      </button>
+
+      <button 
+        type="submit" 
+        class="btn btn-outline-primary" 
+        name="action" 
+        value="Hide Completed Tasks"
+      >
+      Hide Completed Tasks
+      </button>
+
+    <button 
+      type="submit" 
+      class="btn btn-outline-danger" 
+      name="action" 
+      value="Clean Up"
+    >
+      Clean Up
+    </button>
+
+    </div>
+
     <br>
     <br>
   </form>

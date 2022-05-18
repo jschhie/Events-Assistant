@@ -62,6 +62,6 @@ At start up, users may toggle the nagivation bar to switch between the Account L
 </figure>
 
 <figure>
-<img src="https://github.com/jschhie/Tasks-Assistant/blob/master/demos/Newest%20Update%20Page.png" alt="Update Tasks" style="width:70%">
+<img src="https://github.com/jschhie/Tasks-Assistant/blob/master/demos/Updated%20Update%20Task%20Page.png" alt="Update Tasks" style="width:70%">
   <figcaption>Update Tasks Page.</figcaption>
 </figure>

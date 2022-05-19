@@ -60,19 +60,26 @@
     <form class="card p-3 bg-light" method="POST">
       <legend class="border-bottom mb-4">Create New Task</legend>
       <div class="form-group">
-        <label for="content"> Task Details: </label>
+        <label for="content"><h6>Task Details:</h6></label>
         <textarea id="content" name="content" class="form-control"></textarea>
       </div>
-      <div class="form-group">
-        <label for="due_date"> Due Date: </label>
-        <br>
-        <input type="date" id="due_date" name="due_date">
+
+      <div class="row">
+        <div class="col">
+          <label for="due_date"><h6>Due Date:</h6></label>
+          <br>
+          <input type="date" id="due_date" name="due_date">
+        </div>
+        <div class="col">
+          <label for="time"><h6>Scheduled Time:</h6></label>
+          <br>
+          <input type="time" id="time" name="time">
+        </div>
       </div>
-      <div class="form-group">
-        <label for="time"> Scheduled Time: </label>
-        <br>
-        <input type="time" id="time" name="time">
-      </div>
+
+      <br>
+      <br>
+
       <div>
         <button 
           type="submit" 
@@ -98,5 +105,6 @@
       </div>
     </form>
   </div>
+  <br>
   <br>
 {% endblock %}

@@ -11,39 +11,53 @@
     <form class="card p-3 bg-light" method="POST">
         <fieldset class="form-group"> 
             <legend class="border-bottom mb-4">Update Task Below</legend>
+            
+            <h5>
+              Current Due Date: <small class="text-muted">{{task.due_date}}
+              {% if task.time|length > 1%}
+                at {{task.time}}
+              {% endif %}</small>
+            </h5>
+
+            <br>
+
             <div class="form-group">
-              <label for="content"> Task Details: </label>
+              <label for="content"><h6>Task Details:</h6></label>
               <textarea 
                 id="content" 
                 name="content" 
                 class="form-control"
               >{{task.content}}</textarea>
             </div>
-            <div class="form-group">
-              <label for="due_date"> (Current) Due Date: {{task.due_date}}
-                {% if task.time|length > 1%}
-                  at {{task.time}}
-                {% endif %}
-              </label>
-              <br>
-              <input type="date" id="due_date" name="due_date">
-            </div>
-            <div class="form-group">
-              <label for="time">Scheduled Time:</label>
-              <br>
-              <input type="time" id="time" name="time">
-            </div>
-            <div class="form-group">
-              <label for="status">Update Status:</label>
-              <br>
-              <select name="taskStatus" aria-label="Select/Dropdown menu">
-                <option value="Cancelled">Cancelled</option>
-                <option value="Not Yet Started" selected>Not Yet Started</option>
-                <option value="In Progress">In Progress</option>
-                <option value="Completed">Completed</option>
-              </select>
+
+            <div class="row">
+              <div class="col">
+                <label for="due_date"><h6>Due Date:</h6></label>
+                <br>
+                <input type="date" id="due_date" name="due_date">
+              </div>
+
+              <div class="col">
+                <label for="time"><h6>Scheduled Time:</h6></label>
+                <br>
+                <input type="time" id="time" name="time">
+              </div>
+
+              <div class="col">
+                <label for="status"><h6>Update Status:</h6></label>
+                <br>
+                <select name="taskStatus" aria-label="Select/Dropdown menu">
+                  <option value="Cancelled">Cancelled</option>
+                  <option value="Not Yet Started" selected>Not Yet Started</option>
+                  <option value="In Progress">In Progress</option>
+                  <option value="Completed">Completed</option>
+                </select>
+              </div>
             </div>
         </fieldset>
+
+        <br>
+
         <div>
           <button 
             type="submit" 

@@ -28,6 +28,9 @@ def home():
             flash('Completed and Cancelled Tasks Deleted!', category='success')
             remaining_tasks = Task.query.filter_by(user_id=current_user.id).order_by(Task.due_date_int).all()
             return render_template('home.html', user=current_user, tasks=remaining_tasks)
+        
+        elif request.form['action'] == "Create New Task":
+            return redirect('/create')
 
         # Collect data from submitted form
         content = request.form['content']

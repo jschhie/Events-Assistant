@@ -6,105 +6,58 @@
 
 {% block content %} 
   <br>
-  <h3 style="text-align: center"> Tasks Helper </h3>
 
-  <style>
-      p {text-align: center;}
-  </style>
-
-  <p> Update the task below! </p>
-
-  <form method="POST">
-    <table class="table table-striped">
-      <thead class="thead-dark">
-      <tr>
-        <th style="text-align:right" scope="col">Task Details:</th>
-        <td>
-          <textarea id="content" name="content" class="form-control">{{task.content}}</textarea>
-        </td>
-      </tr>
-      <tr>
-        <th style="text-align:right" scope="col">
-          (Current) Due Date: {{task.due_date}}
-          {% if task.time|length > 1%}
-            at {{task.time}}
-          {% endif %}
-        </th>
-        <td>
-          <input 
-            type="date" 
-            id="due_date" 
-            name="due_date">
-        </td>
-      </tr>
-      <tr>
-        <th style="text-align:right" scope="col">Update Time:</th>
-        <td>
-          <input
-          type="time"
-          id="time"
-          name="time">
-        </td>
-      </tr>
-      <tr>
-        <th style="text-align:right" scope="col">Update Status:</th>
-        <td>
-          <select name="taskStatus" aria-label="Select/Dropdown menu">
-            <!-- Default selected value is current task status 
-              Prevent duplicate option from showing with below conditionals -->
-            {% if task.status == "Completed" %}
-              <option value="Completed" selected>Completed</option>
-              <option value="In Progress">In Progress</option>
-              <option value="Cancelled">Cancelled</option>
-              <option value="Not Yet Started">Not Yet Started</option>
-            {% elif task.status == "In Progress" %}
-              <option value="In Progress" selected>In Progress</option>
-              <option value="Completed">Completed</option>
-              <option value="Cancelled">Cancelled</option>
-              <option value="Not Yet Started">Not Yet Started</option>
-            {% elif task.status == "Cancelled" %}
-              <option value="Cancelled" selected>Cancelled</option>
-              <option value="In Progress">In Progress</option>
-              <option value="Completed">Completed</option>
-              <option value="Not Yet Started">Not Yet Started</option>
-            {% else %}
-              <option value="Not Yet Started" selected>Not Yet Started</option>
-              <option value="Cancelled">Cancelled</option>
-              <option value="In Progress">In Progress</option>
-              <option value="Completed">Completed</option>
-            {% endif %}
-          </select>
-        </td>
-      </tr>
-    </table>
-
-    <br>
-    <br>
-    
-    <div>
-      <button 
-        type="submit" 
-        class="btn btn-primary" 
-        name="action"
-        value="Update"
-      >
-      Update Task
-      </button>
-
-      <button 
-        type="submit" 
-        class="btn btn-outline-primary" 
-        name="action"
-        value="Return Home"
-      >
-      Return Home
-      </button>
-    
-    </div>
-    
-    <br>
-    <br>
-    
-  </form>
-
+  <div class="content-section">
+    <form class="card p-3 bg-light" method="POST">
+        <fieldset class="form-group"> 
+            <legend class="border-bottom mb-4">Update Task Below</legend>
+            <div class="form-group">
+              <label for="content"> Task Details: </label>
+              <textarea 
+                id="content" 
+                name="content" 
+                class="form-control"
+              >{{task.content}}</textarea>
+            </div>
+            <div class="form-group">
+              <label for="due_date"> (Current) Due Date: {{task.due_date}}
+                {% if task.time|length > 1%}
+                  at {{task.time}}
+                {% endif %}
+              </label>
+              <br>
+              <input type="date" id="due_date" name="due_date">
+            </div>
+            <div class="form-group">
+              <label for="time">Scheduled Time:</label>
+              <br>
+              <input type="time" id="time" name="time">
+            </div>
+            <div class="form-group">
+              <label for="status">Update Status:</label>
+              <br>
+              <select name="taskStatus" aria-label="Select/Dropdown menu">
+                <option value="Cancelled">Cancelled</option>
+                <option value="Not Yet Started" selected>Not Yet Started</option>
+                <option value="In Progress">In Progress</option>
+                <option value="Completed">Completed</option>
+              </select>
+            </div>
+        </fieldset>
+        <div>
+          <button 
+            type="submit" 
+            class="btn btn-primary" 
+            name="action"
+            value="Update"
+          >Update Task</button>
+          <button 
+            type="submit" 
+            class="btn btn-outline-primary" 
+            name="action"
+            value="Return Home"
+          >Return Home</button>
+        </div>
+    </form>
+  </div>
 {% endblock %}

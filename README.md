@@ -43,26 +43,21 @@ At start up, users may toggle the nagivation bar to switch between the Account L
 
 ## Visual Demo
 <figure>
-<img src="https://github.com/jschhie/Tasks-Assistant/blob/master/demos/login%20page.png" alt="Login Page" style="width:70%">
+<img src="https://github.com/jschhie/Tasks-Assistant/blob/master/demos/Login.png" alt="Login Page" style="width:70%">
   <figcaption>Login Page.</figcaption>
 </figure>
 
 <figure>
-<img src="https://github.com/jschhie/Tasks-Assistant/blob/master/demos/register%20page.png" alt="Registration Page" style="width:70%">
+<img src="https://github.com/jschhie/Tasks-Assistant/blob/master/demos/Register.png" alt="Registration Page" style="width:70%">
   <figcaption>Registration Page: Create a New Account.</figcaption>
 </figure>
 
 <figure>
-<img src="https://github.com/jschhie/Tasks-Assistant/blob/master/demos/home%20page.png" alt="Home Page without any tasks" style="width:70%">
-  <figcaption>Home Page of a logged in user.</figcaption>
-</figure>
-
-<figure>
-<img src="https://github.com/jschhie/Tasks-Assistant/blob/master/demos/Updated%20Home%20Page.png" alt="Home Page with tasks" style="width:70%">
+<img src="https://github.com/jschhie/Tasks-Assistant/blob/master/demos/Sample%20Home.png" alt="Home Page with tasks" style="width:70%">
   <figcaption>Home Page: Displays all current tasks.</figcaption>
 </figure>
 
 <figure>
-<img src="https://github.com/jschhie/Tasks-Assistant/blob/master/demos/Updated%20Update%20Task%20Page.png" alt="Update Tasks" style="width:70%">
+<img src="https://github.com/jschhie/Tasks-Assistant/blob/master/demos/Sample%20Update%20Page.png" alt="Update Tasks" style="width:70%">
   <figcaption>Update Tasks Page.</figcaption>
 </figure>

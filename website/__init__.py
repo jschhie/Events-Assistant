@@ -11,7 +11,7 @@ DB_NAME = "tasks_database.db"
 
 def create_app():
     app = Flask(__name__)
-    app.config['SECRET_KEY'] = 'some secret key here'
+    app.config['SECRET_KEY'] = '2797cfdcad8dcc11d9f00ffbc5704bee' # secrets.token_hex(16)
     app.config['SQLALCHEMY_DATABASE_URI'] = f'sqlite:///{DB_NAME}'
 
     db.init_app(app)

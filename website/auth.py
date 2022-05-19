@@ -54,8 +54,8 @@ def register():
             flash('First Name must be greater than 1 character.', category='error')
         elif password1 != password2:
             flash('Passwords don\'t match.', category='error')
-        elif len(password1) < 7:
-            flash('Password must be greater than 6 characters.', category='error')
+        elif len(password1) < 7 or len(password1) > 20:
+            flash('Password must be between 7 and 20 characters long.', category='error')
         else: 
             new_user = User(username=username, first_name=first_name, password=generate_password_hash(password1, method='sha256'))
             db.session.add(new_user)

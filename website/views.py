@@ -10,55 +10,72 @@ views = Blueprint('views', __name__)
 
 
 @views.route('/', methods=['POST', 'GET'])
+@views.route('/home', methods=['POST', 'GET'])
 @login_required
 def home():
     if request.method == 'POST':
         # Optionally hide Completed Tasks
         if request.form['action'] == 'Hide Completed Tasks':
-            tasks = Task.query.filter_by(user_id=current_user.id).filter(Task.status != 'Completed').order_by(Task.due_date).all()
+            tasks = Task.query.filter_by(user_id=current_user.id). \
+                                    filter(Task.status != 'Completed'). \
+                                        order_by(Task.due_date).all()
             flash('Completed Tasks Hidden!', category='success')
             return render_template('home.html', user=current_user, tasks=tasks)
 
         # Optionally delete all Completed and Cancelled Tasks
         if request.form['action'] == 'Clean Up':
-            unwanted_tasks = Task.query.filter_by(user_id=current_user.id).filter(or_(Task.status == 'Completed', Task.status == 'Cancelled')).all()
+            unwanted_tasks = Task.query.filter_by(user_id=current_user.id). \
+                                                filter(or_(Task.status == 'Completed', \
+                                                            Task.status == 'Cancelled')).all()
             for task in unwanted_tasks:
                 db.session.delete(task)
                 db.session.commit()
             flash('Completed and Cancelled Tasks Deleted!', category='success')
-            remaining_tasks = Task.query.filter_by(user_id=current_user.id).order_by(Task.due_date_int).all()
+            remaining_tasks = Task.query.filter_by(user_id=current_user.id). \
+                                                    order_by(Task.due_date_int).all()
             return render_template('home.html', user=current_user, tasks=remaining_tasks)
         
-        elif request.form['action'] == "Create New Task":
+        elif request.form['action'] == "Create New":
             return redirect('/create')
 
-        # Collect data from submitted form
-        content = request.form['content']
-        due_date_int = request.form['due_date']
-        time = request.form['time']
-        new_time = format_time(time)
-
-        # Parse str object YYYY-MM-DD format, and convert into formatted str 
-        if len(content.strip()) < 1:
-            flash('Task is too short!', category='error')
-        else:
-            due_date = format_date(due_date_int) 
-            try:
-                new_task = Task(content=content, 
-                                due_date=due_date, 
-                                due_date_int=due_date_int,
-                                time=new_time, 
-                                user_id=current_user.id)
-                db.session.add(new_task)
-                db.session.commit()
-                flash('New task added!', category='success')
-                return redirect('/')
-            except:
-                flash('Error in adding new task.', category='error')
-
     # default action: display all tasks 
-    tasks = Task.query.filter_by(user_id=current_user.id).order_by(Task.due_date_int, Task.time).all() 
+    tasks = Task.query.filter_by(user_id=current_user.id). \
+                                order_by(Task.due_date_int, Task.time).all() 
     return render_template('home.html', user=current_user, tasks=tasks)
+
+
+
+@views.route('/create', methods=['POST', 'GET'])
+@login_required
+def create():
+    if request.method == 'POST':
+        if request.form['action'] == 'Add Task':
+            # Collect data from submitted form
+            content = request.form['content']
+            due_date_int = request.form['due_date']
+            time = request.form['time']
+            new_time = format_time(time)
+            # Parse str object YYYY-MM-DD format, and convert into formatted str 
+            if len(content.strip()) < 1:
+                flash('Task is too short!', category='error')
+            else:
+                due_date = format_date(due_date_int) 
+                try:
+                    new_task = Task(content=content, 
+                                    due_date=due_date, 
+                                    due_date_int=due_date_int,
+                                    time=new_time, 
+                                    user_id=current_user.id)
+                    db.session.add(new_task)
+                    db.session.commit()
+                    flash('New task added!', category='success')
+                    return redirect('/')
+                except:
+                    flash('Error in adding new task.', category='error')
+        elif request.form['action'] == 'Return Home':
+            flash('Returning Home!', category='success')
+            return redirect('/')
+    return render_template('create.html', user=current_user)
 
 
 

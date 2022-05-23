@@ -57,7 +57,9 @@ def register():
         elif len(password1) < 7 or len(password1) > 20:
             flash('Password must be between 7 and 20 characters long.', category='error')
         else: 
-            new_user = User(username=username, first_name=first_name, password=generate_password_hash(password1, method='sha256'))
+            new_user = User(username=username, \
+                            first_name=first_name, \
+                            password=generate_password_hash(password1, method='sha256'))
             db.session.add(new_user)
             db.session.commit()
             login_user(new_user, remember=True)

@@ -33,20 +33,35 @@
             </td>
             <td>
               {% if task.status == "Completed" %}
-                <p class="text-success">{{ task.status }}</p>
+                <span class="badge badge-success">
+                  {{ task.status }}
+                </span>
               {% elif task.status == "In Progress" %}
-                <p class="text-primary">{{ task.status }}</p>
+                <span class="badge badge-primary">
+                  {{ task.status }}
+                </span>
               {% elif task.status == "Cancelled" %}
-                <p class="text-danger">{{ task.status }}</p>
+                <span class="badge badge-danger">
+                  {{ task.status }}
+                </span>
               {% else %}
                 <!-- Status: Not Yet Started -->
-                <p class="text-secondary">{{ task.status }}</p>
+                <span class="badge badge-secondary">
+                  {{ task.status }}
+                </span>
               {% endif %}
             </td>
-            <td> 
-              <a href="/delete/{{ task.id }}"> Delete </a>
-              <br>
-              <a href="/update/{{ task.id }}"> Update </a>
+            <td>
+              <a href="/update/{{ task.id }}" class="btn btn-outline-primary">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-fill" viewBox="0 0 16 16">
+                  <path d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708l-3-3zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207l6.5-6.5zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.499.499 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11l.178-.178z"/>
+                </svg>
+              </a>
+              <a href="/delete/{{ task.id }}" class="btn btn-outline-primary">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16">
+                  <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z"/>
+                </svg>
+              </a>
             </td>
           </tr>
         {% endfor %}
@@ -57,50 +72,45 @@
   <br>
 
   <div class="content-section">
-    <form class="card p-3 bg-light" method="POST">
-      <legend class="border-bottom mb-4">Create New Task</legend>
-      <div class="form-group">
-        <label for="content"><h6>Task Details:</h6></label>
-        <textarea id="content" name="content" class="form-control"></textarea>
-      </div>
-
-      <div class="row">
-        <div class="col">
-          <label for="due_date"><h6>Due Date:</h6></label>
-          <br>
-          <input type="date" id="due_date" name="due_date">
-        </div>
-        <div class="col">
-          <label for="time"><h6>Scheduled Time:</h6></label>
-          <br>
-          <input type="time" id="time" name="time">
-        </div>
-      </div>
-
-      <br>
-      <br>
-
+    <form method="POST">
       <div>
         <button 
           type="submit" 
           class="btn btn-primary" 
           name="action" 
-          value="Add Task"
-        >Add Task</button>
+          value="Create New"
+        >
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+          <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
+          <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
+        </svg>
+        Create New
+        </button>
   
         <button 
           type="submit" 
           class="btn btn-outline-primary" 
           name="action" 
           value="Hide Completed Tasks"
-        >Hide Completed Tasks</button>
+        >
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye-slash-fill" viewBox="0 0 16 16">
+          <path d="m10.79 12.912-1.614-1.615a3.5 3.5 0 0 1-4.474-4.474l-2.06-2.06C.938 6.278 0 8 0 8s3 5.5 8 5.5a7.029 7.029 0 0 0 2.79-.588zM5.21 3.088A7.028 7.028 0 0 1 8 2.5c5 0 8 5.5 8 5.5s-.939 1.721-2.641 3.238l-2.062-2.062a3.5 3.5 0 0 0-4.474-4.474L5.21 3.089z"/>
+          <path d="M5.525 7.646a2.5 2.5 0 0 0 2.829 2.829l-2.83-2.829zm4.95.708-2.829-2.83a2.5 2.5 0 0 1 2.829 2.829zm3.171 6-12-12 .708-.708 12 12-.708.708z"/>
+        </svg>
+        Hide Completed
+        </button>
   
         <button 
           type="submit" 
           class="btn btn-outline-danger" 
           name="action" 
           value="Clean Up"
-        >Clean Up</button>
+        >
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-exclamation-circle-fill" viewBox="0 0 16 16">
+          <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8 4a.905.905 0 0 0-.9.995l.35 3.507a.552.552 0 0 0 1.1 0l.35-3.507A.905.905 0 0 0 8 4zm.002 6a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"/>
+        </svg>
+        Clean Up
+        </button>
 
       </div>
     </form>

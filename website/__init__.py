@@ -11,7 +11,7 @@ DB_NAME = "tasks_database.db"
 
 def create_app():
     app = Flask(__name__)
-    app.config['SECRET_KEY'] = '2797cfdcad8dcc11d9f00ffbc5704bee' # secrets.token_hex(16)
+    app.config['SECRET_KEY'] = '2797cfdcad8dcc11d9f00ffbc5704bee'
     app.config['SQLALCHEMY_DATABASE_URI'] = f'sqlite:///{DB_NAME}'
 
     db.init_app(app)
@@ -28,7 +28,7 @@ def create_app():
     create_database(app)
 
     login_manager = LoginManager()
-    login_manager.login_view = 'auth.login' # where to redirect if not logged in 
+    login_manager.login_view = 'auth.login' # if not logged in 
     login_manager.init_app(app)
     
     @login_manager.user_loader 

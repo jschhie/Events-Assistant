@@ -9,10 +9,39 @@
   <legend class="border-bottom mb-4">Welcome Back, {{ user.first_name }}!</legend>
 
   {% if tasks|length < 1 %}
-    <p> There are no tasks! </p>
-  {% else %}
+    {% if isQuery %}
+      <div class="alert alert-secondary" role="alert">
+        <b>No Matching Tasks!</b> 
+        <hr>
+        Try something else? Or hit <b>'search'</b> to display all tasks.
+      </div>
+    {% else %}
+      <div class="alert alert-secondary" role="alert">
+        You have no tasks; create one below!
+      </div>
+    {% endif %}
+  {% endif %}
+
+  <form method="POST">
+    <div class="form-group input-group">
+      <input type="search" id="Query" name="Query" class="button form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
+      <button 
+        type="submit" 
+        class="btn btn-outline-primary"
+        name="action" 
+        value="Search"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+        <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+        </svg> search</button>
+    </div>
+    </form>
+    
+    <br>
+
+    {% if tasks|length >= 1%}
     <table id="tasksTable" class="border table table-striped table-hover">
-      <thead class="thead-light">
+      <thead>
       <tr> 
         <th> Task </th>
         <th> Due Date </th>
@@ -67,7 +96,7 @@
         {% endfor %}
       </tbody>
     </table>
-  {% endif %}
+    {% endif %}
 
   <br>
 

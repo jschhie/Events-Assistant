@@ -45,7 +45,7 @@ At start up, users may toggle the nagivation bar to switch between the Account L
 
 <img src="https://github.com/jschhie/Tasks-Assistant/blob/master/demos/Login.png" alt="Login Page" style="width:70%">
 
-<img src="https://github.com/jschhie/Tasks-Assistant/blob/master/demos/Home.png" alt="Home Page with tasks" style="width:70%">
+<img src="https://github.com/jschhie/Tasks-Assistant/blob/master/demos/Home%20Search.png" alt="Home Page with tasks" style="width:70%">
 
 <img src="https://github.com/jschhie/Tasks-Assistant/blob/master/demos/Create.png" alt="Create Task" style="width:70%">
 

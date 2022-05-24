@@ -2,7 +2,7 @@
 > Written in Python3 using Flask, HTML, Bootstrap, and Jinja. Database management through SQLAlchemy and SQLite.
 
 ## Project Overview
-A dynamic Flask web application using Python3 and HTML that allows users to create, track, modify, and delete schedulable tasks while handling user authentication (login, logout, and registration). 
+A dynamic Flask web application using Python3 and HTML that allows users to create, modify, search, and delete schedulable tasks while handling user authentication (login, logout, and registration). 
 
 ### Features
 * Web pages rendered with Jinja templating and styled with Bootstrap.

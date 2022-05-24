@@ -14,13 +14,21 @@ views = Blueprint('views', __name__)
 @login_required
 def home():
     if request.method == 'POST':
+        # Search Bar
+        if request.form['action'] == 'Search':
+            print('search!')
+            user_query = request.form['Query']
+            results = Task.query.filter_by(user_id=current_user.id). \
+                                            filter(Task.content.contains(user_query)).all()
+            return render_template('home.html', user=current_user, tasks=results, isQuery=True)
+
         # Optionally hide Completed Tasks
         if request.form['action'] == 'Hide Completed Tasks':
             tasks = Task.query.filter_by(user_id=current_user.id). \
                                     filter(Task.status != 'Completed'). \
                                         order_by(Task.due_date).all()
             flash('Completed Tasks Hidden!', category='success')
-            return render_template('home.html', user=current_user, tasks=tasks)
+            return render_template('home.html', user=current_user, tasks=tasks, isQuery=False)
 
         # Optionally delete all Completed and Cancelled Tasks
         if request.form['action'] == 'Clean Up':
@@ -33,7 +41,7 @@ def home():
             flash('Completed and Cancelled Tasks Deleted!', category='success')
             remaining_tasks = Task.query.filter_by(user_id=current_user.id). \
                                                     order_by(Task.due_date_int).all()
-            return render_template('home.html', user=current_user, tasks=remaining_tasks)
+            return render_template('home.html', user=current_user, tasks=remaining_tasks, isQuery=False)
         
         elif request.form['action'] == "Create New":
             return redirect('/create')
@@ -41,7 +49,7 @@ def home():
     # default action: display all tasks 
     tasks = Task.query.filter_by(user_id=current_user.id). \
                                 order_by(Task.due_date_int, Task.time).all() 
-    return render_template('home.html', user=current_user, tasks=tasks)
+    return render_template('home.html', user=current_user, tasks=tasks, isQuery=False)
 
 
 

@@ -10,8 +10,8 @@ A dynamic Flask web application using Python3 and HTML that allows users to crea
 * Database records managed using SQLAlchemy and HTTP requests.
 
 ## Table of Contents
-* [Application Requirements](https://github.com/jschhie/Tasks-Assistant/#application-requirements)
-* [Visual Demo](https://github.com/jschhie/Tasks-Assistant/#visual-demo)
+* [Application Requirements](https://github.com/jschhie/Events-Assistant/#application-requirements)
+* [Visual Demo](https://github.com/jschhie/Events-Assistant/#visual-demo)
 
 
 ## Application Requirements
@@ -22,7 +22,7 @@ To run this application, first download this repository and the packages mention
 
 (Assuming in Terminal) First, enter:
 ```bash 
-git clone https://github.com/jschhie/tasks-assistant.git [folderNameHere]
+git clone https://github.com/jschhie/events-assistant.git [folderNameHere]
 ```
 
 Next, go into the folder: 
@@ -38,15 +38,15 @@ python3 main.py
 > Above command will create and activate the Flask web app with an empty database (```tasks_database.db```). 
 
 The user can then access and interact with the application at http://127.0.0.1:5000/ via any web browser. 
-At start up, users may toggle the nagivation bar to switch between the Account Login and Registration Pages. Signed in/newly registered users will be greeted with their personal Home Page, which displays all tasks and CRUD (create, read, update, and delete) operations to manage them.
+At start up, users may toggle the nagivation bar to switch between the Account Login and Registration Pages. Signed in/newly registered users will be greeted with their personal Home Page, which displays all events and CRUD (create, read, update, and delete) operations to manage them.
 
 ## Visual Demo
-<img src="https://github.com/jschhie/Tasks-Assistant/blob/master/demos/Register.png" alt="Registration Page" style="width:70%">
+<img src="https://github.com/jschhie/Events-Assistant/blob/master/demos/Register.png" alt="Registration Page" style="width:70%">
 
-<img src="https://github.com/jschhie/Tasks-Assistant/blob/master/demos/Login.png" alt="Login Page" style="width:70%">
+<img src="https://github.com/jschhie/Events-Assistant/blob/master/demos/Login.png" alt="Login Page" style="width:70%">
 
-<img src="https://github.com/jschhie/Tasks-Assistant/blob/master/demos/Home%20Search.png" alt="Home Page with tasks" style="width:70%">
+<img src="https://github.com/jschhie/Events-Assistant/blob/master/demos/Home%20Search.png" alt="Home Page with tasks" style="width:70%">
 
-<img src="https://github.com/jschhie/Tasks-Assistant/blob/master/demos/Create.png" alt="Create Task" style="width:70%">
+<img src="https://github.com/jschhie/Events-Assistant/blob/master/demos/Create.png" alt="Create Event" style="width:70%">
 
-<img src="https://github.com/jschhie/Tasks-Assistant/blob/master/demos/Update.png" alt="Update Tasks" style="width:70%">
+<img src="https://github.com/jschhie/Events-Assistant/blob/master/demos/Update.png" alt="Update Events" style="width:70%">

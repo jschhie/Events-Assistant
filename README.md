@@ -49,12 +49,14 @@ The user can then access and interact with the application at http://127.0.0.1:5
 At start up, users may toggle the nagivation bar to switch between the Account Login and Registration Pages. Signed in/newly registered users will be greeted with their personal Home Page, which displays all events and CRUD (create, read, update, and delete) operations to manage them.
 
 ## Visual Demo
-<img src="https://github.com/jschhie/Events-Assistant/blob/master/demos/Register.png" alt="Registration Page" style="width:70%">
+<img src="https://github.com/jschhie/Events-Assistant/blob/master/demos/new%20register.png" alt="Registration Page" style="width:70%">
 
-<img src="https://github.com/jschhie/Events-Assistant/blob/master/demos/Login.png" alt="Login Page" style="width:70%">
+<img src="https://github.com/jschhie/Events-Assistant/blob/master/demos/new%20login.png" alt="Login Page" style="width:70%">
 
-<img src="https://github.com/jschhie/Events-Assistant/blob/master/demos/Home%20Search.png" alt="Home Page with tasks" style="width:70%">
+<img src="https://github.com/jschhie/Events-Assistant/blob/master/demos/new%20home.png" alt="Home Page with tasks" style="width:70%">
 
-<img src="https://github.com/jschhie/Events-Assistant/blob/master/demos/Create.png" alt="Create Event" style="width:70%">
+<img src="https://github.com/jschhie/Events-Assistant/blob/master/demos/new%20create.png" alt="Create Event" style="width:70%">
 
-<img src="https://github.com/jschhie/Events-Assistant/blob/master/demos/Update.png" alt="Update Events" style="width:70%">
+<img src="https://github.com/jschhie/Events-Assistant/blob/master/demos/new%20update.png" alt="Update Events" style="width:70%">
+
+<img src="https://github.com/jschhie/Events-Assistant/blob/master/demos/new%20search.png" alt="Search Events" style="width:70%">

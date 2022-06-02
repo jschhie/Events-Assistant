@@ -1,6 +1,5 @@
-Flask==1.1.2
-Flask_Login==0.5.0
+Flask==2.0.0
+Flask_Login==0.6.1
 Flask_SQLAlchemy==2.5.1
 SQLAlchemy==1.4.31
-Werkzeug==1.0.1
-gunicorn
+Werkzeug==2.1.2

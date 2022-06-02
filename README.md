@@ -15,7 +15,10 @@ A dynamic Flask web application using Python3 and HTML that allows users to crea
 
 
 ## Application Requirements
-This web app requires ```Python3```, as well as the following packages: ```flask```, ```flask-login```, and ```flask-sqlalchemy```.
+The packages and libraries needed to run this web app are listed in the ```requirements.txt``` file. The following command will install all the required Python packages:
+```bash
+pip3 install -r requirements.txt
+```
 
 ### How to Run the App
 To run this application, first download this repository and the packages mentioned above.

@@ -35,3 +35,4 @@ tornado==6.1
 trove_classifiers==2022.5.19
 Werkzeug==1.0.1
 xmlrpclib==1.0.1
+gunicorn

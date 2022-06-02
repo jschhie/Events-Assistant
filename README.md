@@ -4,6 +4,8 @@
 ## Project Overview
 A dynamic Flask web application using Python3 and HTML that allows users to create, modify, search, and delete schedulable and trackable events while handling user authentication (login, logout, and registration). 
 
+Deployed on Heroku: https://events-assistant-app.herokuapp.com/
+
 ### Features
 * Web pages rendered with Jinja templating and styled with Bootstrap.
 * Account information and event details stored into a relational SQLite database.
@@ -15,12 +17,15 @@ A dynamic Flask web application using Python3 and HTML that allows users to crea
 
 
 ## Application Requirements
-The packages and libraries needed to run this web app are listed in the ```requirements.txt``` file. The following command will install all the required Python packages:
+You can access the website at https://events-assistant-app.herokuapp.com/, or you can also download this GitHub repository to access the source code.
+
+The packages and libraries needed to run this web app are listed in the ```requirements.txt``` file. 
+The following command will install all the required Python packages:
 ```bash
 pip3 install -r requirements.txt
 ```
 
-### How to Run the App
+### How to Run the App (Manually)
 To run this application, first download this repository and the packages mentioned above.
 
 (Assuming in Terminal) First, enter:

@@ -1,8 +1,8 @@
 # Events Assistant
-> Written in Python3 using Flask, HTML, Bootstrap, and Jinja. Database management through SQLAlchemy and SQLite.
+> Written in Python3 using Flask, HTML, Bootstrap, and Jinja.
 
 ## Project Overview
-A dynamic Flask web application using Python3 and HTML that allows users to create, modify, search, and delete schedulable and trackable events while handling user authentication (login, logout, and registration). 
+A dynamic Flask web application using Python3 and HTML that allows users to create, modify, search, and delete custom events while handling user authentication (login, logout, and registration). 
 
 Deployed on Heroku: https://events-assistant-app.herokuapp.com/
 
@@ -46,7 +46,7 @@ python3 main.py
 > Above command will create and activate the Flask web app with an empty database (```tasks_database.db```). 
 
 The user can then access and interact with the application at http://127.0.0.1:5000/ via any web browser. 
-At start up, users may toggle the nagivation bar to switch between the Account Login and Registration Pages. Signed in/newly registered users will be greeted with their personal Home Page, which displays all events and CRUD (create, read, update, and delete) operations to manage them.
+At start up, users may toggle the nagivation bar to switch between the Account Login and Registration Pages. Signed in/newly registered users will be greeted with their personal Home Page.
 
 ## Visual Demo
 <img src="https://github.com/jschhie/Events-Assistant/blob/master/demos/new%20register.png" alt="Registration Page" style="width:70%">

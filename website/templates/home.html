@@ -25,6 +25,17 @@
   <form method="POST">
     <div class="form-group input-group">
       <input type="search" id="Query" name="Query" class="button form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
+      
+      <div class="dropdown">
+        <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Filter By...
+        <span class="caret"></span></button>
+        <ul class="dropdown-menu">
+          <li>All</li>
+          <li>Completed</li>
+          <li>Not Yet Started</li>
+        </ul>
+      </div>
+      
       <button 
         type="submit" 
         class="btn btn-outline-primary"

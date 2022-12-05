@@ -1,4 +1,4 @@
-# Events Assistant 🗓 
+# Events Assistant
 
 > Python, HTML, SQLite, Bootstrap, Flask, Jinja.
 

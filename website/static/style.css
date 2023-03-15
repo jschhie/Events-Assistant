@@ -1,0 +1,103 @@
+/* ==== import font ===== */
+@import url('https://fonts.googleapis.com/css2?family=Pangolin&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Yomogi&display=swap');
+
+* {
+    font-family: 'Pangolin', cursive;
+}
+
+.navbar-container {
+    background-color: rgba(0,0,0,0.9);
+    text-align: center;
+    padding: 25px;
+}
+
+.navbar-nav a, .navbar-toggler-icon {
+    color: rgba(255,255,255,0.5);
+    font-family: 'Yomogi', cursive;
+}
+
+.title-header {
+    font-size: x-large;
+}
+
+.title-header a {
+    text-decoration: none;
+    color: white;
+    font-family: 'Yomogi', cursive;
+}
+
+.btn {
+    background-color: rgba(0,0,0,0.9);
+    color: rgba(255,255,255,0.6);
+    font-family: 'Yomogi', cursive;
+    padding-bottom: 10px;
+}
+
+.btn:hover {
+    color: white;
+    background-color: rgba(0,0,0,0.8);
+}
+
+.navbar-nav a:hover {
+    color: white;
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.nav-item {
+    margin-left: 10%;
+    font-size: large;
+}
+
+.tasks-header {
+    font-size: 1.3em;
+}
+
+.badge {
+    padding: 9px;
+    font-size: .9em;
+}
+
+.completed-badge {
+    background-color: rgb(197, 224, 200);
+}
+
+.progress-badge {
+    background-color: rgb(250, 237, 190);
+}
+
+.cancelled-badge {
+    background-color: rgb(163, 162, 162);
+}
+
+.todo-badge {
+    background-color: rgb(237, 200, 194);
+}
+
+.lower-page-btn, .search-btn {
+    margin-left: 10px;
+}
+
+.starItem {
+    background-color: lightyellow;
+}
+
+.content-section {
+    margin: 15%;
+}
+
+.main-header {
+    border-bottom: 1px dashed black;
+}
+
+.date-time-container {
+    margin-top: 20px;
+}
+
+.searchbar {
+    margin-top: 50px;
+}
+
+.card .form-group {
+    padding: 10px;
+}

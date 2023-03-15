@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block title %} 
-Events Assistant| Update Task 
+Events Assistant | Update Task 
 {% endblock %}
 
 {% block content %} 
@@ -12,17 +12,17 @@ Events Assistant| Update Task
         <fieldset class="form-group"> 
             <legend class="main-header">Update Task Below</legend>
             
-            <h5 class="date-time-container">
-              Current Due Date: <small class="text-muted">{{task.due_date}}
+            <span class="date-time-container col-title">
+              <span class="badge date-badge">Current Due Date:</span>{{task.due_date}}
               {% if task.time|length > 1%}
                 at {{task.time}}
-              {% endif %}</small>
-            </h5>
+              {% endif %}
+            </span>
 
             <br>
 
             <div class="form-group">
-              <label for="content"><h6>Task Details:</h6></label>
+              <label for="content" class="col-title">Task Details:</label>
               <textarea 
                 id="content" 
                 name="content" 
@@ -32,19 +32,19 @@ Events Assistant| Update Task
 
             <div class="row">
               <div class="col">
-                <label for="due_date"><h6>Due Date:</h6></label>
+                <label for="due_date" class="col-title">Due Date:</label>
                 <br>
                 <input type="date" id="due_date" name="due_date">
               </div>
 
               <div class="col">
-                <label for="time"><h6>Scheduled Time:</h6></label>
+                <label for="time" class="col-title">Time:</label>
                 <br>
                 <input type="time" id="time" name="time">
               </div>
 
               <div class="col">
-                <label for="status"><h6>Update Status:</h6></label>
+                <label for="status" class="col-title">Status:</label>
                 <br>
                 <select name="taskStatus" aria-label="Select/Dropdown menu">
                   <option value="Cancelled">Cancelled</option>

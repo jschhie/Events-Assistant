@@ -13,7 +13,7 @@
 }
 
 .navbar-nav a, .navbar-toggler-icon {
-    color: rgba(255,255,255,0.5);
+    color: white;
     font-family: 'Yomogi', cursive;
 }
 
@@ -29,14 +29,14 @@
 
 .btn {
     background-color: rgba(0,0,0,0.9);
-    color: rgba(255,255,255,0.6);
+    color: white;
     font-family: 'Yomogi', cursive;
     padding-bottom: 10px;
 }
 
 .btn:hover {
-    color: white;
     background-color: rgba(0,0,0,0.8);
+    color: white;
 }
 
 .navbar-nav a:hover {
@@ -56,6 +56,14 @@
 .badge {
     padding: 9px;
     font-size: .9em;
+}
+
+.date-badge {
+    background-color: black;
+    color: white;
+    font-family: 'Yomogi', cursive;
+    margin-right: 40px;
+    margin-bottom: 20px;
 }
 
 .completed-badge {
@@ -83,15 +91,11 @@
 }
 
 .content-section {
-    margin: 15%;
+    margin: 5%;
 }
 
 .main-header {
     border-bottom: 1px dashed black;
-}
-
-.date-time-container {
-    margin-top: 20px;
 }
 
 .searchbar {
@@ -100,4 +104,25 @@
 
 .card .form-group {
     padding: 10px;
+}
+
+.bottom-form-div {
+    border-top: 1px dashed black;
+    
+}
+
+.login-link {
+    margin-left: 50px;
+}
+
+.col-title {
+    font-size: 1.3em;
+}
+
+.col {
+    margin: 10px;
+}
+
+.date-time-container {
+    margin-top: 20px;
 }

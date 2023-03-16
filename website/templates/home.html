@@ -11,9 +11,9 @@ Events Assistant | Home
   {% if tasks|length < 1 %}
     {% if isQuery %}
       <div class="alert alert-secondary" role="alert">
-        <b>No Matching Tasks!</b> 
+        No Matching Tasks!
         <hr>
-        Try something else? Or hit <b>'search'</b> to display all tasks.
+        Try something else? Or hit <b style="font-size:1.1em;">'search'</b> to display all tasks.
       </div>
     {% else %}
       <div class="alert alert-secondary" role="alert">
@@ -24,82 +24,112 @@ Events Assistant | Home
 
   <form method="POST">
     <div class="form-group input-group searchbar">
-      <input type="search" id="Query" name="Query" class="button form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
+      <!-- SEARCH BAR -->
+      <input type="search" id="Query" name="Query" class="button form-control rounded" placeholder="Search"/>
       
-      <button 
-        type="submit" 
-        class="btn search-btn"
-        name="action" 
-        value="Search"
-      >
+      <!-- FILTER MENU -->
+      <select class="form-select dropdown-btn btn" value="Filter" name="QueryFilter">
+        <option selected>Filter By...</option>
+        <option value="Completed">Completed</option>
+        <option value="In Progress">In Progress</option>
+        <option value="Cancelled">Cancelled</option>
+        <option value="Not Yet Started">Not Yet Started</option>
+      </select>
+
+      <!-- SEARCH BTN -->
+      <button type="submit" class="btn search-btn" name="action" value="Search">
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
         <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
-        </svg> search</button>
+        </svg> search
+      </button>
     </div>
-    </form>
-    
-    <br>
 
-    {% if tasks|length >= 1%}
-    <table id="tasksTable" class="border table table-striped table-hover">
-      <thead>
-      <tr class="tasks-header"> 
-        <th> Task </th>
-        <th> Due Date </th>
-        <th> Status </th>
-        <th> Actions </th>
+  </form>
+    
+  <br>
+
+  {% if tasks|length >= 1%}
+  <table id="tasksTable" class="table border">
+    <!-- TABLE HEADER -->
+    <thead class="header-row">
+      <tr>
+        <td>Event</td>
+        <td>Date</td>
+        <td>Status</td>
+        <td>Actions</td>
       </tr>
-      </thead>  
-      <tbody>
-        {% for task in tasks %}
-          <tr>
-            <td class="content"> {{ task.content }} </td>
-            <td>
-              {% if task.due_date != "None" and task.time %}
-                {{ task.due_date }} at {{ task.time }}
-              {% else %}
-                {{ task.due_date }}
-              {% endif %}
-            </td>
-            <td>
-              {% if task.status == "Completed" %}
-                <span class="badge completed-badge">
-                  {{ task.status }}
-                </span>
-              {% elif task.status == "In Progress" %}
-                <span class="badge progress-badge">
-                  {{ task.status }}
-                </span>
-              {% elif task.status == "Cancelled" %}
-                <span class="badge cancelled-badge">
-                  {{ task.status }}
-                </span>
-              {% else %}
-                <!-- Status: Not Yet Started -->
-                <span class="badge todo-badge">
-                  {{ task.status }}
-                </span>
-              {% endif %}
-            </td>
-            <td>
-              <!-- UPDATE BTN -->
-              <a href="/update/{{ task.id }}" class="btn">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-fill" viewBox="0 0 16 16">
-                  <path d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708l-3-3zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207l6.5-6.5zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.499.499 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11l.178-.178z"/>
+    </thead>   
+
+    <!-- CONTENT -->
+    <tbody class="tasks-text">
+      {% for task in tasks %}
+        {% if task.bookmarked %}
+        <tr class="bookmarked-group">
+        {% else %}
+        <tr class="unbookmarked-group">
+        {% endif %}
+          <td> {{ task.content }} </td>
+          <td>
+            {% if task.due_date != "None" and task.time %}
+              {{ task.due_date }} at {{ task.time }}
+            {% else %}
+              {{ task.due_date }}
+            {% endif %}
+          </td>
+          <td>
+            {% if task.status == "Completed" %}
+              <span class="badge completed-badge">
+                {{ task.status }}
+              </span>
+            {% elif task.status == "In Progress" %}
+              <span class="badge progress-badge">
+                {{ task.status }}
+              </span>
+            {% elif task.status == "Cancelled" %}
+              <span class="badge cancelled-badge">
+                {{ task.status }}
+              </span>
+            {% else %}
+              <!-- Status: Not Yet Started -->
+              <span class="badge todo-badge">
+                {{ task.status }}
+              </span>
+            {% endif %}
+          </td>
+          <td class="table-actions">
+            <!-- BOOKMARK BTN -->
+            <a href="/bookmark/{{ task.id }}" class="btn">
+              {% if task.bookmarked %}
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bookmark-star-fill bookmark-icon" viewBox="0 0 16 16">
+                  <path fill-rule="evenodd" d="M2 15.5V2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.74.439L8 13.069l-5.26 2.87A.5.5 0 0 1 2 15.5zM8.16 4.1a.178.178 0 0 0-.32 0l-.634 1.285a.178.178 0 0 1-.134.098l-1.42.206a.178.178 0 0 0-.098.303L6.58 6.993c.042.041.061.1.051.158L6.39 8.565a.178.178 0 0 0 .258.187l1.27-.668a.178.178 0 0 1 .165 0l1.27.668a.178.178 0 0 0 .257-.187L9.368 7.15a.178.178 0 0 1 .05-.158l1.028-1.001a.178.178 0 0 0-.098-.303l-1.42-.206a.178.178 0 0 1-.134-.098L8.16 4.1z"/>
                 </svg>
-              </a>
-              <!-- DELETE BTN -->
-              <a href="/delete/{{ task.id }}" class="btn">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16">
-                  <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z"/>
+              {% else %}
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bookmark bookmark-icon" viewBox="0 0 16 16">
+                  <path d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.777.416L8 13.101l-5.223 2.815A.5.5 0 0 1 2 15.5V2zm2-1a1 1 0 0 0-1 1v12.566l4.723-2.482a.5.5 0 0 1 .554 0L13 14.566V2a1 1 0 0 0-1-1H4z"/>
                 </svg>
-              </a>
-            </td>
-          </tr>
-        {% endfor %}
-      </tbody>
-    </table>
-    {% endif %}
+              {% endif %}
+            </a>
+
+            <!-- UPDATE BTN -->
+            <a href="/update/{{ task.id }}" class="btn">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-fill" viewBox="0 0 16 16">
+                <path d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708l-3-3zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207l6.5-6.5zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.499.499 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11l.178-.178z"/>
+              </svg>
+            </a>
+            
+            <!-- DELETE BTN -->
+            <a href="/delete/{{ task.id }}" class="btn">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16">
+                <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z"/>
+              </svg>
+            </a>
+            
+          </td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  {% endif %}
 
   <br>
 
@@ -108,7 +138,7 @@ Events Assistant | Home
       <div>
         <button 
           type="submit" 
-          class="btn lower-page-btn" 
+          class="btn" 
           name="action" 
           value="Create New"
         >
@@ -121,7 +151,7 @@ Events Assistant | Home
   
         <button 
           type="submit" 
-          class="btn lower-page-btn" 
+          class="btn" 
           name="action" 
           value="Hide Completed Tasks"
         >
@@ -134,7 +164,7 @@ Events Assistant | Home
   
         <button 
           type="submit" 
-          class="btn lower-page-btn" 
+          class="btn" 
           name="action" 
           value="Clean Up"
         >

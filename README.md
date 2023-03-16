@@ -46,10 +46,10 @@ The user can then access and interact with the application at http://127.0.0.1:5
 At start up, users may toggle the nagivation bar to switch between the Account Login and Registration Pages. Signed in/newly registered users will be greeted with their personal Home Page.
 
 ## Visual Demo
-<img src="https://github.com/jschhie/Events-Assistant/blob/master/demos/css%20register1.png" alt="Registration Page">
+<img src="https://github.com/jschhie/Events-Assistant/blob/master/demos/css%20register2.png" alt="Registration Page">
 
-<img src="https://github.com/jschhie/Events-Assistant/blob/master/demos/css%20login1.png" alt="Login Page">
+<img src="https://github.com/jschhie/Events-Assistant/blob/master/demos/css%20login2.png" alt="Login Page">
 
-<img src="https://github.com/jschhie/Events-Assistant/blob/master/demos/css%20home1.png" alt="Home Page with tasks">
+<img src="https://github.com/jschhie/Events-Assistant/blob/master/demos/css%20home2.png" alt="Home Page with tasks">
 
-<img src="https://github.com/jschhie/Events-Assistant/blob/master/demos/css%20update1.png" alt="Update Events">
+<img src="https://github.com/jschhie/Events-Assistant/blob/master/demos/css%20update2.png" alt="Update Events">

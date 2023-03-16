@@ -5,6 +5,8 @@
 ## Project Overview
 A dynamic Flask web application that allows users to create, modify, search, bookmark, and delete custom events while handling user authentication (login, logout, and registration). 
 
+This web app is hosted on <a href="https://www.pythonanywhere.com/">PythonAnywhere</a>. You can visit this project at https://jschhie.pythonanywhere.com/login?next=%2F. 
+
 ### Features
 * Web pages rendered with Jinja templating and styled with CSS and Bootstrap elements.
 * Account information and event details stored into a relational SQLite database.
@@ -14,7 +16,6 @@ A dynamic Flask web application that allows users to create, modify, search, boo
 * [Application Requirements](https://github.com/jschhie/Events-Assistant/#application-requirements)
 * [Visual Demo](https://github.com/jschhie/Events-Assistant/#visual-demo)
 
-
 ## Application Requirements
 The packages and libraries needed to run this web app are listed in the ```requirements.txt``` file. 
 The following command will install all the required Python packages:
@@ -22,8 +23,8 @@ The following command will install all the required Python packages:
 pip3 install -r requirements.txt
 ```
 
-### How to Run the App
-To run this application, first download this repository and the packages mentioned above.
+### Running the App: Manually
+To run this application manually, first download this repository and the packages mentioned above.
 
 (Assuming in Terminal) First, enter:
 ```bash 

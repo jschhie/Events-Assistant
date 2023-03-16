@@ -3,7 +3,7 @@
 > Python, HTML, CSS, SQLite, Bootstrap, Flask, Jinja.
 
 ## Project Overview
-A dynamic Flask web application that allows users to create, modify, search, and delete custom events while handling user authentication (login, logout, and registration). 
+A dynamic Flask web application that allows users to create, modify, search, bookmark, and delete custom events while handling user authentication (login, logout, and registration). 
 
 ### Features
 * Web pages rendered with Jinja templating and styled with CSS and Bootstrap elements.

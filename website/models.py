@@ -11,7 +11,7 @@ class Task(db.Model):
     time = db.Column(db.String(20)) # str type, account for untimed tasks
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
     status = db.Column(db.String(30), default="Not Yet Started") # Other Statuses: In Progress, Completed, Cancelled
-
+    bookmarked = db.Column(db.Boolean, default=False)
 
 class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True) 

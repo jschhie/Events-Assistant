@@ -2,14 +2,70 @@
 @import url('https://fonts.googleapis.com/css2?family=Pangolin&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Yomogi&display=swap');
 
+.bookmarked-group {
+    background-color: lightyellow;
+}
+
+.unbookedmark-group {
+    background-color: transparent;
+}
+
 * {
     font-family: 'Pangolin', cursive;
 }
 
+.alert {
+    font-size: 1.2em;
+}
+
+.content-section {
+    margin: 5%;
+}
+
+.form-group {
+    margin: 20px;
+}
+
+.bottom-form-div {
+    border-top: 1px dashed black;
+    
+}
+
+.col-title, .btn, .button, #content, .tasks-text, #due_date, #time, #curr_status {
+    font-size: 1.2em;
+}
+
+/* TABLE OF EVENTS */
+#tasksTable {
+    margin-left: 2%;
+    margin-right: 2%;
+}
+
+.header-row {
+    font-size: 1.3em;
+    font-weight: bold;
+}
+
+.table-row {
+    border-bottom: 1px solid black;
+}
+
+.table-row:last-child {
+    border-bottom: none;
+}
+
+.content-text {
+    font-size: 1.1em;
+}
+
+.table-actions {
+    display: inline-flex;
+}
+
+/* NAVBAR / HEADER */
 .navbar-container {
     background-color: rgba(0,0,0,0.9);
     text-align: center;
-    padding: 25px;
 }
 
 .navbar-nav a, .navbar-toggler-icon {
@@ -17,8 +73,13 @@
     font-family: 'Yomogi', cursive;
 }
 
+.nav-item {
+    margin-left: 10%;
+    font-size: 1.3em;
+}
+
 .title-header {
-    font-size: x-large;
+    font-size: 1.5em;
 }
 
 .title-header a {
@@ -27,11 +88,17 @@
     font-family: 'Yomogi', cursive;
 }
 
+.main-header {
+    border-bottom: 1px dashed black;
+}
+
+/* BUTTONS */
 .btn {
     background-color: rgba(0,0,0,0.9);
     color: white;
     font-family: 'Yomogi', cursive;
     padding-bottom: 10px;
+    margin-right: 8px;
 }
 
 .btn:hover {
@@ -44,15 +111,11 @@
     background-color: rgba(255, 255, 255, 0.1);
 }
 
-.nav-item {
-    margin-left: 10%;
-    font-size: large;
+.lower-page-btn, .dropdown-btn {
+    margin-left: 10px;
 }
 
-.tasks-header {
-    font-size: 1.3em;
-}
-
+/* STATUS BADGES */
 .badge {
     padding: 9px;
     font-size: .9em;
@@ -62,8 +125,8 @@
     background-color: black;
     color: white;
     font-family: 'Yomogi', cursive;
-    margin-right: 40px;
-    margin-bottom: 20px;
+    margin-right: 50px;
+    font-size: 1em;
 }
 
 .completed-badge {
@@ -82,47 +145,17 @@
     background-color: rgb(237, 200, 194);
 }
 
-.lower-page-btn, .search-btn {
-    margin-left: 10px;
-}
-
-.starItem {
-    background-color: lightyellow;
-}
-
-.content-section {
-    margin: 5%;
-}
-
-.main-header {
-    border-bottom: 1px dashed black;
-}
-
+/* SEARCH BAR CONTAINER */
 .searchbar {
     margin-top: 50px;
 }
 
-.card .form-group {
-    padding: 10px;
-}
-
-.bottom-form-div {
-    border-top: 1px dashed black;
-    
-}
-
+/* LOGIN / REGISTER PAGE ELEMENTS */
 .login-link {
     margin-left: 50px;
 }
 
-.col-title {
-    font-size: 1.3em;
-}
-
-.col {
-    margin: 10px;
-}
-
+/* UPDATE / CREATE PAGE ELEMENTS */
 .date-time-container {
     margin-top: 20px;
 }

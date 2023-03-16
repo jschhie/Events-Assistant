@@ -16,10 +16,17 @@ def home():
     if request.method == 'POST':
         # Search Bar
         if request.form['action'] == 'Search':
-            print('search!')
             user_query = request.form['Query']
-            results = Task.query.filter_by(user_id=current_user.id). \
-                                            filter(Task.content.contains(user_query)).all()
+            query_filter = request.form['QueryFilter']
+            all_user_tasks = Task.query.filter_by(user_id=current_user.id).order_by(Task.bookmarked.desc()) # sort by priority, where 1 = bookmarked, 0 = unbookmarked
+            if (query_filter != "Filter By..."):
+                if (user_query):
+                    results = all_user_tasks.filter(Task.content.contains(user_query)).filter(Task.status==query_filter).all()
+                else:
+                    # Search * all queries with query_filter only
+                    results = all_user_tasks.filter(Task.status==query_filter).all()
+            else:
+                results = all_user_tasks.filter(Task.content.contains(user_query)).all()
             return render_template('home.html', user=current_user, tasks=results, isQuery=True)
 
         # Optionally hide Completed Tasks
@@ -100,6 +107,27 @@ def delete(id):
             return redirect('/') 
     except:
         flash('Error in deleting task.', category='error')
+
+
+
+@views.route('/bookmark/<int:id>')
+@login_required
+def bookmark(id):
+    saved_task = Task.query.get(id)
+    try:
+        if saved_task.user_id == current_user.id:
+            # Unsave task, if already saved
+            if saved_task.bookmarked == True:
+                saved_task.bookmarked = False
+                flash('Unsaved event', category='success')
+            else: # Save task
+                saved_task.bookmarked = True
+                flash('Saved event!', category='success')
+            db.session.commit()
+            return redirect('/') 
+    except:
+        flash('Error in bookmarking task.', category='error')
+        return redirect('/') 
 
 
 

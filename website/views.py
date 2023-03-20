@@ -45,7 +45,7 @@ def home():
             for task in unwanted_tasks:
                 db.session.delete(task)
                 db.session.commit()
-            flash('Completed and Cancelled Tasks Deleted!', category='success')
+            flash('Deleted all Completed and Cancelled Items!', category='success')
             remaining_tasks = Task.query.filter_by(user_id=current_user.id). \
                                                     order_by(Task.due_date_int).all()
             return render_template('home.html', user=current_user, tasks=remaining_tasks, isQuery=False)
@@ -72,7 +72,7 @@ def create():
             new_time = format_time(time)
             # Parse str object YYYY-MM-DD format, and convert into formatted str 
             if len(content.strip()) < 1:
-                flash('Task is too short!', category='error')
+                flash('Event details too short!', category='error')
             else:
                 due_date = format_date(due_date_int) 
                 try:
@@ -83,10 +83,10 @@ def create():
                                     user_id=current_user.id)
                     db.session.add(new_task)
                     db.session.commit()
-                    flash('New task added!', category='success')
+                    flash('New event added!', category='success')
                     return redirect('/')
                 except:
-                    flash('Error in adding new task.', category='error')
+                    flash('Error in adding new event.', category='error')
         elif request.form['action'] == 'Return Home':
             flash('Returning Home!', category='success')
             return redirect('/')
@@ -103,10 +103,10 @@ def delete(id):
             # only owner of Task can delete their Tasks
             db.session.delete(task_to_delete)
             db.session.commit()
-            flash('Task deleted!', category='success')
+            flash('Event deleted!', category='success')
             return redirect('/') 
     except:
-        flash('Error in deleting task.', category='error')
+        flash('Error in deleting event.', category='error')
 
 
 
@@ -126,7 +126,7 @@ def bookmark(id):
             db.session.commit()
             return redirect('/') 
     except:
-        flash('Error in bookmarking task.', category='error')
+        flash('Error in bookmarking event.', category='error')
         return redirect('/') 
 
 
@@ -155,9 +155,9 @@ def update(id):
             updated_task.status = request.form.get('taskStatus')
             try:
                 db.session.commit()
-                flash('Task updated!', category='success')
+                flash('Event updated!', category='success')
                 return redirect('/')
             except:
-                flash('Error in updating task.', category='error')
+                flash('Error in updating event.', category='error')
     else:
         return render_template('update.html', task=updated_task, user=current_user) 

@@ -1,6 +1,6 @@
 # Events Assistant
 
-> Python, HTML, CSS, SQLite, Bootstrap, Flask, Jinja.
+> Python, HTML, CSS, SQLite, Bootstrap, Flask, Jinja, JavaScript.
 
 ## Project Overview
 A dynamic Flask web application that allows users to create, modify, search, bookmark, and delete custom events while handling user authentication (login, logout, and registration). 

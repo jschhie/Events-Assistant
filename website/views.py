@@ -18,24 +18,16 @@ def home():
         if request.form['action'] == 'Search':
             user_query = request.form['Query']
             query_filter = request.form['QueryFilter']
-            all_user_tasks = Task.query.filter_by(user_id=current_user.id).order_by(Task.bookmarked.desc()) # sort by priority, where 1 = bookmarked, 0 = unbookmarked
+            all_user_tasks = Task.query.filter_by(user_id=current_user.id).order_by(Task.bookmarked.desc(), Task.due_date_int, Task.time) # sort by priority, where 1 = bookmarked, 0 = unbookmarked
             if (query_filter != "Filter By..."):
                 if (user_query):
                     results = all_user_tasks.filter(Task.content.contains(user_query)).filter(Task.status==query_filter).all()
                 else:
                     # Search * all queries with query_filter only
                     results = all_user_tasks.filter(Task.status==query_filter).all()
-            else:
+            else: # No filter applied
                 results = all_user_tasks.filter(Task.content.contains(user_query)).all()
             return render_template('home.html', user=current_user, tasks=results, isQuery=True)
-
-        # Optionally hide Completed Tasks
-        if request.form['action'] == 'Hide Completed Tasks':
-            tasks = Task.query.filter_by(user_id=current_user.id). \
-                                    filter(Task.status != 'Completed'). \
-                                        order_by(Task.due_date).all()
-            flash('Completed Tasks Hidden!', category='success')
-            return render_template('home.html', user=current_user, tasks=tasks, isQuery=False)
 
         # Optionally delete all Completed and Cancelled Tasks
         if request.form['action'] == 'Clean Up':
@@ -47,15 +39,14 @@ def home():
                 db.session.commit()
             flash('Deleted all Completed and Cancelled Items!', category='success')
             remaining_tasks = Task.query.filter_by(user_id=current_user.id). \
-                                                    order_by(Task.due_date_int).all()
+                                                    order_by(Task.bookmarked.desc(), Task.due_date_int, Task.time).all()
             return render_template('home.html', user=current_user, tasks=remaining_tasks, isQuery=False)
         
         elif request.form['action'] == "Create New":
             return redirect('/create')
-
     # default action: display all tasks 
     tasks = Task.query.filter_by(user_id=current_user.id). \
-                                order_by(Task.due_date_int, Task.time).all() 
+                                order_by(Task.bookmarked.desc(), Task.due_date_int, Task.time).all() 
     return render_template('home.html', user=current_user, tasks=tasks, isQuery=False)
 
 

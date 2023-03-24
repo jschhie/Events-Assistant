@@ -49,7 +49,7 @@ Events Assistant | Home
   <br>
 
   {% if tasks|length >= 1%}
-  <table id="tasksTable" class="table border">
+  <table id="tasksTable" class="table border" width="100%">
     <!-- TABLE HEADER -->
     <thead class="header-row">
       <tr>
@@ -64,11 +64,23 @@ Events Assistant | Home
     <tbody class="tasks-text">
       {% for task in tasks %}
         {% if task.bookmarked %}
-        <tr class="bookmarked-group">
+        <tr class="bookmarked-group data-row">
         {% else %}
-        <tr class="unbookmarked-group">
+        <tr class="unbookmarked-group data-row">
         {% endif %}
-          <td> {{ task.content }} </td>
+
+        <!-- Check if: pad content with whitespace to fill up table width -->
+        {% if task.content|length >= 80 %}
+          <td>{{ task.content }}</td>
+        {% else %}
+        <td>
+          <!-- color:transparent, not color:white to hide padded text; accounts for bookmarked-group:background-color-->
+          <p>
+            {{ task.content }}
+            <span style="color:transparent;">{{ "a" * (80 - task.content|length) }}</span>
+          </p>
+        </td>
+        {% endif %}
           <td>
             {% if task.due_date != "None" and task.time %}
               {{ task.due_date }} at {{ task.time }}
@@ -76,7 +88,7 @@ Events Assistant | Home
               {{ task.due_date }}
             {% endif %}
           </td>
-          <td>
+          <td class="status-col">
             {% if task.status == "Completed" %}
               <span class="badge completed-badge">
                 {{ task.status }}
@@ -96,6 +108,7 @@ Events Assistant | Home
               </span>
             {% endif %}
           </td>
+
           <td class="table-actions">
             <!-- BOOKMARK BTN -->
             <a href="/bookmark/{{ task.id }}" class="btn">
@@ -154,6 +167,7 @@ Events Assistant | Home
           class="btn" 
           name="action" 
           value="Hide Completed Tasks"
+          onclick="changeView(this); return false;"
         >
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye-slash-fill" viewBox="0 0 16 16">
           <path d="m10.79 12.912-1.614-1.615a3.5 3.5 0 0 1-4.474-4.474l-2.06-2.06C.938 6.278 0 8 0 8s3 5.5 8 5.5a7.029 7.029 0 0 0 2.79-.588zM5.21 3.088A7.028 7.028 0 0 1 8 2.5c5 0 8 5.5 8 5.5s-.939 1.721-2.641 3.238l-2.062-2.062a3.5 3.5 0 0 0-4.474-4.474L5.21 3.089z"/>

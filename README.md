@@ -3,7 +3,7 @@
 > Flask, Python, HTML, CSS, SQLite, Bootstrap, Jinja, JavaScript.
 
 ## Project Overview
-A dynamic Flask web application that allows users to create, modify, search, bookmark, and delete custom events while handling user authentication (login, logout, and registration). 
+A dynamic Flask web application that allows users to create, modify, search, and delete custom events while handling user authentication (login, logout, and registration). Extra features: bookmarking important events and un/hiding completed ones.
 
 This web app is hosted on <a href="https://www.pythonanywhere.com/">PythonAnywhere</a>. You can visit this project at https://jschhie.pythonanywhere.com/login?next=%2F. 
 

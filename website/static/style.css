@@ -2,6 +2,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Pangolin&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Yomogi&display=swap');
 
+
+
 .bookmarked-group {
     background-color: lightyellow;
 }
@@ -27,8 +29,7 @@
 }
 
 .bottom-form-div {
-    border-top: 1px dashed black;
-    
+    border-top: 1px dashed black;   
 }
 
 .col-title, .btn, .button, #content, .tasks-text, #due_date, #time, #curr_status {
@@ -44,14 +45,6 @@
 .header-row {
     font-size: 1.3em;
     font-weight: bold;
-}
-
-.table-row {
-    border-bottom: 1px solid black;
-}
-
-.table-row:last-child {
-    border-bottom: none;
 }
 
 .content-text {

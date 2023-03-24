@@ -5,7 +5,19 @@ from .models import Task
 from .helpers import format_date, format_time # helper functions
 from sqlalchemy import or_
 
+import git
+
 views = Blueprint('views', __name__)
+
+# Create Webhook with GitHub: Continuously deploy whenever master branch commits
+@views.route('git_update', methods=['POST'])
+def git_update():
+    repo = git.Repo('./Events-Assistant')
+    origin = repo.remotes.origin
+    repo.create_head('master', 
+                     origin.refs.master).set_tracking_branch(origin.refs.master).checkout()
+    origin.pull()
+    return '', 200
 
 
 

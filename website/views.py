@@ -5,7 +5,7 @@ from .models import Task
 from .helpers import format_date, format_time # helper functions
 from sqlalchemy import or_
 
-import git
+import git # to create webhook
 
 views = Blueprint('views', __name__)
 

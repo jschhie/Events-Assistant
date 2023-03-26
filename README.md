@@ -1,15 +1,16 @@
 # Events Assistant
 
-> Flask, Python, HTML, CSS, SQLite, Bootstrap, Jinja, JavaScript.
+> Flask, Python, HTML, CSS, JavaScript, SQLite, Jinja, Bootstrap.
 
 ## Project Overview
-A dynamic Flask web application that allows users to create, modify, search, and delete custom events while handling user authentication (login, logout, and registration). Extra features: bookmarking important events and un/hiding completed ones.
+A Flask web app that provides a user-friendly, multi-functional dashboard for custom events. 
 
 This web app is hosted on <a href="https://www.pythonanywhere.com/">PythonAnywhere</a>. You can visit this project at https://jschhie.pythonanywhere.com. 
 
 ### Features
-* Web pages rendered with Jinja templating and styled with CSS and Bootstrap elements.
-* Account information and event details stored into a relational SQLite database.
+* Allows users to create, modify, delete, bookmark, and un/hide events
+* Handles user authentication (login, logout, registration) and filtered searches with a relational SQLite database
+* HTML templates rendered with Jinja and styled interface with CSS, JavaScript, and Bootstrap framework
 
 ## Table of Contents
 * [Application Requirements](https://github.com/jschhie/Events-Assistant/#application-requirements)
@@ -17,7 +18,8 @@ This web app is hosted on <a href="https://www.pythonanywhere.com/">PythonAnywhe
 
 ## Application Requirements
 The packages and libraries needed to run this web app are listed in the ```requirements.txt``` file. 
-The following command will install all the required Python packages:
+The following command will install all the required packages:
+
 ```bash
 pip3 install -r requirements.txt
 ```
@@ -26,21 +28,22 @@ pip3 install -r requirements.txt
 To run this application manually, first download this repository and the packages listed above.
 
 (Assuming in Terminal) First, enter:
+
 ```bash 
 git clone https://github.com/jschhie/events-assistant.git [folderNameHere]
 ```
 
 Next, go into the folder: 
+
 ```bash 
 cd [folderNameHere]
 ```
 
 Finally, enter:
+
 ```bash
 python3 main.py
 ```
-
-> Above command will create and activate the Flask web app with an empty database (```tasks_database.db```). 
 
 The user can then access and interact with the web app at http://127.0.0.1:5000/ via any web browser. 
 

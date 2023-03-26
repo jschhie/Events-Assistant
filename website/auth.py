@@ -13,8 +13,14 @@ def login():
     if request.method == 'POST':
         username = request.form['username']
         password = request.form['password']
+        user = None
+
+        # Check for empty inputs
+        if (not username or not password):
+            flash('Please enter your username and password.', category='error')
+            return render_template("login.html", user=current_user)
+       
         user = User.query.filter_by(username=username).first()
-        
         if user:
             if check_password_hash(user.password, password):
                 flash('You are now logged in!', category='success')

@@ -7,7 +7,7 @@ function confirmDelete(delType) {
     }
 }
 
-function changeView(btn) {
+function toggleView(btn) {
     // Change whether completed events should be hidden or not, and change button icon + text        
     var contents;
     var tableElement = document.getElementById("tasksTable");
@@ -41,6 +41,5 @@ function changeView(btn) {
         for (var i = 0; i < tableRows.length; i++) {
           tableRows[i].style.display = "table-row";
         }
-
     }
 }

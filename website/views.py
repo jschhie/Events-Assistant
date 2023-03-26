@@ -5,11 +5,13 @@ from .models import Task
 from .helpers import format_date, format_time # helper functions
 from sqlalchemy import or_
 
-import git # to create webhook
+import git # to create webhook for ```git push```
 
 views = Blueprint('views', __name__)
 
-# Create Webhook with GitHub: Continuously deploy whenever master branch commits
+
+
+# Create Webhook with GitHub: Deploy when master commits
 @views.route('git_update', methods=['POST'])
 def git_update():
     repo = git.Repo('./Events-Assistant')
@@ -163,4 +165,4 @@ def update(id):
             except:
                 flash('Error in updating event.', category='error')
     else:
-        return render_template('update.html', task=updated_task, user=current_user) 
+        return render_template('update.html', task=updated_task, user=current_user)

@@ -74,6 +74,10 @@ def create():
             content = request.form['content']
             due_date_int = request.form['due_date']
             time = request.form['time']
+            
+            print("orginal time format: ", time)
+            print("type: ", type(time))
+
             new_time = format_time(time)
             # Parse str object YYYY-MM-DD format, and convert into formatted str 
             if len(content.strip()) < 1:

@@ -29,13 +29,27 @@ Events Assistant | Update Task
         <div class="col">
           <label for="due_date" class="col-title">Due Date:</label>
           <br>
-          <input type="date" id="due_date" name="due_date">
+          <input type="date" id="due_date" name="due_date" value="{{ task.due_date_int }}">
         </div>
 
         <div class="col">
           <label for="time" class="col-title">Time:</label>
           <br>
-          <input type="time" id="time" name="time">
+          {% set format_time = task.time[:-3] %}
+          {% if task.time[:-3]|length == 4 %}
+            {# pad string with leading 0 #}
+            {% set format_time = '0' + task.time[:-3] %}
+          {% endif %}
+
+          {% if ('12:' in task.time and 'AM' in task.time) %}
+            {# check if 12AM #}
+            {% set format_time = '00' + task.time[2:-3] %}
+          {% elif '12:' not in task.time and 'PM' in task.time %}
+            {# Add 12 to 1-11PM time, 12PM time remains unchanged #}
+            {% set format_time = (((format_time[:2] | int) + 12) | string) + format_time[2:] %}
+          {% endif %}
+
+          <input type="time" id="time" name="time" value="{{ format_time }}">
         </div>
 
         <div class="col">

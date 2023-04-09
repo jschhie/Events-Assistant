@@ -2,8 +2,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Pangolin&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Yomogi&display=swap');
 
-
-
 .bookmarked-group {
     background-color: lightyellow;
 }
@@ -37,11 +35,6 @@
 }
 
 /* TABLE OF EVENTS */
-#tasksTable {
-    margin-left: 2%;
-    margin-right: 2%;
-}
-
 .header-row {
     font-size: 1.3em;
     font-weight: bold;
@@ -97,6 +90,10 @@
 .btn:hover {
     background-color: rgba(0,0,0,0.8);
     color: white;
+}
+
+.custom-btn {
+    margin-top: 10px;
 }
 
 .navbar-nav a:hover {

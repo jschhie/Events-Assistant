@@ -22,13 +22,13 @@ Events Assistant | Home
     {% endif %}
   {% endif %}
 
-  <form method="POST">
+  <form method="POST" class="row">
     <div class="form-group input-group searchbar">
       <!-- SEARCH BAR -->
-      <input type="search" id="Query" name="Query" class="button form-control rounded" placeholder="Search"/>
+      <input type="search" id="Query" name="Query" class="button form-control rounded col-md-7 col-lg-9 custom-btn" placeholder="Search"/>
       
       <!-- FILTER MENU -->
-      <select class="form-select dropdown-btn btn" value="Filter" name="QueryFilter">
+      <select class="form-select dropdown-btn btn col-md-3 col-lg-2 custom-btn" value="Filter" name="QueryFilter">
         <option selected>Filter By...</option>
         <option value="Completed">Completed</option>
         <option value="In Progress">In Progress</option>
@@ -37,7 +37,7 @@ Events Assistant | Home
       </select>
 
       <!-- SEARCH BTN -->
-      <button type="submit" class="btn search-btn" name="action" value="Search">
+      <button type="submit" class="btn search-btn col-md-2 col-lg-2 custom-btn" name="action" value="Search">
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
         <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
         </svg> search
@@ -49,7 +49,9 @@ Events Assistant | Home
   <br>
 
   {% if tasks|length >= 1%}
-  <table id="tasksTable" class="table border" width="100%">
+  <!-- added table-responsive class to accomodate mobile/small viewports -->
+  <div class="table-responsive">
+  <table id="tasksTable" class="table border">
     <!-- TABLE HEADER -->
     <thead class="header-row">
       <tr>
@@ -142,16 +144,18 @@ Events Assistant | Home
       {% endfor %}
     </tbody>
   </table>
+  </div>
   {% endif %}
 
   <br>
 
-  <div>
+  <div class="container">
     <form method="POST">
-      <div>
+      <div class="row">
+
         <button 
           type="submit" 
-          class="btn" 
+          class="btn col-md-4 col-lg-3 custom-btn" 
           name="action" 
           value="Create New"
         >
@@ -161,10 +165,11 @@ Events Assistant | Home
         </svg>
         Create New
         </button>
-  
+   
+
         <button 
           type="submit" 
-          class="btn" 
+          class="btn col-md-3 col-lg-4 custom-btn" 
           name="action" 
           value="Hide Completed Tasks"
           onclick="toggleView(this); return false;"
@@ -175,10 +180,11 @@ Events Assistant | Home
         </svg>
         Hide Completed
         </button>
+   
   
         <button 
           type="submit" 
-          class="btn" 
+          class="btn col-md-3 col-lg-4 custom-btn" 
           name="action" 
           value="Clean Up"
           onclick="return confirmDelete(`all`)"

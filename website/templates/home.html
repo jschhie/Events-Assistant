@@ -49,6 +49,8 @@ Events Assistant | Home
   <br>
 
   {% if tasks|length >= 1%}
+  <div class="alert alert-secondary d-md-block d-lg-none" role="alert">Scroll table horizontally to view details!</div>
+
   <!-- added table-responsive class to accomodate mobile/small viewports -->
   <div class="table-responsive">
   <table id="tasksTable" class="table border">
@@ -79,7 +81,7 @@ Events Assistant | Home
           <!-- color:transparent, not color:white to hide padded text; accounts for bookmarked-group:background-color-->
           <p>
             {{ task.content }}
-            <span style="color:transparent;">{{ "a" * (80 - task.content|length) }}</span>
+            <span style="color:transparent;">{{ "a" * (60 - task.content|length) }}</span>
           </p>
         </td>
         {% endif %}

@@ -34,6 +34,10 @@
     font-size: 1.2em;
 }
 
+.col-title {
+    margin-top: 15px;
+}
+
 /* TABLE OF EVENTS */
 .header-row {
     font-size: 1.3em;
@@ -93,7 +97,7 @@
 }
 
 .custom-btn {
-    margin-top: 10px;
+    margin-top: 15px;
 }
 
 .navbar-nav a:hover {
@@ -101,7 +105,7 @@
     background-color: rgba(255, 255, 255, 0.1);
 }
 
-.lower-page-btn, .dropdown-btn {
+.lower-page-btn {
     margin-left: 10px;
 }
 
@@ -117,6 +121,7 @@
     font-family: 'Yomogi', cursive;
     margin-right: 50px;
     font-size: 1em;
+    margin-bottom: 15px;
 }
 
 .completed-badge {
@@ -148,4 +153,15 @@
 /* UPDATE / CREATE PAGE ELEMENTS */
 .date-time-container {
     margin-top: 20px;
+}
+
+@media all and (min-width:580px) {
+    #curr-due-date-text {
+        display: inline-block;
+    }
+
+    .custom-btn {
+        margin-left: 10px;
+    }
+
 }

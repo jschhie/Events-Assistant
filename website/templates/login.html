@@ -6,7 +6,7 @@
 <br>
 <br>
 <div class="content-section">
-    <form class="card p-3 bg-light" method="POST">
+    <form class="card p-4 bg-light" method="POST">
         <fieldset class="form-group"> 
             <legend class="main-header">Login</legend>
             <div class="form-group">
@@ -30,9 +30,17 @@
                 />
             </div>
         </fieldset>
-        <div class="form-group">
-            <button type="submit" class="btn"> Login </button>
+        <div class="form-group row">
+            <button type="submit" class="btn col-sm-12 col-md-4 col-lg-3">Login</button>
         </div>
     </form>
+    <br>
+    <div class="bottom-form-div">
+        <br>
+        <span>
+            Don't have an account?
+            <a class="login-link" href="{{ url_for('auth.register') }}">Create Account!</a>
+        </span>
+    </div>
 </div>
 {% endblock %}

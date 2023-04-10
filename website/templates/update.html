@@ -6,14 +6,19 @@ Events Assistant | Update Task
 
 {% block content %} 
   <div class="content-section">
-    <form class="card p-3 bg-light" method="POST">
+    <form class="card p-4 bg-light" method="POST">
       <legend class="main-header">Update Task Below</legend>
 
       <div class="form-group col-title">
-        <span class="badge date-badge">Current Due Date:</span>{{task.due_date}}
-        {% if task.time|length > 1%}
-          at {{task.time}}
-        {% endif %}
+        <div class="badge date-badge">Current Due Date</div>
+        
+        <div id="curr-due-date-text">
+          {{task.due_date}}
+          {% if task.time|length > 1%}
+            at {{task.time}}
+          {% endif %}
+        </div>
+
       </div>
 
       <div class="form-group">

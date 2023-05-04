@@ -1,4 +1,4 @@
-# Events Assistant
+# Dashboard Builder
 
 > Flask, Python, HTML, CSS, JavaScript, SQLite, Jinja, Bootstrap.
 

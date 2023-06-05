@@ -15,7 +15,7 @@
 }
 
 .alert {
-    font-size: 1.2em;
+    font-size: 1em;
 }
 
 .content-section {
@@ -27,11 +27,12 @@
 }
 
 .bottom-form-div {
-    border-top: 1px dashed black;   
+    border-top: 1px dashed black;
+    font-size: 1em;   
 }
 
 .col-title, .btn, .button, #content, .tasks-text, #due_date, #time, #curr_status {
-    font-size: 1.2em;
+    font-size: 1.05em;
 }
 
 .col-title {
@@ -40,7 +41,7 @@
 
 /* TABLE OF EVENTS */
 .header-row {
-    font-size: 1.3em;
+    font-size: 1.15em;
     font-weight: bold;
 }
 
@@ -65,11 +66,11 @@
 
 .nav-item {
     margin-left: 10%;
-    font-size: 1.3em;
+    font-size: 1.1em;
 }
 
 .title-header {
-    font-size: 1.5em;
+    font-size: 1.2em;
 }
 
 .title-header a {
@@ -80,6 +81,7 @@
 
 .main-header {
     border-bottom: 1px dashed black;
+    font-size: 1.3em;
 }
 
 /* BUTTONS */
@@ -107,6 +109,10 @@
 
 .lower-page-btn {
     margin-left: 10px;
+}
+
+.home-main-buttons {
+    margin-bottom: 58px;
 }
 
 /* STATUS BADGES */
@@ -142,12 +148,13 @@
 
 /* SEARCH BAR CONTAINER */
 .searchbar {
-    margin-top: 50px;
+    margin-top: 30px;
 }
 
 /* LOGIN / REGISTER PAGE ELEMENTS */
 .login-link {
     margin-left: 50px;
+    color: "#051094";
 }
 
 /* UPDATE / CREATE PAGE ELEMENTS */

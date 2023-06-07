@@ -28,7 +28,7 @@ This web app is hosted on <a href="https://www.pythonanywhere.com/">PythonAnywhe
 
 ## Running the App Manually
 ### Application Requirements
-To run this application manually (on with your ```localhost```), download the required packages and this repository, as described below.
+To run this application manually (via your ```localhost```), download the required packages and this repository, as described below.
 
 The packages and libraries needed to run this web app are listed in the ```requirements.txt``` file. 
 The following command will install all the required packages:

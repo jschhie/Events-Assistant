@@ -1,6 +1,6 @@
 # Dashboard Builder
 
-> Flask, Python, HTML, CSS, JavaScript, SQLite, Jinja, Bootstrap.
+> Flask, Python, HTML, CSS, JavaScript, SQLAlchemy, Jinja, Bootstrap.
 
 ## Project Overview
 A Flask web app that provides a user-friendly, multi-functional dashboard for custom events. 
@@ -9,7 +9,7 @@ This web app is hosted on <a href="https://www.pythonanywhere.com/">PythonAnywhe
 
 ### Features
 * Allows users to create, modify, delete, bookmark, and un/hide events
-* Handles user authentication (login, logout, registration) and filtered searches with a relational SQLite database
+* Handles user authentication (login, logout, registration) and filtered searches with a relational database
 * HTML templates rendered with Jinja and styled interface with CSS, JavaScript, and Bootstrap framework
 
 ## Table of Contents

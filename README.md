@@ -1,4 +1,4 @@
-# Dashboard Builder
+# Dashboard Builder 📅 
 
 > Flask, Python, HTML, CSS, JavaScript, SQLAlchemy, Jinja, Bootstrap.
 

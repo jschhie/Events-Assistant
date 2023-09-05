@@ -1,3 +1,18 @@
+function goHome() {
+    document.location.href = '/';
+    return;
+}
+
+
+/*
+function gotoGroup(btn) {
+    group_name  = btn.innerText;
+    alert(group_name);
+    return;
+}*/
+
+
+
 function confirmDelete(delType) {
     if (delType == "single") {
         return confirm('Are you sure you want to delete this item?');

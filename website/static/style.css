@@ -50,23 +50,10 @@
     font-size: 1.1em;
 }
 
-/*
-.table-actions {
-    display: inline-flex;
-}*/
-
 .table-actions a {
     /* mobile x-small view */
     margin-bottom: 15px;
 }
-
-@media all and (min-width:768px) {
-    /* medium */
-    .table-actions a {
-        /*display: block;*/
-    }
-}
-
 
 @media all and (min-width:992px) {
     /* large */
@@ -91,6 +78,8 @@
 .navbar-nav a, .navbar-toggler-icon {
     color: white;
     font-family: 'Yomogi', cursive;
+    align-items: center;
+    display: flex;
 }
 
 .nav-item {
@@ -99,7 +88,7 @@
 }
 
 .title-header {
-    font-size: 1.2em;
+    font-size: 1.3em;
     margin-right: 5%;
 }
 
@@ -212,4 +201,9 @@
 @keyframes fadein {
     from { opacity: 0; }
     to   { opacity: 1; }
+}
+
+.canvas-link {
+    width: 100%;
+    background-color: black;
 }

@@ -38,8 +38,8 @@
             <div class="collapse navbar-collapse" id="navbar">
                 <div class="navbar-nav">
                     {% if user.is_authenticated %}
-                        <a class="nav-item nav-link" id="home" href="/">HOME</a>
-                        <a class="nav-item nav-link" id="logout" href="/logout">LOGOUT</a>
+                        <a class="nav-item nav-link" id="home" href="/">Dashboard Builder</a>
+                        <a class="nav-item nav-link" id="logout" href="/logout">Logout</a>
                     {% else %}
                         <a class="nav-item nav-link" id="login" href="/login">LOGIN</a>
                         <a class="nav-item nav-link" id="register" href="/register">REGISTER</a>
@@ -47,22 +47,37 @@
                 </div>
             </div>
 
+            {% if user.is_authenticated %}
+            <span class="title-header">
+                <button class="btn" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight" style="background-color: rgba(0,0,0,0.7);">My Groups</button>
+                <!--
+                    <a href="/">My Groups</a>
+                -->
+            </span>
+            {% else %}
             <span class="title-header">
                 <a href="/">Dashboard Builder</a>
             </span>
+            {% endif %}
+
         </nav>    
 
-        <!-- 
         <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
             <div class="offcanvas-header">
               <h5 class="offcanvas-title" id="offcanvasRightLabel">My Groups</h5>
               <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
             </div>
-            <div class="offcanvas-body">                
+            <div class="offcanvas-body">
+                <form method="POST">
+                    <button class="btn canvas-link" type="submit" name="action" value="View All">All Groups</button>
+                    {% for group in groups %}
+                    <br>
+                    <br>
+                    <button class="btn canvas-link" type="submit" name="action" value={{ "Group" + group.id|string }}>{{group.name}}</button>
+                    {% endfor %}
+                </form>
             </div>
         </div>
-        -->
-
 
     </header>
 

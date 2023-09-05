@@ -16,6 +16,7 @@
 
 .alert {
     font-size: 1em;
+    text-align: center;
 }
 
 .content-section {
@@ -49,9 +50,37 @@
     font-size: 1.1em;
 }
 
+/*
 .table-actions {
     display: inline-flex;
+}*/
+
+.table-actions a {
+    /* mobile x-small view */
+    margin-bottom: 15px;
 }
+
+@media all and (min-width:768px) {
+    /* medium */
+    .table-actions a {
+        /*display: block;*/
+    }
+}
+
+
+@media all and (min-width:992px) {
+    /* large */
+    .table-actions a {
+        margin: auto;
+        display: inline-block;
+    }
+
+    .table-actions {
+        text-align: center;
+    }
+}
+
+
 
 /* NAVBAR + HEADER */
 .navbar-container {
@@ -71,6 +100,7 @@
 
 .title-header {
     font-size: 1.2em;
+    margin-right: 5%;
 }
 
 .title-header a {
@@ -119,6 +149,7 @@
 .badge {
     padding: 9px;
     font-size: .9em;
+    color: black;
 }
 
 .date-badge {

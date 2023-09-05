@@ -27,13 +27,22 @@ Events Assistant | Home
       <!-- SEARCH BAR -->
       <input type="search" id="Query" name="Query" class="button form-control rounded col-md-7 col-lg-9 custom-btn" placeholder="Search">
       
-      <!-- FILTER MENU -->
+      <!-- STATUS FILTER MENU -->
       <select class="form-select dropdown-btn btn col-md-3 col-lg-2 custom-btn" value="Filter" name="QueryFilter">
-        <option selected>Filter By...</option>
+        <option selected>Status</option>
         <option value="Completed">Completed</option>
         <option value="In Progress">In Progress</option>
         <option value="Cancelled">Cancelled</option>
         <option value="Not Yet Started">Not Yet Started</option>
+      </select>
+
+      <!-- GROUP FILTER -->
+      <select class="form-select dropdown-btn btn col-md-3 col-lg-2 custom-btn" value="GroupFilter" name="GroupFilter">
+        <option selected>Filter By...</option>
+        <option value="All">All</option>
+        {% for group in groups %}
+        <option value={{group.id}}>{{group.name}}</option>        
+        {% endfor %}
       </select>
 
       <!-- SEARCH BTN -->
@@ -54,6 +63,19 @@ Events Assistant | Home
 
         <button 
           type="submit" 
+          class="btn col-md-3 col-lg-2 custom-btn" 
+          name="action" 
+          value="Add Group"
+        >
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-circle" viewBox="0 0 16 16">
+          <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+          <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+        </svg>
+          Add Group
+        </button>
+
+        <button 
+          type="submit" 
           class="btn col-md-3 col-lg-3 custom-btn" 
           name="action" 
           value="Create New"
@@ -62,13 +84,13 @@ Events Assistant | Home
           <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
           <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
         </svg>
-        Create New
+         Add Event
         </button>
    
 
         <button 
           type="submit" 
-          class="btn col-md-3 col-lg-3 custom-btn" 
+          class="btn col-md-2 col-lg-3 custom-btn" 
           name="action" 
           value="Hide Completed Tasks"
           onclick="toggleView(this); return false;"
@@ -77,13 +99,12 @@ Events Assistant | Home
           <path d="m10.79 12.912-1.614-1.615a3.5 3.5 0 0 1-4.474-4.474l-2.06-2.06C.938 6.278 0 8 0 8s3 5.5 8 5.5a7.029 7.029 0 0 0 2.79-.588zM5.21 3.088A7.028 7.028 0 0 1 8 2.5c5 0 8 5.5 8 5.5s-.939 1.721-2.641 3.238l-2.062-2.062a3.5 3.5 0 0 0-4.474-4.474L5.21 3.089z"/>
           <path d="M5.525 7.646a2.5 2.5 0 0 0 2.829 2.829l-2.83-2.829zm4.95.708-2.829-2.83a2.5 2.5 0 0 1 2.829 2.829zm3.171 6-12-12 .708-.708 12 12-.708.708z"/>
         </svg>
-        Hide Completed
+        Hide
         </button>
    
-  
         <button 
           type="submit" 
-          class="btn col-md-3 col-lg-3 custom-btn" 
+          class="btn col-md-2 col-lg-3 custom-btn" 
           name="action" 
           value="Clean Up"
           onclick="return confirmDelete(`all`)"
@@ -91,7 +112,7 @@ Events Assistant | Home
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-exclamation-circle-fill" viewBox="0 0 16 16">
           <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8 4a.905.905 0 0 0-.9.995l.35 3.507a.552.552 0 0 0 1.1 0l.35-3.507A.905.905 0 0 0 8 4zm.002 6a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"/>
         </svg>
-        Clean Up
+        Clean
         </button>
 
       </div>
@@ -99,18 +120,20 @@ Events Assistant | Home
   </div>
 
   {% if tasks|length >= 1%}
-  <div class="alert alert-secondary d-md-block d-lg-none" role="alert">Scroll table horizontally to view details!</div>
+  <div class="alert alert-secondary d-md-block d-lg-none" role="alert">Scroll horizontally to view more!</div>
+
+  <h3>{{group_name}}</h3>
 
   <!-- added table-responsive class to accomodate mobile/small viewports -->
   <div class="table-responsive">
-  <table id="tasksTable" class="table border fade-container">
+  <table id="tasksTable" class="table table-bordered fade-container">
     <!-- TABLE HEADER -->
     <thead class="header-row">
       <tr>
-        <td>Event</td>
-        <td>Date</td>
-        <td>Status</td>
-        <td>Actions</td>
+        <th scope="col">Event</th>
+        <th scope="col">Date</th>
+        <th scope="col">Status</th>
+        <th scope="col">Actions</th>
       </tr>
     </thead>   
 
@@ -118,7 +141,7 @@ Events Assistant | Home
     <tbody class="tasks-text">
       {% for task in tasks %}
         {% if task.bookmarked %}
-        <tr class="bookmarked-group data-row">
+        <tr class="bookmarked-group data-row table-secondary">
         {% else %}
         <tr class="unbookmarked-group data-row">
         {% endif %}
@@ -131,11 +154,11 @@ Events Assistant | Home
           <!-- color:transparent, not color:white to hide padded text; accounts for bookmarked-group:background-color-->
           <p>
             {{ task.content }}
-            <span style="color:transparent;">{{ "a" * (60 - task.content|length) }}</span>
+            <!-- <span style="color:transparent;">{{ "a" * (60 - task.content|length) }}</span>-->
           </p>
         </td>
         {% endif %}
-          <td>
+          <td class="date-col">
             {% if task.due_date != "None" and task.time %}
               {{ task.due_date }} at {{ task.time }}
             {% else %}
@@ -163,7 +186,7 @@ Events Assistant | Home
             {% endif %}
           </td>
 
-          <td class="table-actions">
+          <td class="table-actions" >
             <!-- BOOKMARK BTN -->
             <a href="/bookmark/{{ task.id }}" class="btn">
               {% if task.bookmarked %}

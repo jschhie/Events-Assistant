@@ -24,7 +24,7 @@ def create_app():
     app.register_blueprint(auth, url_prefix='/')
 
     # create or retrieve existing DB
-    from .models import Task, User
+    from .models import Task, User, Group
     create_database(app)
 
     login_manager = LoginManager()

@@ -12,6 +12,7 @@ class Task(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
     status = db.Column(db.String(30), default="Not Yet Started") # Other Statuses: In Progress, Completed, Cancelled
     bookmarked = db.Column(db.Boolean, default=False)
+    group_id = db.Column(db.Integer, db.ForeignKey('group.id'))
 
 
 
@@ -21,3 +22,10 @@ class User(db.Model, UserMixin):
     password = db.Column(db.String(150))
     first_name = db.Column(db.String(150))
     tasks = db.relationship('Task')
+
+
+
+class Group(db.Model):
+    id = db.Column(db.Integer, primary_key=True) 
+    name = db.Column(db.String(30)) # title of group, ex: 'Homework'
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))

@@ -7,6 +7,8 @@ function confirmDelete(delType) {
     }
 }
 
+
+
 function toggleView(btn) {
     // Change whether completed events should be hidden or not, and change button icon + text        
     var contents;

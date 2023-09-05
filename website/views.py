@@ -1,7 +1,7 @@
 from flask import Blueprint, render_template, request, redirect, flash
 from flask_login import current_user, login_required
 from . import db
-from .models import Task
+from .models import Task, Group
 from .helpers import format_date, format_time # helper functions
 from sqlalchemy import or_
 
@@ -27,21 +27,54 @@ def git_update():
 @views.route('/home', methods=['POST', 'GET'])
 @login_required
 def home():
+    # get user's groups
+    groups = Group.query.filter_by(user_id=current_user.id).all()
+
     if request.method == 'POST':
         # Search Bar
         if request.form['action'] == 'Search':
             user_query = request.form['Query']
             query_filter = request.form['QueryFilter']
+            group_filter = request.form['GroupFilter']
+            group = Group.query.filter_by(id=group_filter).first()
+
             all_user_tasks = Task.query.filter_by(user_id=current_user.id).order_by(Task.bookmarked.desc(), Task.due_date_int, Task.time) # sort by priority, where 1 = bookmarked, 0 = unbookmarked
-            if (query_filter != "Filter By..."):
+            
+            if (query_filter != "Status" and group_filter != "Filter By..." and group_filter != "All"):
                 if (user_query):
+                    flash("Results for " + user_query + " that are " + query_filter + " and in " + group.name, category='success')
+                    results = all_user_tasks.filter(Task.content.contains(user_query)).filter(Task.status==query_filter).filter(Task.group_id==group_filter).all()
+                else:
+                    # Search * all queries with query_filter and group_filter only
+                    flash("Results for " + query_filter + ' items that are in ' + group.name, category='success')
+                    results = all_user_tasks.filter(Task.status==query_filter).filter(Task.group_id==group_filter).all()
+
+            elif (query_filter != "Status"):
+                if (user_query):
+                    flash("Results for " + user_query + " that are " + query_filter, category='success')
                     results = all_user_tasks.filter(Task.content.contains(user_query)).filter(Task.status==query_filter).all()
                 else:
-                    # Search * all queries with query_filter only
+                    # Search * all queries with status_filter only
+                    flash("Results for " + query_filter + " items", category='success')
                     results = all_user_tasks.filter(Task.status==query_filter).all()
-            else: # No filter applied
+            
+            elif (group_filter != "Filter By..." and group_filter != "All"):
+                if (user_query):
+                    flash("Results for " + query_filter + " that are in " + group.name, category='success')
+                    results = all_user_tasks.filter(Task.content.contains(user_query)).filter(Task.group_id==group_filter).all()
+                else:
+                    # Search * all queries with group_filter only
+                    flash("Results for items in " + group.name, category='success')
+                    results = all_user_tasks.filter(Task.group_id==group_filter).all()
+            
+            else: # No filters applied
+                flash("Results for " + user_query + " All Groups", category='success')
                 results = all_user_tasks.filter(Task.content.contains(user_query)).all()
-            return render_template('home.html', user=current_user, tasks=results, isQuery=True)
+            
+            try:
+                return render_template('home.html', user=current_user, tasks=results, isQuery=True, groups=groups, group_name=group.name) 
+            except:
+                return render_template('home.html', user=current_user, tasks=results, isQuery=True, groups=groups, group_name="All Groups")
 
         # Optionally delete all Completed and Cancelled Tasks
         if request.form['action'] == 'Clean Up':
@@ -54,14 +87,42 @@ def home():
             flash('Deleted all Completed and Cancelled Items!', category='success')
             remaining_tasks = Task.query.filter_by(user_id=current_user.id). \
                                                     order_by(Task.bookmarked.desc(), Task.due_date_int, Task.time).all()
-            return render_template('home.html', user=current_user, tasks=remaining_tasks, isQuery=False)
+            return render_template('home.html', user=current_user, tasks=remaining_tasks, isQuery=False, group_name="All Groups")
         
         elif request.form['action'] == "Create New":
             return redirect('/create')
+        elif request.form['action'] == "Add Group":
+            return redirect('/create-group')
+    
     # default action: display all tasks 
     tasks = Task.query.filter_by(user_id=current_user.id). \
                                 order_by(Task.bookmarked.desc(), Task.due_date_int, Task.time).all() 
-    return render_template('home.html', user=current_user, tasks=tasks, isQuery=False)
+    
+    return render_template('home.html', user=current_user, tasks=tasks, isQuery=False, groups=groups, group_name="All Groups")
+
+
+
+@views.route('/create-group', methods=['POST', 'GET'])
+@login_required
+def create_group():
+    if request.method == 'POST':
+        if request.form['action'] == 'New Group':
+            groupname = request.form['groupname']
+            # Check if groupname exists in DB
+            if (groupname):
+                group = Group.query.filter_by(name=groupname).filter_by(user_id=current_user.id).first()
+                if group:
+                    flash(groupname + ' Group already exists! Please enter another Group name.', category='error')
+                else:
+                    new_group = Group(name=groupname, user_id=current_user.id)
+                    db.session.add(new_group)
+                    db.session.commit()
+                    flash(groupname + ' Group Added!', category='success')
+                    return redirect('/')
+        elif request.form['action'] == 'Return Home':
+            flash('Returning Home!', category='success')
+            return redirect('/')
+    return render_template('create-group.html', user=current_user)
 
 
 
@@ -75,8 +136,8 @@ def create():
             due_date_int = request.form['due_date']
             time = request.form['time']
             
-            print("orginal time format: ", time)
-            print("type: ", type(time))
+            #print("orginal time format: ", time)
+            #print("type: ", type(time))
 
             new_time = format_time(time)
             # Parse str object YYYY-MM-DD format, and convert into formatted str 
@@ -89,7 +150,8 @@ def create():
                                     due_date=due_date, 
                                     due_date_int=due_date_int,
                                     time=new_time, 
-                                    user_id=current_user.id)
+                                    user_id=current_user.id,
+                                    group_id=None)
                     db.session.add(new_task)
                     db.session.commit()
                     flash('New event added!', category='success')
@@ -152,6 +214,16 @@ def update(id):
         # Otherwise Update Button submitted
         # and make sure owner only can update 
         if updated_task.user_id == current_user.id:
+
+            # Update Group 
+            group_id = request.form['groupSelect']
+            if group_id != "All":
+                print(group_id)
+                updated_task.group_id = group_id
+            else:
+                updated_task.group_id = None
+
+            # Update Content, Due Date, Time
             updated_task.content = request.form['content']
             date_obj = request.form['due_date']
             updated_task.due_date = format_date(date_obj)
@@ -161,6 +233,7 @@ def update(id):
                 updated_task.time = format_time(time)
             else:
                 updated_task.time = '' # default time: unspecified/optional
+            # Update Status
             updated_task.status = request.form.get('taskStatus')
             try:
                 db.session.commit()
@@ -169,4 +242,6 @@ def update(id):
             except:
                 flash('Error in updating event.', category='error')
     else:
-        return render_template('update.html', task=updated_task, user=current_user)
+        # get user's groups
+        groups = Group.query.filter_by(user_id=current_user.id).all()
+        return render_template('update.html', task=updated_task, user=current_user, groups=groups)

@@ -31,13 +31,13 @@ Events Assistant | Update Task
       </div>
 
       <div class="row form-group">
-        <div class="col col-md-4">
+        <div class="col col-lg-3">
           <label for="due_date" class="col-title">Due Date</label>
           <br>
           <input type="date" id="due_date" name="due_date" value="{{ task.due_date_int }}">
         </div>
 
-        <div class="col col-md-4">
+        <div class="col col-lg-3">
           <label for="time" class="col-title">Time</label>
           <br>
           {% set format_time = task.time[:-3] %}
@@ -57,7 +57,7 @@ Events Assistant | Update Task
           <input type="time" id="time" name="time" value="{{ format_time }}">
         </div>
 
-        <div class="col col-md-4">
+        <div class="col col-md-6 col-lg-3">
           <label for="status" class="col-title">Status</label>
           <br>
           <select name="taskStatus" aria-label="Select/Dropdown menu" id="curr_status">
@@ -67,6 +67,18 @@ Events Assistant | Update Task
             <option value="Completed">Completed</option>
           </select>
         </div>
+
+        <div class="col col-md-6 col-lg-3">
+          <label for="group" class="col-title">Group</label>
+          <br>
+          <select name="groupSelect" aria-label="Group Dropdown" id="groupSelect">
+            <option value="All" selected>All</option>
+            {% for group in groups %}
+            <option value={{group.id}}>{{group.name}}</option>
+            {% endfor %}
+          </select>
+        </div>
+
       </div>
 
       <div class="form-group row">

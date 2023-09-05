@@ -50,8 +50,8 @@ python3 main.py
 The user can then access and interact with the web app at http://127.0.0.1:5000/ via any web browser. 
 
 ## Visual Demo
-<img src="https://github.com/jschhie/Events-Assistant/blob/master/demos/home-all.png" alt="Home Page with all tasks">
+<img src="https://github.com/jschhie/Events-Assistant/blob/master/demos/allgroups.png" alt="Home Page with All Groups">
 
-<img src="https://github.com/jschhie/Events-Assistant/blob/master/demos/home-spanish.png" alt="Home Page with Spanish Homework Group">
+<img src="https://github.com/jschhie/Events-Assistant/blob/master/demos/onegroup.png" alt="Home Page with Math Homework Group and side bar menu">
 
 <img src="https://github.com/jschhie/Events-Assistant/blob/master/demos/update-group.png" alt="Update Events">

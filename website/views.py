@@ -22,6 +22,23 @@ def git_update():
     return '', 200
 
 
+'''
+@views.route('/groups-<string:groupname>', methods=['POST', 'GET'])
+@login_required
+def groups(groupname):
+    # get all user's groups
+    # replace %20 with whitespace
+    print(groupname)
+
+    groups = Group.query.filter_by(user_id=current_user.id).all()
+
+    tasks = Task.query.filter_by(user_id=current_user.id). \
+            order_by(Task.bookmarked.desc(), Task.due_date_int, Task.time).all() 
+    
+
+    return render_template('home.html', user=current_user, tasks=tasks, isQuery=False, groups=groups, group_name=groupname)
+'''
+
 
 @views.route('/', methods=['POST', 'GET'])
 @views.route('/home', methods=['POST', 'GET'])
@@ -31,15 +48,33 @@ def home():
     groups = Group.query.filter_by(user_id=current_user.id).all()
 
     if request.method == 'POST':
+        # Go to Group
+        if request.form['action'] == 'View All':
+            print('all groups!')
+            pass
+        elif 'Group' in request.form['action']:
+            # get group id at the end of string
+            group_id = request.form['action'].replace('Group','')
+            group = Group.query.filter_by(id=group_id).first()
+            
+            # default action: display all tasks 
+            tasks = Task.query.filter_by(user_id=current_user.id). \
+                                order_by(Task.bookmarked.desc(), Task.due_date_int, Task.time). \
+                                filter_by(group_id=group_id).all() 
+    
+            print(group.id)
+            print(group.name)
+
+            return render_template('home.html', user=current_user, tasks=tasks, isQuery=False, groups=groups, group_name=group.name)
         # Search Bar
-        if request.form['action'] == 'Search':
+        elif request.form['action'] == 'Search':
             user_query = request.form['Query']
             query_filter = request.form['QueryFilter']
             group_filter = request.form['GroupFilter']
             group = Group.query.filter_by(id=group_filter).first()
 
             all_user_tasks = Task.query.filter_by(user_id=current_user.id).order_by(Task.bookmarked.desc(), Task.due_date_int, Task.time) # sort by priority, where 1 = bookmarked, 0 = unbookmarked
-            
+
             if (query_filter != "Status" and group_filter != "Filter By..." and group_filter != "All"):
                 if (user_query):
                     flash("Results for " + user_query + " that are " + query_filter + " and in " + group.name, category='success')
@@ -60,7 +95,7 @@ def home():
             
             elif (group_filter != "Filter By..." and group_filter != "All"):
                 if (user_query):
-                    flash("Results for " + query_filter + " that are in " + group.name, category='success')
+                    flash("Results for " + user_query + " that are in " + group.name, category='success')
                     results = all_user_tasks.filter(Task.content.contains(user_query)).filter(Task.group_id==group_filter).all()
                 else:
                     # Search * all queries with group_filter only
@@ -122,7 +157,10 @@ def create_group():
         elif request.form['action'] == 'Return Home':
             flash('Returning Home!', category='success')
             return redirect('/')
-    return render_template('create-group.html', user=current_user)
+    
+    # get user's groups
+    groups = Group.query.filter_by(user_id=current_user.id).all()
+    return render_template('create-group.html', user=current_user, groups=groups)
 
 
 
@@ -161,7 +199,10 @@ def create():
         elif request.form['action'] == 'Return Home':
             flash('Returning Home!', category='success')
             return redirect('/')
-    return render_template('create.html', user=current_user)
+    
+    # get user's groups
+    groups = Group.query.filter_by(user_id=current_user.id).all()
+    return render_template('create.html', user=current_user, groups=groups)
 
 
 

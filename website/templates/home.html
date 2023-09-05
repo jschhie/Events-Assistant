@@ -151,10 +151,8 @@ Events Assistant | Home
           <td>{{ task.content }}</td>
         {% else %}
         <td>
-          <!-- color:transparent, not color:white to hide padded text; accounts for bookmarked-group:background-color-->
           <p>
             {{ task.content }}
-            <!-- <span style="color:transparent;">{{ "a" * (60 - task.content|length) }}</span>-->
           </p>
         </td>
         {% endif %}

@@ -8,28 +8,13 @@ A Flask web app that provides a user-friendly, multi-functional dashboard for cu
 This web app is hosted on <a href="https://www.pythonanywhere.com/">PythonAnywhere</a>. You can visit this project at https://jschhie.pythonanywhere.com. 
 
 ### Features
-<<<<<<< HEAD
 * Allows users to create, modify, delete, bookmark, group, and un/hide events
 * Handles user authentication (login, logout, registration) and filtered searches with a relational SQLite database
-=======
-* Allows users to create, modify, delete, bookmark, and un/hide events
-* Handles user authentication (login, logout, registration) and filtered searches with a relational database
->>>>>>> d0161e0617291fab12321f9627cf24e74b9f0c27
 * HTML templates rendered with Jinja and styled interface with CSS, JavaScript, and Bootstrap framework
 
 ## Table of Contents
 * [Demo](https://github.com/jschhie/Events-Assistant/#visual-demo)
 * [Running the App Manually](https://github.com/jschhie/Events-Assistant/#running-the-app-manually)
-
-## Web App Demo
-<img src="https://github.com/jschhie/Events-Assistant/blob/master/demos/css%20register2.png" alt="Registration Page">
-
-<img src="https://github.com/jschhie/Events-Assistant/blob/master/demos/css%20login2.png" alt="Login Page">
-
-<img src="https://github.com/jschhie/Events-Assistant/blob/master/demos/css%20home2.png" alt="Home Page with tasks">
-
-<img src="https://github.com/jschhie/Events-Assistant/blob/master/demos/css%20update2.png" alt="Update Events">
-
 
 ## Running the App Manually
 ### Application Requirements
@@ -62,7 +47,6 @@ Finally, enter:
 python3 main.py
 ```
 
-<<<<<<< HEAD
 The user can then access and interact with the web app at http://127.0.0.1:5000/ via any web browser. 
 
 ## Visual Demo
@@ -71,12 +55,3 @@ The user can then access and interact with the web app at http://127.0.0.1:5000/
 <img src="https://github.com/jschhie/Events-Assistant/blob/master/demos/home-spanish.png" alt="Home Page with Spanish Homework Group">
 
 <img src="https://github.com/jschhie/Events-Assistant/blob/master/demos/update-group.png" alt="Update Events">
-
-<img src="https://github.com/jschhie/Events-Assistant/blob/master/demos/css%20register2.png" alt="Registration Page">
-
-<img src="https://github.com/jschhie/Events-Assistant/blob/master/demos/css%20login2.png" alt="Login Page">
-=======
-<hr>
-
-The user can then access and interact with the web app at http://127.0.0.1:5000/ via any web browser. 
->>>>>>> d0161e0617291fab12321f9627cf24e74b9f0c27

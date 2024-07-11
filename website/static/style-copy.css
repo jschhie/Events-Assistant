@@ -1,0 +1,213 @@
+/* ==== testing: manually uploading files ===== */
+
+
+
+/* ==== import font ===== */
+@import url('https://fonts.googleapis.com/css2?family=Pangolin&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Yomogi&display=swap');
+
+.bookmarked-group {
+    background-color: lightyellow;
+}
+
+.unbookedmark-group {
+    background-color: transparent;
+}
+
+* {
+    font-family: 'Pangolin', cursive;
+}
+
+.alert {
+    font-size: 1em;
+    text-align: center;
+}
+
+.content-section {
+    margin: 5%;
+}
+
+.form-group {
+    margin: 20px;
+}
+
+.bottom-form-div {
+    border-top: 1px dashed black;
+    font-size: 1em;   
+}
+
+.col-title, .btn, .button, #content, .tasks-text, #due_date, #time, #curr_status {
+    font-size: 1.05em;
+}
+
+.col-title {
+    margin-top: 15px;
+}
+
+/* TABLE OF EVENTS */
+.header-row {
+    font-size: 1.15em;
+    font-weight: bold;
+}
+
+.content-text {
+    font-size: 1.1em;
+}
+
+.table-actions a {
+    /* mobile x-small view */
+    margin-bottom: 15px;
+}
+
+@media all and (min-width:992px) {
+    /* large */
+    .table-actions a {
+        margin: auto;
+        display: inline-block;
+    }
+
+    .table-actions {
+        text-align: center;
+    }
+}
+
+
+
+/* NAVBAR + HEADER */
+.navbar-container {
+    background-color: rgba(0,0,0,0.9);
+    text-align: center;
+}
+
+.navbar-nav a, .navbar-toggler-icon {
+    color: white;
+    font-family: 'Yomogi', cursive;
+    align-items: center;
+    display: flex;
+}
+
+.nav-item {
+    margin-left: 10%;
+    font-size: 1.1em;
+}
+
+.title-header {
+    font-size: 1.3em;
+    margin-right: 5%;
+}
+
+.title-header a {
+    text-decoration: none;
+    color: white;
+    font-family: 'Yomogi', cursive;
+}
+
+.main-header {
+    border-bottom: 1px dashed black;
+    font-size: 1.3em;
+}
+
+/* BUTTONS */
+.btn {
+    background-color: rgba(0,0,0,0.9);
+    color: white;
+    font-family: 'Yomogi', cursive;
+    padding-bottom: 10px;
+    margin-right: 8px;
+}
+
+.btn:hover {
+    background-color: rgba(0,0,0,0.8);
+    color: white;
+}
+
+.custom-btn {
+    margin-top: 15px;
+}
+
+.navbar-nav a:hover {
+    color: white;
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.lower-page-btn {
+    margin-left: 10px;
+}
+
+.home-main-buttons {
+    margin-bottom: 58px;
+}
+
+/* STATUS BADGES */
+.badge {
+    padding: 9px;
+    font-size: .9em;
+    color: black;
+}
+
+.date-badge {
+    background-color: black;
+    color: white;
+    font-family: 'Yomogi', cursive;
+    margin-right: 50px;
+    font-size: 1em;
+    margin-bottom: 15px;
+}
+
+.completed-badge {
+    background-color: rgb(197, 224, 200);
+}
+
+.progress-badge {
+    background-color: rgb(250, 237, 190);
+}
+
+.cancelled-badge {
+    background-color: rgb(163, 162, 162);
+}
+
+.todo-badge {
+    background-color: rgb(237, 200, 194);
+}
+
+/* SEARCH BAR CONTAINER */
+.searchbar {
+    margin-top: 30px;
+}
+
+/* LOGIN / REGISTER PAGE ELEMENTS */
+.login-link {
+    margin-left: 50px;
+    color: "#051094";
+}
+
+/* UPDATE / CREATE PAGE ELEMENTS */
+.date-time-container {
+    margin-top: 20px;
+}
+
+@media all and (min-width:580px) {
+    #curr-due-date-text {
+        display: inline-block;
+    }
+
+    .custom-btn {
+        margin-left: 10px;
+    }
+
+}
+
+/* CSS Animation */
+.fade-container {
+    animation: fadein 1.3s;
+}
+
+@keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+.canvas-link {
+    width: 100%;
+    background-color: black;
+}

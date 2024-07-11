@@ -10,17 +10,28 @@ import git # to create webhook for ```git push```
 views = Blueprint('views', __name__)
 
 
+# update: Create webhook with github
+@views.route('/git_update', methods=['POST'])
+def git_update():
+    if request.method == 'POST':
+        repo = git.Repo('./Events-Assistant')
+        origin = repo.remotes.origin
+        origin.pull()
+        return 'updated pythonanywhere successfully!!', 200
+    else:
+        return 'wrong event type!!', 400
 
+'''
 # Create Webhook with GitHub: Deploy when master commits
 @views.route('git_update', methods=['POST'])
 def git_update():
     repo = git.Repo('./Events-Assistant')
     origin = repo.remotes.origin
-    repo.create_head('master', 
+    repo.create_head('master',
                      origin.refs.master).set_tracking_branch(origin.refs.master).checkout()
     origin.pull()
     return '', 200
-
+'''
 
 '''
 @views.route('/groups-<string:groupname>', methods=['POST', 'GET'])
@@ -33,8 +44,8 @@ def groups(groupname):
     groups = Group.query.filter_by(user_id=current_user.id).all()
 
     tasks = Task.query.filter_by(user_id=current_user.id). \
-            order_by(Task.bookmarked.desc(), Task.due_date_int, Task.time).all() 
-    
+            order_by(Task.bookmarked.desc(), Task.due_date_int, Task.time).all()
+
 
     return render_template('home.html', user=current_user, tasks=tasks, isQuery=False, groups=groups, group_name=groupname)
 '''
@@ -56,12 +67,12 @@ def home():
             # get group id at the end of string
             group_id = request.form['action'].replace('Group','')
             group = Group.query.filter_by(id=group_id).first()
-            
-            # default action: display all tasks 
+
+            # default action: display all tasks
             tasks = Task.query.filter_by(user_id=current_user.id). \
                                 order_by(Task.bookmarked.desc(), Task.due_date_int, Task.time). \
-                                filter_by(group_id=group_id).all() 
-    
+                                filter_by(group_id=group_id).all()
+
             #print(group.id)
             #print(group.name)
 
@@ -92,7 +103,7 @@ def home():
                     # Search * all queries with status_filter only
                     flash("Results for " + query_filter + " items", category='success')
                     results = all_user_tasks.filter(Task.status==query_filter).all()
-            
+
             elif (group_filter != "Filter By..." and group_filter != "All"):
                 if (user_query):
                     flash("Results for " + user_query + " that are in " + group.name, category='success')
@@ -101,13 +112,13 @@ def home():
                     # Search * all queries with group_filter only
                     flash("Results for items in " + group.name, category='success')
                     results = all_user_tasks.filter(Task.group_id==group_filter).all()
-            
+
             else: # No filters applied
                 flash("Results for " + user_query + " All Groups", category='success')
                 results = all_user_tasks.filter(Task.content.contains(user_query)).all()
-            
+
             try:
-                return render_template('home.html', user=current_user, tasks=results, isQuery=True, groups=groups, group_name=group.name) 
+                return render_template('home.html', user=current_user, tasks=results, isQuery=True, groups=groups, group_name=group.name)
             except:
                 return render_template('home.html', user=current_user, tasks=results, isQuery=True, groups=groups, group_name="All Groups")
 
@@ -123,16 +134,16 @@ def home():
             remaining_tasks = Task.query.filter_by(user_id=current_user.id). \
                                                     order_by(Task.bookmarked.desc(), Task.due_date_int, Task.time).all()
             return render_template('home.html', user=current_user, tasks=remaining_tasks, isQuery=False, group_name="All Groups")
-        
+
         elif request.form['action'] == "Create New":
             return redirect('/create')
         elif request.form['action'] == "Add Group":
             return redirect('/create-group')
-    
-    # default action: display all tasks 
+
+    # default action: display all tasks
     tasks = Task.query.filter_by(user_id=current_user.id). \
-                                order_by(Task.bookmarked.desc(), Task.due_date_int, Task.time).all() 
-    
+                                order_by(Task.bookmarked.desc(), Task.due_date_int, Task.time).all()
+
     return render_template('home.html', user=current_user, tasks=tasks, isQuery=False, groups=groups, group_name="All Groups")
 
 
@@ -146,23 +157,23 @@ def create_group():
         # Go to Group
         if request.form['action'] == 'View All':
             tasks = Task.query.filter_by(user_id=current_user.id). \
-                        order_by(Task.bookmarked.desc(), Task.due_date_int, Task.time).all() 
+                        order_by(Task.bookmarked.desc(), Task.due_date_int, Task.time).all()
             return render_template('home.html', user=current_user, tasks=tasks, isQuery=False, groups=groups, group_name="All Groups")
 
         elif 'Group' in request.form['action'] and request.form['action'] != "Add Group" and request.form['action'] != "New Group":
             # get group id at the end of string
             try:
-                group_id = request.form['action'].replace('Group','')            
+                group_id = request.form['action'].replace('Group','')
                 group = Group.query.filter_by(id=group_id).first()
                 tasks = Task.query.filter_by(user_id=current_user.id). \
                                     order_by(Task.bookmarked.desc(), Task.due_date_int, Task.time). \
-                                    filter_by(group_id=group_id).all() 
+                                    filter_by(group_id=group_id).all()
                 group_name = group.name
             except:
                 group_id = request.form['action'].replace('Group','')
                 print(group_id)
                 tasks = Task.query.filter_by(user_id=current_user.id). \
-                    order_by(Task.bookmarked.desc(), Task.due_date_int, Task.time).all() 
+                    order_by(Task.bookmarked.desc(), Task.due_date_int, Task.time).all()
                 group_name = "All Groups"
             return render_template('home.html', user=current_user, tasks=tasks, isQuery=False, groups=groups, group_name=group_name)
 
@@ -182,7 +193,7 @@ def create_group():
         elif request.form['action'] == 'Return Home':
             flash('Returning Home!', category='success')
             return redirect('/')
-    
+
     # get user's groups
     groups = Group.query.filter_by(user_id=current_user.id).all()
     return render_template('create-group.html', user=current_user, groups=groups)
@@ -194,21 +205,21 @@ def create_group():
 def create():
     # get user's groups
     groups = Group.query.filter_by(user_id=current_user.id).all()
-    
+
     if request.method == 'POST':
         # Go to Group
         if request.form['action'] == 'View All':
             tasks = Task.query.filter_by(user_id=current_user.id). \
-                        order_by(Task.bookmarked.desc(), Task.due_date_int, Task.time).all() 
+                        order_by(Task.bookmarked.desc(), Task.due_date_int, Task.time).all()
             return render_template('home.html', user=current_user, tasks=tasks, isQuery=False, groups=groups, group_name="All Groups")
-        
+
         elif 'Group' in request.form['action']:
             # get group id at the end of string
             group_id = request.form['action'].replace('Group','')
             group = Group.query.filter_by(id=group_id).first()
             tasks = Task.query.filter_by(user_id=current_user.id). \
                                 order_by(Task.bookmarked.desc(), Task.due_date_int, Task.time). \
-                                filter_by(group_id=group_id).all() 
+                                filter_by(group_id=group_id).all()
             return render_template('home.html', user=current_user, tasks=tasks, isQuery=False, groups=groups, group_name=group.name)
 
         elif request.form['action'] == 'Add Task':
@@ -216,21 +227,21 @@ def create():
             content = request.form['content']
             due_date_int = request.form['due_date']
             time = request.form['time']
-            
+
             #print("orginal time format: ", time)
             #print("type: ", type(time))
 
             new_time = format_time(time)
-            # Parse str object YYYY-MM-DD format, and convert into formatted str 
+            # Parse str object YYYY-MM-DD format, and convert into formatted str
             if len(content.strip()) < 1:
                 flash('Event details too short!', category='error')
             else:
-                due_date = format_date(due_date_int) 
+                due_date = format_date(due_date_int)
                 try:
-                    new_task = Task(content=content, 
-                                    due_date=due_date, 
+                    new_task = Task(content=content,
+                                    due_date=due_date,
                                     due_date_int=due_date_int,
-                                    time=new_time, 
+                                    time=new_time,
                                     user_id=current_user.id,
                                     group_id=None)
                     db.session.add(new_task)
@@ -242,7 +253,7 @@ def create():
         elif request.form['action'] == 'Return Home':
             flash('Returning Home!', category='success')
             return redirect('/')
-    
+
     # get user's groups
     groups = Group.query.filter_by(user_id=current_user.id).all()
     return render_template('create.html', user=current_user, groups=groups)
@@ -259,7 +270,7 @@ def delete(id):
             db.session.delete(task_to_delete)
             db.session.commit()
             flash('Event deleted!', category='success')
-            return redirect('/') 
+            return redirect('/')
     except:
         flash('Error in deleting event.', category='error')
 
@@ -279,10 +290,10 @@ def bookmark(id):
                 saved_task.bookmarked = True
                 flash('Saved event!', category='success')
             db.session.commit()
-            return redirect('/') 
+            return redirect('/')
     except:
         flash('Error in bookmarking event.', category='error')
-        return redirect('/') 
+        return redirect('/')
 
 
 
@@ -298,27 +309,27 @@ def update(id):
         # Go to Group
         if request.form['action'] == 'View All':
             tasks = Task.query.filter_by(user_id=current_user.id). \
-                                order_by(Task.bookmarked.desc(), Task.due_date_int, Task.time).all() 
+                                order_by(Task.bookmarked.desc(), Task.due_date_int, Task.time).all()
             return render_template('home.html', user=current_user, tasks=tasks, isQuery=False, groups=groups, group_name="All Groups")
-        
+
         elif 'Group' in request.form['action']:
             # get group id at the end of string
             group_id = request.form['action'].replace('Group','')
             group = Group.query.filter_by(id=group_id).first()
             tasks = Task.query.filter_by(user_id=current_user.id). \
                                 order_by(Task.bookmarked.desc(), Task.due_date_int, Task.time). \
-                                filter_by(group_id=group_id).all() 
+                                filter_by(group_id=group_id).all()
             return render_template('home.html', user=current_user, tasks=tasks, isQuery=False, groups=groups, group_name=group.name)
-        
+
         elif request.form['action'] == 'Return Home':
             flash('Update cancelled. Returning Home!', category='success')
             return redirect('/')
 
         # Otherwise Update Button submitted
-        # and make sure owner only can update 
+        # and make sure owner only can update
         if updated_task.user_id == current_user.id:
 
-            # Update Group 
+            # Update Group
             group_id = request.form['groupSelect']
             if group_id != "All":
                 print(group_id)

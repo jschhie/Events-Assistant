@@ -1,11 +1,11 @@
-# Dashboard Builder 📅 
+# Task Dashboard 📅 
 
 > Flask, Python, HTML, CSS, JavaScript, SQLAlchemy, Jinja, Bootstrap.
 
 ## Overview
-* A Flask web app with a user-friendly dashboard for custom events. 
+* A Flask web app with a user-friendly dashboard for custom, schedulable tasks. 
 * Features include:
-  * Create, modify, delete, bookmark, group, and un/hide events
+  * Create, modify, delete, bookmark, group, and un/hide tasks
   * User authentication (login, logout, registration) and filtered search functionality
   * Uses a relational SQLite database for data management
   * HTML templates rendered using Jinja, with a styled interface built using CSS, JavaScript, and Bootstrap

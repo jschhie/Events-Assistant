@@ -2,21 +2,11 @@
 
 > Flask, Python, HTML, CSS, JavaScript, SQLAlchemy, Jinja, Bootstrap.
 
-
-## Project Overview
-A Flask web app that provides a user-friendly, multi-functional, and collaborative dashboard for custom events. 
-
-This web app is hosted on <a href="https://www.pythonanywhere.com/">PythonAnywhere</a>. You can visit this project at https://jschhie.pythonanywhere.com. 
-
-### Features
-* Allows users to create, modify, delete, bookmark, group, un/hide events, and add group members/share any group of tasks
-* Handles user authentication (login, logout, registration) and filtered searches with a relational SQLite database
-* HTML templates rendered with Jinja and styled interface with CSS, JavaScript, and Bootstrap framework
-
 ## Overview
-* A Flask web app with a user-friendly dashboard for custom, schedulable tasks. 
+* A Flask web app with a user-friendly dashboard for custom, schedulable, shareable tasks. 
 * Features include:
   * Create, modify, delete, bookmark, group, and un/hide tasks
+  * Share task groups with other users for seamless collaboration
   * User authentication (login, logout, registration) and filtered search functionality
   * Uses a relational SQLite database for data management
   * HTML templates rendered using Jinja, with a styled interface built using CSS, JavaScript, and Bootstrap

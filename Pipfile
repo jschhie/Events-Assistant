@@ -4,11 +4,11 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-flask = "==2.0.0"
+flask = "==2.2.5"
 flask-login = "==0.6.1"
 flask-sqlalchemy = "==2.5.1"
 sqlalchemy = "==1.4.31"
-werkzeug = "==2.2.3"
+werkzeug = "==3.0.3"
 
 [dev-packages]
 

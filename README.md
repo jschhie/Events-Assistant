@@ -1,6 +1,7 @@
-# Dashboard Builder 📅 
+# Task Dashboard 📅 
 
 > Flask, Python, HTML, CSS, JavaScript, SQLAlchemy, Jinja, Bootstrap.
+
 
 ## Project Overview
 A Flask web app that provides a user-friendly, multi-functional, and collaborative dashboard for custom events. 
@@ -12,37 +13,42 @@ This web app is hosted on <a href="https://www.pythonanywhere.com/">PythonAnywhe
 * Handles user authentication (login, logout, registration) and filtered searches with a relational SQLite database
 * HTML templates rendered with Jinja and styled interface with CSS, JavaScript, and Bootstrap framework
 
+## Overview
+* A Flask web app with a user-friendly dashboard for custom, schedulable tasks. 
+* Features include:
+  * Create, modify, delete, bookmark, group, and un/hide tasks
+  * User authentication (login, logout, registration) and filtered search functionality
+  * Uses a relational SQLite database for data management
+  * HTML templates rendered using Jinja, with a styled interface built using CSS, JavaScript, and Bootstrap
+* Hosted on PythonAnywhere at: https://jschhie.pythonanywhere.com. 
+
 ## Table of Contents
 * [Demo](https://github.com/jschhie/Events-Assistant/#visual-demo)
 * [Running the App Manually](https://github.com/jschhie/Events-Assistant/#running-the-app-manually)
 
+## Visual Demo
+<img src="https://github.com/jschhie/Events-Assistant/blob/master/demos/allgroups.png" alt="Home Page with All Groups">
+
+<img src="https://github.com/jschhie/Events-Assistant/blob/master/demos/onegroup.png" alt="Home Page with Math Homework Group and side bar menu">
+
+<img src="https://github.com/jschhie/Events-Assistant/blob/master/demos/update-group.png" alt="Update Events">
+
 ## Running the App Manually
-### Application Requirements
-To run this application manually (via your ```localhost```), download the required packages and this repository, as described below.
-
-The packages and libraries needed to run this web app are listed in the ```requirements.txt``` file. 
-The following command will install all the required packages:
-
-```bash
-pip3 install -r requirements.txt
-```
-(Assuming in Terminal) First, enter:
-
-<hr>
-
-Next, to clone this repository, enter:
+1. Clone this repository:
 ```bash 
 git clone https://github.com/jschhie/events-assistant.git [folderNameHere]
 ```
 
-Next, go into the folder: 
-
+2. Navigate into the folder:
 ```bash 
 cd [folderNameHere]
 ```
 
-Finally, enter:
-
+3. Install the required packages:
+```bash
+pip3 install -r requirements.txt
+```
+4. Run the Flask app:
 ```bash
 python3 main.py
 ```

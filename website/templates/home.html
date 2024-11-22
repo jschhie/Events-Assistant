@@ -122,7 +122,9 @@ Events Assistant | Home
   {% if tasks|length >= 1%}
   <div class="alert alert-secondary d-md-block d-lg-none" role="alert">Scroll horizontally to view more!</div>
 
-  <h3>{{group_name}}</h3>
+  <h3>
+    {{group_name}}
+  </h3>
 
   <!-- added table-responsive class to accomodate mobile/small viewports -->
   <div class="table-responsive">
@@ -221,5 +223,95 @@ Events Assistant | Home
   {% endif %}
 
   <br>
+
+  <div class="share-group-div">
+    <!-- SHARE GROUP BUTTON: ONLY ACCESSIBLE TO GROUP OWNER (group.user_id)-->
+    {% if group_name != 'All Groups' and group.user_id == user.id %}
+    <button 
+      type="submit" 
+      class="btn col-md-3 col-lg-2 custom-btn share-group-btn"
+      name="action" 
+      value="Share Group"
+      data-bs-toggle="modal" 
+      data-bs-target={{ "#" + group.id|string + "modal" }}
+    >
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-plus-fill" viewBox="0 0 16 16">
+      <path d="M1 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6"/>
+      <path fill-rule="evenodd" d="M13.5 5a.5.5 0 0 1 .5.5V7h1.5a.5.5 0 0 1 0 1H14v1.5a.5.5 0 0 1-1 0V8h-1.5a.5.5 0 0 1 0-1H13V5.5a.5.5 0 0 1 .5-.5"/>
+    </svg>
+      Share Group
+    </button>
+  
+  {% endif %}
+  </div>
+
+   <!-- Modal per Shared Group -->
+   <div class="modal fade" id={{ group.id|string + "modal" }} tabindex="-1" aria-labelledby={{ group.id|string + "modal"}} aria-hidden="true">
+      <div class="modal-dialog modal-dialog-scrollable">
+      <div class="modal-content">
+          <div class="modal-header">
+              <span style="font-size: larger;"><b>Share: {{group_name}}</b></span>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+
+          <div class="modal-body">
+            <form method="POST" class="row share-group-form">
+              <input
+                type="number"
+                value={{ group.id }}
+                style="display: none;"
+                name="HiddenGroupId"
+              >
+
+              <input 
+                type="text" 
+                placeholder="Add Group Member (username)..." 
+                class="col-12 col-sm-12"
+                name="GroupMemberName"
+              >
+              <select 
+                class="form-select dropdown-btn btn custom-btn group-access-dropdown" 
+                value="AccessMode" 
+                name="AccessModeDropdown"
+                style="margin: 0px; margin-top: 15px;"
+              >
+                <option selected value="Editor">Editor</option>
+                <option value="Viewer">Viewer</option>
+              </select>
+
+              <hr style="margin-top: 5%;">
+
+              <div>
+                <p><b>People with access...</b></p>
+                <br>
+                {{user.username}} (you) -- Owner
+                <br>
+                <!-- Iterate through all GroupMembers in current Group -->
+                 {% if group.group_members|length < 1 %}
+                  <p>(Currently not shared with anyone!)</p>
+                 {% else %}
+                  {% for group_member in group.group_members %}
+                    {% if group_member.is_editor %}
+                      <p><b>{{group_member.username}}</b> -- Editor</p>
+                    {% else %}
+                      <p><b>{{group_member.username}}</b> -- Viewer</p>
+                    {% endif %}
+                  {% endfor %}    
+                 {% endif %}
+              </div>
+
+              <button 
+                class="btn custom-btn save-group-btn"
+                type="submit"
+                name="action"
+                value="Save Group"
+              >
+                Save
+              </button>
+            </form>
+          </div>
+      </div>
+      </div>
+   </div>
   
 {% endblock %}

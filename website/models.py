@@ -28,4 +28,14 @@ class User(db.Model, UserMixin):
 class Group(db.Model):
     id = db.Column(db.Integer, primary_key=True) 
     name = db.Column(db.String(30)) # title of group, ex: 'Homework'
-    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id')) # Group owner/creator
+    group_members = db.relationship('GroupMember') # applicable for Shared Groups
+
+
+
+class GroupMember(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id')) # Group member (who is not the owner)
+    username = db.Column(db.String(150)) 
+    group_id =  db.Column(db.Integer, db.ForeignKey('group.id'))
+    is_editor = db.Column(db.Boolean, default=True) # True: 'Editor' (WRITE) mode; Or, False: 'Viewer' (READ) mode

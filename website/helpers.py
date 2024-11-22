@@ -1,5 +1,13 @@
+# IMPORT FOR: FORMAT_TIME() AND FORMAT_DATE()
 import calendar
 import datetime
+
+# IMPORT FOR: GET_GROUPS()
+from . import db
+from .models import User, Task, Group, GroupMember
+from flask_login import current_user
+
+
 
 def format_time(time) -> str:
     # Convert to str with AM, PM units
@@ -44,3 +52,34 @@ def format_date(task_due_date) -> str:
     else: # account for optional due dates
         task_due_date = None
     return task_due_date
+
+
+
+def get_shared_groups_and_tasks() -> list:
+    # get user's groups
+    groups = Group.query.filter_by(user_id=current_user.id).all()
+
+    # get user's shared groups (not owned by current_user)
+    shared_groups = None
+    shared_tasks = None
+    matching_results = GroupMember.query.filter_by(user_id=current_user.id).all()
+    if (matching_results):
+        # At least one shared Group with current_user
+        shared_groups = []
+        shared_tasks = []
+        for group_member in matching_results:
+            # get matching groups 
+            shared_group = Group.query.filter_by(id=group_member.group_id).first()
+            print('Matching Shared Group: ', shared_group)
+            shared_groups.append(shared_group)
+            # Get all shared, grouped tasks 
+            grouped_tasks = Task.query.filter_by(group_id=group_member.group_id).all()
+            shared_tasks += grouped_tasks
+
+    print("Groups Owned by current_user: ", groups)
+    print("****")
+    print("Shared Groups: ", shared_groups)
+    print("========")
+    print("Shared, Grouped Tasks", shared_tasks)
+
+    return [groups, shared_groups, shared_tasks]

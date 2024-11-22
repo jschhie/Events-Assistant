@@ -134,6 +134,22 @@
     margin-bottom: 58px;
 }
 
+/* SHARE GROUP */
+.share-group-div, .share-group-form {
+    text-align: center;
+}
+
+.share-group-btn {
+    margin-bottom: 5%;
+}
+
+.save-group-btn {
+    width: 30%;
+    margin: auto;
+    margin-top: 5%;
+}
+
+
 /* STATUS BADGES */
 .badge {
     padding: 9px;
@@ -189,6 +205,13 @@
 
     .custom-btn {
         margin-left: 10px;
+    }
+
+    .save-group-btn {
+        /* retain SaveGroupBtn styling rules */
+        width: 30%;
+        margin: auto;
+        margin-top: 5%;
     }
 
 }

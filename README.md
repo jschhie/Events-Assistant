@@ -63,4 +63,4 @@ The user can then access and interact with the web app at http://127.0.0.1:5000/
 
 ### Updating Task as a Group Member
 > ryan123's updates to tasks in lisa123's shared group will be reflected for everyone in that group
-<img src="https://github.com/jschhie/Events-Assistant/blob/master/demos/update-group.png" alt="Updating Task as Group Member">
+<img src="https://github.com/jschhie/Events-Assistant/blob/master/demos/group-member-edit.png" alt="Updating Task as Group Member">

@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block title %} 
-Events Assistant | Home 
+Team Task Board | Home
 {% endblock %}
 
 {% block content %} 
@@ -226,22 +226,39 @@ Events Assistant | Home
 
   <div class="share-group-div">
     <!-- SHARE GROUP BUTTON: ONLY ACCESSIBLE TO GROUP OWNER (group.user_id)-->
-    {% if group_name != 'All Groups' and group.user_id == user.id %}
-    <button 
+    {% if group_name != 'All Groups' %}
+      {% if group.user_id == user.id %}
+      <button 
+        type="submit" 
+        class="btn col-md-3 col-lg-2 custom-btn share-group-btn"
+        name="action" 
+        value="Share Group"
+        data-bs-toggle="modal" 
+        data-bs-target={{ "#" + group.id|string + "modal" }}
+      >
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-plus-fill" viewBox="0 0 16 16">
+        <path d="M1 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6"/>
+        <path fill-rule="evenodd" d="M13.5 5a.5.5 0 0 1 .5.5V7h1.5a.5.5 0 0 1 0 1H14v1.5a.5.5 0 0 1-1 0V8h-1.5a.5.5 0 0 1 0-1H13V5.5a.5.5 0 0 1 .5-.5"/>
+      </svg>
+        Share Group
+      </button>
+      {% else %}
+      <!-- OPTION TO LEAVE GROUP AS TEAM MEMBER -->
+      <button 
       type="submit" 
-      class="btn col-md-3 col-lg-2 custom-btn share-group-btn"
+      class="btn col-md-3 col-lg-2 custom-btn leave-group-btn"
       name="action" 
-      value="Share Group"
+      value="Leave Group"
       data-bs-toggle="modal" 
-      data-bs-target={{ "#" + group.id|string + "modal" }}
+      data-bs-target={{ "#leave" + group.id|string + "modal" }}
     >
-    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-plus-fill" viewBox="0 0 16 16">
-      <path d="M1 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6"/>
-      <path fill-rule="evenodd" d="M13.5 5a.5.5 0 0 1 .5.5V7h1.5a.5.5 0 0 1 0 1H14v1.5a.5.5 0 0 1-1 0V8h-1.5a.5.5 0 0 1 0-1H13V5.5a.5.5 0 0 1 .5-.5"/>
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-right" viewBox="0 0 16 16">
+      <path fill-rule="evenodd" d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0z"/>
+      <path fill-rule="evenodd" d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708z"/>
     </svg>
-      Share Group
+      Leave Group
     </button>
-  
+    {% endif %}
   {% endif %}
   </div>
 
@@ -265,7 +282,7 @@ Events Assistant | Home
 
               <input 
                 type="text" 
-                placeholder="Add Group Member (username)..." 
+                placeholder="Add or Update Group Member (username)..." 
                 class="col-12 col-sm-12"
                 name="GroupMemberName"
               >
@@ -277,25 +294,38 @@ Events Assistant | Home
               >
                 <option selected value="Editor">Editor</option>
                 <option value="Viewer">Viewer</option>
+                <option value="Remove">Remove</option>
               </select>
 
               <hr style="margin-top: 5%;">
 
               <div>
-                <p><b>People with access...</b></p>
-                <br>
-                {{user.username}} (you) -- Owner
-                <br>
+                <p><b>People with access</b></p>
+                <div class="row">
+                  <div class="col-md-6">
+                    <b>{{user.username}} (you)</b>
+                  </div>
+                  <div class="col-md-6">
+                    <p><i>Owner</i></p>
+                  </div>
+                </div>
                 <!-- Iterate through all GroupMembers in current Group -->
                  {% if group.group_members|length < 1 %}
                   <p>(Currently not shared with anyone!)</p>
                  {% else %}
                   {% for group_member in group.group_members %}
-                    {% if group_member.is_editor %}
-                      <p><b>{{group_member.username}}</b> -- Editor</p>
-                    {% else %}
-                      <p><b>{{group_member.username}}</b> -- Viewer</p>
-                    {% endif %}
+                    <div class="row">
+                      <div class="col-md-6">
+                        <b>{{group_member.username}}</b>
+                      </div>
+                      <div class="col-md-6">
+                        {% if group_member.is_editor %}
+                          <p><i>Editor</i></p>
+                        {% else %}
+                          <p><i>Viewer</i></p>
+                        {% endif %}
+                      </div>
+                    </div>
                   {% endfor %}    
                  {% endif %}
               </div>
@@ -314,4 +344,51 @@ Events Assistant | Home
       </div>
    </div>
   
+   <!-- Modal to leave shared Group -->
+   <div class="modal fade" id={{ "leave" + group.id|string + "modal" }} tabindex="-1" aria-labelledby={{ "leave" + group.id|string + "modal"}} aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable">
+    <div class="modal-content">
+        <div class="modal-header">
+            <span style="font-size: larger;"><b>Leave Group: {{group_name}}</b></span>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+
+        <div class="modal-body">
+          <form method="POST" class="row share-group-form">
+            <input
+              type="number"
+              value={{ group.id }}
+              style="display: none;"
+              name="HiddenGroupId"
+            >
+
+            <p>Are you sure you want to leave this group?</p>
+
+            <div class="row">
+              <div class="col-md-6">
+                <button 
+                  class="btn custom-btn share-group-btn btn-outline-dark"
+                  type="button"
+                  aria-label="Close"
+                  data-bs-dismiss="modal"
+                >
+                Cancel
+                </button>
+              </div>
+              <div class="col-md-6">
+                <button 
+                  class="btn custom-btn share-group-btn"
+                  type="submit"
+                  name="action"
+                  value="Leave Group"
+                >
+                  Confirm
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+    </div>
+    </div>
+ </div>
 {% endblock %}

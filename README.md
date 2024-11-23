@@ -7,7 +7,7 @@
 * Features include:
   * Create, modify, delete, bookmark, group, and un/hide tasks
   * Share task groups with other users for seamless collaboration
-  * Add, remove, or update access modes for each team member
+  * Add, remove, or update access modes ('Editor' or 'Viewer') for each team member
   * User authentication (login, logout, registration) and filtered search functionality
   * Uses a relational SQLite database for data management
   * HTML templates rendered using Jinja, with a styled interface built using CSS, JavaScript, and Bootstrap
@@ -26,13 +26,17 @@
 > Here, lisa123 is the owner of this group
 <img src="https://github.com/jschhie/Events-Assistant/blob/master/demos/edit-members.png" alt="Share Group / Add Members">
 
-### Group Member View -- with Editor Access Mode
+### Group Member View -- Editor Access Mode
 > ryan123 is a member of lisa123's group with editor access mode 
-<img src="https://github.com/jschhie/Events-Assistant/blob/master/demos/edit-shared-task.png" alt="Group Member View: with Editor Access Mode">
+<img src="https://github.com/jschhie/Events-Assistant/blob/master/demos/edit-shared-task.png" alt="Group Member View: Editor Access Mode">
 
 ### Updating Task as a Group Member
 > ryan123's updates to tasks in lisa123's shared group will be reflected for everyone in that group, including jimmy2020
 <img src="https://github.com/jschhie/Events-Assistant/blob/master/demos/updated-shared-task2.png" alt="Updated Task as Group Member">
+
+### Group Member View -- Viewer Access Mode
+> In this example, ryan123 is a member of lisa123's group with viewer access mode
+<img src="https://github.com/jschhie/Events-Assistant/blob/master/demos/viewer-mode1.png" alt="Group Member View: Viewer Access Mode">
 
 ### Option to Leave Group
 > jimmy2020 can optionally leave any shared group

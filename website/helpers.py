@@ -83,3 +83,16 @@ def get_shared_groups_and_tasks() -> list:
     print("Shared, Grouped Tasks", shared_tasks)
 
     return [groups, shared_groups, shared_tasks]
+
+
+
+def find_restricted_tasks(shared_groups) -> list:
+    restricted_tasks = [] # list of Task.id's associated with 'Viewer' access mode only
+    for shared_group in shared_groups:
+        matching_member = GroupMember.query.filter_by(group_id=shared_group.id).filter_by(user_id=current_user.id).first()
+        if (not matching_member.is_editor):
+            # Find all shared Tasks within that Group 
+            matching_tasks = Task.query.filter_by(group_id=shared_group.id).all()
+            for task in matching_tasks:
+                restricted_tasks.append(task.id)
+    return restricted_tasks

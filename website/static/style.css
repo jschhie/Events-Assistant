@@ -156,6 +156,12 @@
 }
 
 
+/* VIEW MODE */
+.disabled-action {
+    pointer-events: none;
+    cursor: default;
+}
+
 /* STATUS BADGES */
 .badge {
     padding: 9px;

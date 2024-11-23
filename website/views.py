@@ -2,7 +2,7 @@ from flask import Blueprint, render_template, request, redirect, flash
 from flask_login import current_user, login_required
 from . import db
 from .models import User, Task, Group, GroupMember
-from .helpers import format_date, format_time, get_shared_groups_and_tasks # helper functions
+from .helpers import format_date, format_time, get_shared_groups_and_tasks, find_restricted_tasks # helper functions
 from sqlalchemy import or_
 
 import git # to create webhook for ```git push```
@@ -22,23 +22,6 @@ def git_update():
     return '', 200
 
 
-'''
-@views.route('/groups-<string:groupname>', methods=['POST', 'GET'])
-@login_required
-def groups(groupname):
-    # get all user's groups
-    # replace %20 with whitespace
-    print(groupname)
-
-    groups = Group.query.filter_by(user_id=current_user.id).all()
-
-    tasks = Task.query.filter_by(user_id=current_user.id). \
-            order_by(Task.bookmarked.desc(), Task.due_date_int, Task.time).all() 
-    
-
-    return render_template('home.html', user=current_user, tasks=tasks, isQuery=False, groups=groups, group_name=groupname)
-'''
-
 
 @views.route('/', methods=['POST', 'GET'])
 @views.route('/home', methods=['POST', 'GET'])
@@ -51,7 +34,19 @@ def home():
         # Go to Group
         if request.form['action'] == 'View All':
             print('all groups!')
-            pass
+
+            # Check access_mode for each Group and each shared Task            
+            restricted_tasks = find_restricted_tasks(shared_groups)
+
+            tasks = Task.query.filter_by(user_id=current_user.id). \
+                                        order_by(Task.bookmarked.desc(), Task.due_date_int, Task.time).all() 
+            
+            if (shared_groups and shared_tasks):
+                groups += shared_groups
+                tasks += shared_tasks
+
+            return render_template('home.html', user=current_user, tasks=tasks, isQuery=True, groups=groups, group_name="All Groups", group=None, restricted_tasks=restricted_tasks)
+        
         elif 'Group' in request.form['action'] and request.form['action'] != "Add Group" and request.form['action'] != "New Group" and request.form['action'] != "Save Group" and request.form['action'] != "Leave Group":
             # get group id at the end of string
             group_id = request.form['action'].replace('Group','')
@@ -67,10 +62,21 @@ def home():
                 for shared_group in shared_groups:
                     if (str(shared_group.id) == group_id):
                         print("selected group id is a shared group!")
+
                         grouped_shared_tasks = Task.query.filter_by(group_id=group_id). \
                                 order_by(Task.bookmarked.desc(), Task.due_date_int, Task.time).all() 
-                        return render_template('home.html', user=current_user, tasks=grouped_shared_tasks, isQuery=False, groups=groups+shared_groups, group_name=group.name, group=group)
-
+                        
+                        # Check if is_editor flag is True (Editor) or False (Viewer)
+                        matching_member = GroupMember.query.filter_by(user_id=current_user.id).filter_by(group_id=group.id).first()
+                        if (matching_member.is_editor):
+                            # Editor mode
+                            flash('You are in Editor Mode')
+                            return render_template('home.html', user=current_user, tasks=grouped_shared_tasks, isQuery=False, groups=groups+shared_groups, group_name=group.name, group=group)
+                        else:
+                            # Viewer mode
+                            flash('Viewer Mode only!')
+                            return render_template('home.html', user=current_user, tasks=grouped_shared_tasks, isQuery=False, groups=groups+shared_groups, group_name=group.name, group=group, access_mode="Viewer")
+ 
                 # Otherwise, user did not select a shared Group to view: Return all tasks
                 print("did not select a shared group to view")
                 return render_template('home.html', user=current_user, tasks=tasks, isQuery=False, groups=groups+shared_groups, group_name=group.name, group=group)
@@ -89,7 +95,10 @@ def home():
             # Combine user Tasks (owned) and Group Tasks (shared)
             if (shared_groups and shared_tasks):
                 groups += shared_groups
-    
+
+                # Check access_mode for each Group and each shared Task
+                restricted_tasks = find_restricted_tasks(shared_groups)
+
                 filter_values = [shared_task_obj.id for shared_task_obj in shared_tasks]
                 all_user_tasks = Task.query.filter_by(user_id=current_user.id). \
                                         union(Task.query.filter(Task.id.in_(filter_values))). \
@@ -127,9 +136,9 @@ def home():
                 results = all_user_tasks.filter(Task.content.contains(user_query)).all()
             
             try:
-                return render_template('home.html', user=current_user, tasks=results, isQuery=True, groups=groups, group_name=group.name, group=group)
+                return render_template('home.html', user=current_user, tasks=results, isQuery=True, groups=groups, group_name=group.name, group=group, restricted_tasks=restricted_tasks)
             except:
-                return render_template('home.html', user=current_user, tasks=results, isQuery=True, groups=groups, group_name="All Groups", group=None)
+                return render_template('home.html', user=current_user, tasks=results, isQuery=True, groups=groups, group_name="All Groups", group=None, restricted_tasks=restricted_tasks)
 
         # Optionally delete all Completed and Cancelled Tasks
         if request.form['action'] == 'Clean Up':
@@ -227,11 +236,14 @@ def home():
     tasks = Task.query.filter_by(user_id=current_user.id). \
                                 order_by(Task.bookmarked.desc(), Task.due_date_int, Task.time).all() 
     
+    restricted_tasks = []
     if (shared_groups and shared_tasks):
         groups += shared_groups
         tasks += shared_tasks
+        # Check access_mode for each Group and each shared Task
+        restricted_tasks = find_restricted_tasks(shared_groups)
 
-    return render_template('home.html', user=current_user, tasks=tasks, isQuery=False, groups=groups, group_name="All Groups", group=None)
+    return render_template('home.html', user=current_user, tasks=tasks, isQuery=False, groups=groups, group_name="All Groups", group=None, restricted_tasks=restricted_tasks)
 
 
 

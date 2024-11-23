@@ -139,8 +139,14 @@
     text-align: center;
 }
 
-.share-group-btn {
+.share-group-btn, .leave-group-btn {
     margin-bottom: 5%;
+}
+
+.confirm-leave-group-btn {
+    background-color: white;
+    border: 1px solid black;
+    color: black;
 }
 
 .save-group-btn {

@@ -44,33 +44,6 @@ def groups(groupname):
 @views.route('/home', methods=['POST', 'GET'])
 @login_required
 def home():
-    """
-    # get user's groups
-    groups = Group.query.filter_by(user_id=current_user.id).all()
-
-    # get user's shared groups (not owned by current_user)
-    shared_groups = None
-    shared_tasks = None
-    matching_results = GroupMember.query.filter_by(user_id=current_user.id).all()
-    if (matching_results):
-        # At least one shared Group with current_user
-        shared_groups = []
-        shared_tasks = []
-        for group_member in matching_results:
-            # get matching groups 
-            shared_group = Group.query.filter_by(id=group_member.group_id).first()
-            print('Matching Shared Group: ', shared_group)
-            shared_groups.append(shared_group)
-            # Get all shared, grouped tasks 
-            grouped_tasks = Task.query.filter_by(group_id=group_member.group_id).all()
-            shared_tasks += grouped_tasks
-
-    print("Groups Owned by current_user: ", groups)
-    print("****")
-    print("Shared Groups: ", shared_groups)
-    print("========")
-    print("Shared, Grouped Tasks", shared_tasks)
-    """
 
     groups, shared_groups, shared_tasks = get_shared_groups_and_tasks() # returns a list of objects
 
@@ -79,7 +52,7 @@ def home():
         if request.form['action'] == 'View All':
             print('all groups!')
             pass
-        elif 'Group' in request.form['action'] and request.form['action'] != "Add Group" and request.form['action'] != "New Group" and request.form['action'] != "Save Group":
+        elif 'Group' in request.form['action'] and request.form['action'] != "Add Group" and request.form['action'] != "New Group" and request.form['action'] != "Save Group" and request.form['action'] != "Leave Group":
             # get group id at the end of string
             group_id = request.form['action'].replace('Group','')
             group = Group.query.filter_by(id=group_id).first()
@@ -200,18 +173,28 @@ def home():
                         all_group_members = current_group.group_members
                         matching_member = GroupMember.query.filter_by(group_id=group_id).filter_by(username=group_member_name).first()
                         if (matching_member):
-                            matching_member.is_editor = True if access_mode == 'Editor' else False
-                            db.session.commit()
-                            flash('Updated access mode!')
+                            # Check if Group owner wants to remove a GroupMember
+                            if (access_mode == 'Remove'):
+                                db.session.delete(matching_member)
+                                db.session.commit()
+                                flash('\'' + group_member_name + '\'' + ' was removed from your group!')
+                            else:
+                                matching_member.is_editor = True if access_mode == 'Editor' else False
+                                db.session.commit()
+                                flash('Updated access mode!')
                         else:
                             # Create new GroupMember and add to current Group
-                            if (access_mode == 'Editor'):
-                                new_group_member = GroupMember(user_id=added_user.id, username=group_member_name, group_id=group_id, is_editor=True) # Editor Mode
+                            if (access_mode != 'Remove'):
+                                if (access_mode == 'Editor'):
+                                    new_group_member = GroupMember(user_id=added_user.id, username=group_member_name, group_id=group_id, is_editor=True) # Editor Mode
+                                else: # 'Viewer' mode
+                                    new_group_member = GroupMember(user_id=added_user.id, username=group_member_name, group_id=group_id, is_editor=False) # Viewer Mode
+                                db.session.add(new_group_member)
+                                db.session.commit()
+                                flash('\'' + group_member_name + '\'' + ' was added to your group!')
                             else:
-                                new_group_member = GroupMember(user_id=added_user.id, username=group_member_name, group_id=group_id, is_editor=False) # Viewer Mode
-                            db.session.add(new_group_member)
-                            db.session.commit()
-                            flash('\'' + group_member_name + '\'' + ' was added to your group!')
+                                # User error: Removing a valid user from database, but user is not currently in shared Group
+                                flash('Error:' + '\'' + group_member_name + '\'' + ' is not part of your Group!', category='error')
                         # Remain on current Group
                         tasks = Task.query.filter_by(user_id=current_user.id). \
                                 order_by(Task.bookmarked.desc(), Task.due_date_int, Task.time). \
@@ -223,8 +206,23 @@ def home():
                     flash('Group Member not found!', category='error')
             else:
                 flash('Please enter a valid username!', category='error')
+        elif request.form['action'] == "Leave Group":
+            group_id = request.form['HiddenGroupId']
+            group = Group.query.filter_by(id=group_id).first()
+            
+            # Delete GroupMember info from DB
+            try:
+                group_member = GroupMember.query.filter_by(user_id=current_user.id).filter_by(group_id=group.id).first()
+                print(group_member, " found!")
+                db.session.delete(group_member)
+                db.session.commit()
+                flash("Left Group: {.name}! Returning Home.".format(group), category='success')
+                # force refresh shared_groups and shared_tasks after GroupMember removal
+                groups, shared_groups, shared_tasks = get_shared_groups_and_tasks() # returns a list of objects
+            except:
+                flash('Error! Unable to leave group. Please try again.', category='error')
+                return redirect('/')
 
-    
     # default action: display all tasks 
     tasks = Task.query.filter_by(user_id=current_user.id). \
                                 order_by(Task.bookmarked.desc(), Task.due_date_int, Task.time).all() 

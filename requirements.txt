@@ -3,4 +3,4 @@ Flask_Login==0.6.1
 Flask_SQLAlchemy==2.5.1
 GitPython==3.1.41
 SQLAlchemy==1.4.31
-Werkzeug==3.0.3
+Werkzeug==3.0.6

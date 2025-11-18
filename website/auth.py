@@ -65,7 +65,7 @@ def register():
         else: 
             new_user = User(username=username, \
                             first_name=first_name, \
-                            password=generate_password_hash(password1, method='sha256'))
+                            password=generate_password_hash(password1))
             db.session.add(new_user)
             db.session.commit()
             login_user(new_user, remember=True)

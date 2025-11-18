@@ -1,0 +1,9 @@
+demos/
+.DS_STORE
+*.pyc
+__pycache__/
+myenv/
+.env
+venv/
+*.db
+Pipfile

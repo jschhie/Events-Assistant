@@ -1,9 +1,9 @@
 demos/
 .DS_STORE
 *.pyc
-__pycache__/
-myenv/
-.env
+website/__pycache__/
+.venv
 venv/
 *.db
-Pipfile
+website/sample_tasks_database.db
+website/tasks_database.db

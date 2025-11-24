@@ -88,6 +88,9 @@ def get_shared_groups_and_tasks() -> list:
 
 def find_restricted_tasks(shared_groups) -> list:
     restricted_tasks = [] # list of Task.id's associated with 'Viewer' access mode only
+    if (shared_groups == None):
+        return restricted_tasks # Skip loop below, return empty list
+    
     for shared_group in shared_groups:
         matching_member = GroupMember.query.filter_by(group_id=shared_group.id).filter_by(user_id=current_user.id).first()
         if (not matching_member.is_editor):

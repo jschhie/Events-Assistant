@@ -93,6 +93,7 @@ def home():
             all_user_tasks = Task.query.filter_by(user_id=current_user.id).order_by(Task.bookmarked.desc(), Task.due_date_int, Task.time) # sort by priority, where 1 = bookmarked, 0 = unbookmarked
 
             # Combine user Tasks (owned) and Group Tasks (shared)
+            restricted_tasks = [] # Default empty list (No shared tasks)
             if (shared_groups and shared_tasks):
                 groups += shared_groups
 

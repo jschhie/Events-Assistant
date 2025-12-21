@@ -62,17 +62,17 @@
 ---
 
 ## Running the App Manually
-1. Clone this repository:
+### 1. Clone this repository:
 ```bash 
 git clone https://github.com/jschhie/events-assistant.git [folderNameHere]
 ```
 
-2. Navigate into the folder:
+### 2. Navigate into the folder:
 ```bash 
 cd [folderNameHere]
 ```
 
-3. Create and activate virtual environment (`venv`):
+### 3. Create and activate virtual environment (`venv`):
 > - This project assumes you have `python` v3.11 or higher
 > - To isolate the project's dependencies:
 
@@ -81,12 +81,24 @@ cd [folderNameHere]
 source venv/bin/activate
 ```
 
-4. Install the required packages:
+### 4. Install the required packages:
 ```bash
 pip3 install -r requirements.txt
 ```
 
-5. Run the Flask app:
+### 5. Configure environment variables
+
+#### 5a. Create a `.env` file in the root directory:
+```bash
+vim .env
+```
+
+#### 5b. Open the `.env` file and define the following:
+```bash
+FLASK_SECRET_KEY=any_random_string_here
+```
+
+### 6. Run the Flask app:
 ```bash
 python3 main.py
 ```

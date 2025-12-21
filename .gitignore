@@ -4,6 +4,7 @@ demos/
 website/__pycache__/
 .venv
 venv/
+.env
 *.db
 website/sample_tasks_database.db
 website/tasks_database.db

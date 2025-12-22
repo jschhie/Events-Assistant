@@ -1,4 +1,4 @@
-# Team Task Board 📅 
+# Task Mate | A collaborative team task board 📅 
 
 > - Full-stack Flask app for sharing and scheduling custom tasks with role-based access modes<br>
 > - **Live demo:** https://taskmate.pythonanywhere.com
@@ -29,42 +29,42 @@
 ---
 
 ## Table of Contents
-* [Demo](https://github.com/jschhie/Events-Assistant/#visual-demo)
-* [Running the App Manually](https://github.com/jschhie/Events-Assistant/#running-the-app-manually)
+* [Demo](https://github.com/jschhie/Task-Mate/#visual-demo)
+* [Running the App Manually](https://github.com/jschhie/Task-Mate/#running-the-app-manually)
 
 ---
 
 ## Visual Demo
 ### Home Page
 > Below is lisa123's dashboard of grouped, shareable tasks
-<img src="https://github.com/jschhie/Events-Assistant/blob/master/demos/new-home-demo.png" alt="Home Page with Sample Groups">
+<img src="https://github.com/jschhie/Task-Mate/blob/master/demos/new-home-demo.png" alt="Home Page with Sample Groups">
 
 ### Share Group: Add Members
 > Here, lisa123 is the owner of this group
-<img src="https://github.com/jschhie/Events-Assistant/blob/master/demos/edit-members.png" alt="Share Group / Add Members">
+<img src="https://github.com/jschhie/Task-Mate/blob/master/demos/edit-members.png" alt="Share Group / Add Members">
 
 ### Group Member View -- Editor Access Mode
 > ryan123 is a member of lisa123's group with editor access mode 
-<img src="https://github.com/jschhie/Events-Assistant/blob/master/demos/edit-shared-task.png" alt="Group Member View: Editor Access Mode">
+<img src="https://github.com/jschhie/Task-Mate/blob/master/demos/edit-shared-task.png" alt="Group Member View: Editor Access Mode">
 
 ### Updating Task as a Group Member
 > ryan123's updates to tasks in lisa123's shared group will be reflected for everyone in that group, including jimmy2020
-<img src="https://github.com/jschhie/Events-Assistant/blob/master/demos/updated-shared-task2.png" alt="Updated Task as Group Member">
+<img src="https://github.com/jschhie/Task-Mate/blob/master/demos/updated-shared-task2.png" alt="Updated Task as Group Member">
 
 ### Group Member View -- Viewer Access Mode
 > In this example, ryan123 is a member of lisa123's group with viewer access mode
-<img src="https://github.com/jschhie/Events-Assistant/blob/master/demos/viewer-mode1.png" alt="Group Member View: Viewer Access Mode">
+<img src="https://github.com/jschhie/Task-Mate/blob/master/demos/viewer-mode1.png" alt="Group Member View: Viewer Access Mode">
 
 ### Option to Leave Group
 > jimmy2020 can optionally leave any shared group
-<img src="https://github.com/jschhie/Events-Assistant/blob/master/demos/leave-group.png" alt="Updated Task as Group Member">
+<img src="https://github.com/jschhie/Task-Mate/blob/master/demos/leave-group.png" alt="Updated Task as Group Member">
 
 ---
 
 ## Running the App Manually
 ### 1. Clone this repository:
 ```bash 
-git clone https://github.com/jschhie/events-assistant.git [folderNameHere]
+git clone https://github.com/jschhie/Task-Mate.git [folderNameHere]
 ```
 
 ### 2. Navigate into the folder:

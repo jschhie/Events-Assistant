@@ -1,7 +1,7 @@
 # Team Task Board 📅 
 
 > - Full-stack Flask app for sharing and scheduling custom tasks with role-based access modes<br>
-> - **Live demo:** https://jschhie.pythonanywhere.com
+> - **Live demo:** https://taskmate.pythonanywhere.com
 
 ---
 
